@@ -27,7 +27,6 @@ body {
     @include horizontal-gradient(#000,
     #333,
     #b3b3b3);
-    box-shadow: 10px 10px 5px #b3b3b3;
 }
 
 .container {
@@ -51,3 +50,13 @@ p {
 	font-style: normal;
 	font-weight: normal;
 }
+
+button {
+    border: 0px;
+    &:focus {
+        outline: 0;
+    }
+}
+
+
+

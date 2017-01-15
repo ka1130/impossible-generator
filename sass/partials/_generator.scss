@@ -1,0 +1,23 @@
+#generator {
+	width: 100%;
+	background-color: #989898;
+	margin: 0 auto;
+    .container {
+        background-image: url(../img/generator-bg.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    input[type="submit"] {
+    	@include create-button($color-light, #000, 1.3rem);
+    }
+}
+
+.button-wrapper {
+	display: none;
+	// display: flex;
+	justify-content: center;
+	position: fixed;
+	bottom: 14vh;
+	right: 0;
+	left: 0;
+}

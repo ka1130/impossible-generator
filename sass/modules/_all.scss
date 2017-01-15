@@ -5,3 +5,18 @@
     background: -moz-linear-gradient(right, $color1, $color2, $color3);
     background: linear-gradient(to right, $color1, $color2, $color3);
 }
+
+@mixin create-button($bg-color, $font-color, $font-size) {
+    line-height: 100%;
+    font-family: 'Phenomena';
+    font-weight: bold;
+    background-color: $bg-color;
+    color: $font-color;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: $font-size;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 0px;
+}
