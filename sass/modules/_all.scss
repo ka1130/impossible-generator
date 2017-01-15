@@ -1,0 +1,7 @@
+@mixin horizontal-gradient($color1, $color2, $color3) {
+    background: $color1;
+    background: -webkit-linear-gradient(left, $color1, $color2, $color3);
+    background: -o-linear-gradient(right, $color1, $color2, $color3);
+    background: -moz-linear-gradient(right, $color1, $color2, $color3);
+    background: linear-gradient(to right, $color1, $color2, $color3);
+}

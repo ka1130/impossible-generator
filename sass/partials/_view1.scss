@@ -1,0 +1,61 @@
+#main .container {
+    background-image: url(../img/view1-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+    margin-top: 1.2rem;
+}
+
+#main-nav {
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        li {
+            display: inline-block;
+            list-style-type: none;
+            padding-left: 1rem;
+            padding-top: 1rem;
+        }
+        a {
+            color: #fff;
+            font-family: 'Phenomena';
+            font-weight: 300;
+            font-style: normal;
+            font-size: 1.3rem;
+        }
+    }
+}
+
+.get-started {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+    p {
+    	color: #fff;
+    }
+    a {
+    	margin-top: 1rem;
+    	line-height: 0.6rem;
+    	height: 0.7rem;
+    	display: block;
+    	font-family: 'Phenomena';
+    	font-weight: bold;
+    	background-color: $color-accent;
+    	color: #fff;
+    	text-transform: uppercase;
+    	text-align: center;
+    	font-size: 1.5rem;
+    	padding: 0.8rem 0.5rem;
+    	border-radius: 8px;
+    	cursor: pointer;
+    }
+}
