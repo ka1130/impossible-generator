@@ -11,6 +11,7 @@
     }
     input[type="submit"] {
         @include create-button($color-light, #000, 1.3rem);
+        margin-left: 10px;
     }
 }
 
@@ -168,11 +169,6 @@
             left: -30%;
         }
     }
-    .trash {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 .button-wrapper {
@@ -218,4 +214,10 @@ input[type=range]::-ms-track {
     background: transparent;
     border-color: transparent;
     color: transparent;
+}
+
+input[type=reset] {
+    @include create-button(#999, #fff, 1.3rem);
+    margin-left: 10px;
+    font-weight: normal;
 }
