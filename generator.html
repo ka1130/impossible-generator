@@ -13,11 +13,42 @@
     <section id="generator">
         <div class="container">
             <div class="controls">
-                <div class="col-left"></div>
-                <div class="col-left"></div>
+                <div class="col-left">
+                    <div class="controls-position">
+                        <span>></span>
+                        <span>></span>
+                        <p>position</p>
+                        <span>></span>
+                        <span>></span>
+                    </div>
+                    <div class="controls-zoom">
+                        <span>-</span>
+                        <p>zoom</p>
+                        <span>+</span>
+                    </div>
+                    <div class="controls-rotation">
+                        <p>rotation</p>
+                        <div class="rotation-circle">
+                            <img src="img/rotation.svg" alt="rotation-icon">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="user-photo"></div>
+                    <form action="" method="get">
+                        <div class="slider-filter">
+                            <p>grayscale</p>
+                            <input type="range" name="grayscale-range" min="0" max="100">
+                        </div>
+                    </form>
+                    <div class="trash">
+                        <img src="img/bin.svg" alt="to-trash">
+                        <p>reset</p>
+                    </div>
+                </div>
             </div>
             <div class="button-wrapper">
-            	<input type="submit" value="Get it">
+                <input type="submit" value="Get it">
             </div>
         </div>
     </section>

@@ -20,3 +20,23 @@
     cursor: pointer;
     border: 0px;
 }
+
+@mixin rotate-element($deg) {
+    display: block;
+    -ms-transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin range-style() {
+    background: transparent;
+    position: absolute;
+    left: 20%;
+    top: -10px;
+    background-image: url(../img/indicator.svg);
+    background-repeat: no-repeat;
+    width: 13px;
+    height: 25px;
+    margin-top: 3px;
+    cursor: pointer;
+}

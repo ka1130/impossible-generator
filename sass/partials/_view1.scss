@@ -1,6 +1,8 @@
 #main .container {
     background-image: url(../img/view1-bg.png);
     background-repeat: no-repeat;
+    width: 100%;
+    max-width: 900px;
     background-size: cover;
 }
 
@@ -12,12 +14,14 @@
 
 #logo {
     margin-top: 1.2rem;
+    margin-left: 1.5rem;
 }
 
 #main-nav {
     ul {
         display: flex;
         justify-content: flex-end;
+        margin-right: 1.5rem;
         li {
             display: inline-block;
             list-style-type: none;
