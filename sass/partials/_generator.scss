@@ -3,7 +3,7 @@
     background-color: #989898;
     margin: 0 auto;
     .container {
-        background-image: url(../img/generator-bg.jpg);
+        background-image: url(../img/upload-photo-bg.jpg);
         background-repeat: no-repeat;
         width: 100%;
         max-width: 900px;
@@ -106,7 +106,6 @@
         flex-direction: column;
         align-content: center;
         justify-content: center;
-        width: 10vw;
         position: relative;
         p {
             position: absolute;
@@ -116,9 +115,16 @@
             font-weight: bold;
         }
         .rotation-circle {
-            position: absolute;
-            top: -16px;
-            left: -28px;
+            position: relative;
+            width: 200px;
+            height: 100px;
+            img {
+                position: absolute;
+                top: -10%;
+                left: -38%;
+                width: 200px;
+                height: 100px;
+            }
         }
     }
     .col-left,
@@ -136,15 +142,9 @@
         margin-left: 15rem;
         position: relative;
         height: 100%;
-        .user-photo {
-            position: absolute;
-            top: 30%;
-            left: -121%;
-            width: 77%;
-            height: 38%;
-            border: 2px solid white;
-            @include rotate-element(-.5deg);
-        }
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
         .slider-filter {
             width: 200px;
             height: 100px;
@@ -158,6 +158,15 @@
                 position: absolute;
                 top: 0;
                 left: -30%;
+            }
+            &#brighten-range {
+                top: 30%;
+            }
+            &#blur-range {
+                top: 42%;
+            }
+            &#custom-range {
+                top: 54%;
             }
         }
     }
@@ -218,4 +227,27 @@
             cursor: pointer;
         }
     }
+}
+
+img {
+    position: absolute;
+    top: 30%;
+    right: 143.5%;
+    width: 77%;
+    height: 38%;
+    @include rotate-element(-.5deg);
+}
+
+#form1 {
+    margin-left: -15rem;
+    margin-top: 45%;
+    .input-group {
+        margin-top: 280%;
+        margin-left: -5%;
+        @include rotate-element(-.5deg);
+    }
+}
+
+#uploadPhotoBtn {
+    @include rotate-element(-.5deg);
 }

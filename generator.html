@@ -36,16 +36,30 @@
                 <div class="col-right">
                     <div class="user-photo"></div>
                     <form id="form1" action="" method="get">
-                        <div class="slider-filter">
+                        <div class="slider-filter" id="grayscale-range">
                             <p>grayscale</p>
-                            <input type="range" name="grayscale-range" min="0" max="100">
+                            <input type="range" name="grayscale-range" min="0" max="100" id="grayscaleRange">
+                        </div>
+                        <div class="slider-filter" id="brighten-range">
+                            <p>brighten</p>
+                            <input type="range" name="brighten-range" min="0" max="100" id="brightenRange">
+                        </div>
+                        <div class="slider-filter" id="blur-range">
+                            <p>blur</p>
+                            <input type="range" name="blur-range" min="0" max="100" id="blurRange">
+                        </div>
+                        <div class="slider-filter" id="custom-range">
+                            <p>custom</p>
+                            <input type="range" name="custom-range" min="0" max="100" id="customRange">
                         </div>
                         <label class="file-container">Upload a photo
-                            <input type="file" id="imgInp" />
+                            <input type="file" id="uploadPhotoBtn" />
                         </label>
-                        <img id="blah" src="img/your-photo-here.jpg" alt="your image" />
-                        <input type="submit" value="Get it">
-                        <input type="reset" value="reset">
+                        <img id="userPhoto" src="img/your-photo-here.jpg" alt="your image" />
+                        <div class="input-group">
+                            <input type="submit" value="Get it" id="submitBtn">
+                            <input type="reset" value="reset" id="resetBtn">
+                        </div>
                     </form>
                 </div>
             </div>
