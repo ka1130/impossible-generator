@@ -35,20 +35,24 @@
                 </div>
                 <div class="col-right">
                     <div class="user-photo"></div>
-                    <form action="" method="get">
+                    <form id="form1" action="" method="get">
                         <div class="slider-filter">
                             <p>grayscale</p>
                             <input type="range" name="grayscale-range" min="0" max="100">
                         </div>
-                        <div class="button-wrapper">
-                            <input type="submit" value="Get it">
-                            <input type="reset" value="reset">
-                        </div>
+                        <label class="file-container">Upload a photo
+                            <input type="file" id="imgInp" />
+                        </label>
+                        <img id="blah" src="img/your-photo-here.jpg" alt="your image" />
+                        <input type="submit" value="Get it">
+                        <input type="reset" value="reset">
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
