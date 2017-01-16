@@ -1,0 +1,12 @@
+#generator {
+    width: 100%;
+    background-color: #989898;
+    margin: 0 auto;
+    .container {
+        background-image: url(../img/upload-photo-bg.jpg);
+        background-repeat: no-repeat;
+        width: 100%;
+        max-width: 900px;
+        background-size: cover;
+    }
+}
