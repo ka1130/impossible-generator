@@ -257,3 +257,10 @@ canvas {
     top: 0;
     left: 0;
 }
+
+#zoom-in, #zoom-out {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
