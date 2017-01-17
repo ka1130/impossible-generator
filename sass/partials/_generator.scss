@@ -229,7 +229,7 @@
     }
 }
 
-img {
+#imgContainer {
     position: absolute;
     top: 30%;
     right: 143.5%;
@@ -242,7 +242,8 @@ img {
     margin-left: -15rem;
     margin-top: 45%;
     .input-group {
-        margin-top: 50%;
+        margin-top: 175%;
+        margin-left: -10%;
         @include rotate-element(-.5deg);
     }
 }

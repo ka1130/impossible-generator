@@ -54,15 +54,22 @@ $(document).ready(function() {
 	var canvas = document.getElementById('grayscale');
 	var originalPhoto = document.getElementById("userPhoto");
 
+
 	grayscaleBtn.addEventListener("click", function(event) {
 
+		var imgList = $("#imgContainer").find("img");
+
+		if (imgList.length == 1) {
+			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
+			console.log(imgList.length, imgList);
+		}
+
 		event.preventDefault();
+		
+		$(document).find("img").css("display", "none");
 
 		drawImage(document.getElementById("userPhoto"));
 
-
-
-		originalPhoto.style.display = "none";
 
 
 	}, false);
