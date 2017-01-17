@@ -27,14 +27,14 @@ $(document).ready(function() {
 	var grayscaleBtn = document.getElementsByTagName("button")[0];
 	var canvas = document.getElementById('grayscale');
 	var originalPhoto = document.getElementById("userPhoto");
-	var grayscaleRangeSlider = $("#grayscaleRange");
-	var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
+	var grayscaleRangeSlider = $("#grayscaleRange");	
 
 	function drawImage(imageObj) {
 		var canvas = document.getElementById('grayscale');
 		var context = canvas.getContext('2d');
 		var x = 0;
 		var y = 0;
+		var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
 
 		context.drawImage(imageObj, x, y);
 
@@ -42,13 +42,13 @@ $(document).ready(function() {
 		var data = imageData.data;
 
 		for (var i = 0; i < data.length; i += 4) {
-			var brightness = (0.34 * grayscaleVal)* data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 			// red
-			data[i] = brightness;
+			data[i] = brightness * grayscaleVal;
 			// green
-			data[i + 1] = brightness;
+			data[i + 1] = brightness * grayscaleVal;
 			// blue
-			data[i + 2] = brightness;
+			data[i + 2] = brightness * grayscaleVal;
 		}
 
 		// overwrite original image
@@ -57,14 +57,12 @@ $(document).ready(function() {
 	}
 
 	grayscaleRangeSlider.on("input", function(event) {
-		console.log(grayscaleRangeSlider.val());
+
 		var imgList = $("#imgContainer").find("img");
 
 		if (imgList.length == 1) {
 			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
 		}
-
-		event.preventDefault();
 
 		$("#form1").find("img").css("display", "none");
 
@@ -72,23 +70,6 @@ $(document).ready(function() {
 	});
 
 
-	grayscaleBtn.addEventListener("click", function(event) {
-
-		var imgList = $("#imgContainer").find("img");
-
-		if (imgList.length == 1) {
-			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
-		}
-
-		event.preventDefault();
-
-		$("#form1").find("img").css("display", "none");
-
-		drawImage(document.getElementById("userPhoto"));
-
-
-
-	}, false);
 
 
 });
