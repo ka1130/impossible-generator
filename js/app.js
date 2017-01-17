@@ -25,13 +25,14 @@ $(document).ready(function() {
 	var imageObj = new Image();
 
 	var grayscaleBtn = document.getElementsByTagName("button")[0];
-	var canvas = document.getElementById('grayscale');
+	var canvas = document.getElementById("imgCanvas");
 	var originalPhoto = document.getElementById("userPhoto");
-	var grayscaleRangeSlider = $("#grayscaleRange");	
+	var grayscaleRangeSlider = $("#grayscaleRange");
+	var resetBtn = $("#resetBtn");	
+	var context = canvas.getContext("2d");
 
 	function drawImage(imageObj) {
-		var canvas = document.getElementById('grayscale');
-		var context = canvas.getContext('2d');
+
 		var x = 0;
 		var y = 0;
 		var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
@@ -44,11 +45,11 @@ $(document).ready(function() {
 		for (var i = 0; i < data.length; i += 4) {
 			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 			// red
-			data[i] = brightness * grayscaleVal;
+			data[i] = brightness / grayscaleVal;
 			// green
-			data[i + 1] = brightness * grayscaleVal;
+			data[i + 1] = brightness / grayscaleVal;
 			// blue
-			data[i + 2] = brightness * grayscaleVal;
+			data[i + 2] = brightness / grayscaleVal;
 		}
 
 		// overwrite original image
@@ -67,6 +68,10 @@ $(document).ready(function() {
 		$("#form1").find("img").css("display", "none");
 
 		drawImage(document.getElementById("userPhoto"));
+	});
+
+	resetBtn.on("click", function(event) {
+		context.drawImage(originalPhoto, 0, 0);
 	});
 
 
