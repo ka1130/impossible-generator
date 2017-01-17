@@ -242,8 +242,8 @@ img {
     margin-left: -15rem;
     margin-top: 45%;
     .input-group {
+        margin-top: 50%;
         @include rotate-element(-.5deg);
-        margin-top: 180%;
     }
 }
 

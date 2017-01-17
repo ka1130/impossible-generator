@@ -25,7 +25,6 @@ $(document).ready(function() {
 	function drawImage(imageObj) {
 		var canvas = document.getElementById('grayscale');
 		var context = canvas.getContext('2d');
-//		var s = canvas.previousSibling.style;
 		var x = 0;
 		var y = 0;
 
@@ -46,20 +45,26 @@ $(document).ready(function() {
 
 		// overwrite original image
 		context.putImageData(imageData, x, y);
+
 	}
 
 	var imageObj = new Image();
-	// imageObj.onload = function() {
-	// 	drawImage(this);
-	// };
-
-	imageObj.src = document.getElementById("userPhoto").getAttribute("src");
 
 	var grayscaleBtn = document.getElementsByTagName("button")[0];
+	var canvas = document.getElementById('grayscale');
+	var originalPhoto = document.getElementById("userPhoto");
 
 	grayscaleBtn.addEventListener("click", function(event) {
+
 		event.preventDefault();
+
 		drawImage(document.getElementById("userPhoto"));
+
+
+
+		originalPhoto.style.display = "none";
+
+
 	}, false);
 
 
