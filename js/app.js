@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
 	// Upload a photo
 	var uploadPhoto = $("#uploadPhotoBtn");
 
@@ -21,98 +22,45 @@ $(document).ready(function() {
 
 	//Filters - Grayscale
 
-	Filters = {};
-	Filters.getPixels = function(img) {
-		var c = this.getCanvas(img.width, img.height);
-		var ctx = c.getContext("2d");
-		ctx.drawImage(img, 187, 251);
-		return ctx.getImageData(0, 0, c.width, c.height);
-	};
+	function drawImage(imageObj) {
+		var canvas = document.getElementById('grayscale');
+		var context = canvas.getContext('2d');
+//		var s = canvas.previousSibling.style;
+		var x = 0;
+		var y = 0;
 
-	Filters.getCanvas = function(w, h) {
-		var c = document.createElement("canvas");
-		c.width = w;
-		c.height = h;
-		return c;
-	};
+		context.drawImage(imageObj, x, y);
 
-	Filters.filterImage = function(filter, image, var_args) {
-		var args = [this.getPixels(image)];
-		for (var i = 2; i < arguments.length; i++) {
-			args.push(arguments[i]);
+		var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
+		var data = imageData.data;
+
+		for (var i = 0; i < data.length; i += 4) {
+			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+			// red
+			data[i] = brightness;
+			// green
+			data[i + 1] = brightness;
+			// blue
+			data[i + 2] = brightness;
 		}
-		return filter.apply(null, args);
-	};
 
-	Filters.grayscale = function(pixels, args) {
-		var d = pixels.data;
-		for (var i = 0; i < d.length; i += 4) {
-			var r = d[i];
-			var g = d[i + 1];
-			var b = d[i + 2];
-			// CIE luminance for the RGB
-			// The human eye is bad at seeing red and blue, so we de-emphasize them.
-			var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-			d[i] = d[i + 1] = d[i + 2] = v
-		}
-		return pixels;
-	};
-
-	var photo = document.getElementById("userPhoto");
-	var canvas = document.getElementsByTagName("canvas")[0];
-	console.log(canvas);
-	canvas.parentNode.insertBefore(photo.cloneNode(true), canvas);
-	canvas.style.display = "none";
-
-
-
-	function runFilter(id, filter, arg1, arg2, arg3) {
-		var c = document.getElementById(id); //pobieram id canvasu (podam je potem jako argument)
-		var s = c.previousSibling.style; //styl obrazka
-
-		if (s.display == "none") { //jeśli obrazek jest niewidoczny, to go pokaż
-			s.display = "inline";
-			c.style.display = "none"; //...i ukryj canvas
-		} else {
-			var idata = Filters.filterImage(filter, photo, arg1, arg2, arg3);
-			c.width = idata.width;
-			c.height = idata.height;
-			var ctx = c.getContext("2d");
-			ctx.putImageData(idata, 0, 0);
-			s.display = "none"; //ukryj obrazek
-			c.style.display = "inline"; //pokaż canvas
-		}
+		// overwrite original image
+		context.putImageData(imageData, x, y);
 	}
 
-	grayscale = function() {
-		runFilter("grayscale", Filters.grayscale);
-	}
+	var imageObj = new Image();
+	// imageObj.onload = function() {
+	// 	drawImage(this);
+	// };
 
-	var btn = document.getElementsByTagName("button")[0];
-	console.log(btn);
+	imageObj.src = document.getElementById("userPhoto").getAttribute("src");
 
-	btn.addEventListener("click", function(event) {
+	var grayscaleBtn = document.getElementsByTagName("button")[0];
+
+	grayscaleBtn.addEventListener("click", function(event) {
 		event.preventDefault();
-		grayscale();
+		drawImage(document.getElementById("userPhoto"));
 	}, false);
-
-
-	// uploadPhoto.on("change", function(event) {
-	// 	var photo = document.getElementById("userPhoto");
-	// 	var canvas = document.getElementsByTagName("canvas")[0];
-	// 	console.log(canvas);
-	// 	canvas.insertBefore(photo.cloneNode(true), canvas);
-	// 	//		canvas.parentNode.insertBefore(photo.cloneNode(true), canvas);
-	// 	canvas.style.display = "none";
-	// 	console.log(this.value);
-	// 	console.log(this.files[0]);
-
-	// 	grayscale = function() {
-	// 		runFilter("grayscale", Filters.grayscale);
-	// 	}
-
-	// });
-
 
 
 });
