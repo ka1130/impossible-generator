@@ -251,3 +251,9 @@
 #uploadPhotoBtn {
     @include rotate-element(-.5deg);
 }
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

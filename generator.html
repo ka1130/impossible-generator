@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-right">
                     <div class="user-photo"></div>
-                    <form id="form1" action="" method="get">
+                    <form id="form1" action="" method="get" onsubmit="return false;">
                         <div class="slider-filter" id="grayscale-range">
                             <p>grayscale</p>
                             <input type="range" name="grayscale-range" min="0" max="100" id="grayscaleRange">
@@ -61,7 +61,7 @@
                         </div>
                         <div class="input-group">
                             <button>Grayscale it</button>
-                            <input type="submit" value="Get it" id="submitBtn">
+                            <input type="submit" value="Get it" id="submitBtn" data-inline="true">
                             <input type="reset" value="reset" id="resetBtn">
                         </div>
                     </form>

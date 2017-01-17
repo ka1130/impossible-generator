@@ -22,6 +22,14 @@ $(document).ready(function() {
 
 	//Filters - Grayscale
 
+	var imageObj = new Image();
+
+	var grayscaleBtn = document.getElementsByTagName("button")[0];
+	var canvas = document.getElementById('grayscale');
+	var originalPhoto = document.getElementById("userPhoto");
+	var grayscaleRangeSlider = $("#grayscaleRange");
+	var grayscaleVal = grayscaleRangeSlider.val();
+
 	function drawImage(imageObj) {
 		var canvas = document.getElementById('grayscale');
 		var context = canvas.getContext('2d');
@@ -33,7 +41,7 @@ $(document).ready(function() {
 		var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
 		var data = imageData.data;
 
-		for (var i = 0; i < data.length; i += 4) {
+		for (var i = 0; i < data.length; i += (4/grayscaleVal)) {
 			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 			// red
 			data[i] = brightness;
@@ -48,11 +56,20 @@ $(document).ready(function() {
 
 	}
 
-	var imageObj = new Image();
+	grayscaleRangeSlider.on("change", function(event) {
+		console.log(grayscaleRangeSlider.val());
+		var imgList = $("#imgContainer").find("img");
 
-	var grayscaleBtn = document.getElementsByTagName("button")[0];
-	var canvas = document.getElementById('grayscale');
-	var originalPhoto = document.getElementById("userPhoto");
+		if (imgList.length == 1) {
+			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
+		}
+
+		event.preventDefault();
+
+		$("#form1").find("img").css("display", "none");
+
+		drawImage(document.getElementById("userPhoto"));
+	});
 
 
 	grayscaleBtn.addEventListener("click", function(event) {
@@ -61,12 +78,11 @@ $(document).ready(function() {
 
 		if (imgList.length == 1) {
 			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
-			console.log(imgList.length, imgList);
 		}
 
 		event.preventDefault();
-		
-		$(document).find("img").css("display", "none");
+
+		$("#form1").find("img").css("display", "none");
 
 		drawImage(document.getElementById("userPhoto"));
 
