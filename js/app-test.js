@@ -1,23 +1,5 @@
 $(document).ready(function() {
 
-	// Upload a photo
-	var uploadPhoto = $("#uploadPhotoBtn");
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(event) {
-				$("#userPhoto").attr("src", event.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	uploadPhoto.on("change", function(event) {
-		readURL(this);
-	});
 
 	//Filters - Grayscale
 
