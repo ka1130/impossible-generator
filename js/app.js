@@ -28,7 +28,7 @@ $(document).ready(function() {
 	var canvas = document.getElementById('grayscale');
 	var originalPhoto = document.getElementById("userPhoto");
 	var grayscaleRangeSlider = $("#grayscaleRange");
-	var grayscaleVal = grayscaleRangeSlider.val();
+	var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
 
 	function drawImage(imageObj) {
 		var canvas = document.getElementById('grayscale');
@@ -41,8 +41,8 @@ $(document).ready(function() {
 		var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
 		var data = imageData.data;
 
-		for (var i = 0; i < data.length; i += (4/grayscaleVal)) {
-			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+		for (var i = 0; i < data.length; i += 4) {
+			var brightness = (0.34 * grayscaleVal)* data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 			// red
 			data[i] = brightness;
 			// green
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 	}
 
-	grayscaleRangeSlider.on("change", function(event) {
+	grayscaleRangeSlider.on("input", function(event) {
 		console.log(grayscaleRangeSlider.val());
 		var imgList = $("#imgContainer").find("img");
 
