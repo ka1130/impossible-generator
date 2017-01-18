@@ -1,4 +1,6 @@
-$(document).ready(function() {
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+    console.log("DOM fully loaded and parsed"); 
 
 	// Upload a photo
 
@@ -90,7 +92,7 @@ $(document).ready(function() {
 	}, false);
 
 	resetBtn.addEventListener("click", function(event) {
-		ctx.drawImage(originalPhoto, 0, 0);
+		ctx.drawImage(originalPhoto, 0, 0, canvas.width, canvas.height);
 	}, false);
 
 	//przycinanie obrazu
