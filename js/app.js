@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	// Upload a photo
 	var uploadPhoto = $("#uploadPhotoBtn");
 
@@ -106,8 +105,6 @@ $(document).ready(function() {
 		ctx.drawImage(originalPhoto, 0, 0);
 	}, false);
 
-
-
 	//Move
 	var moveTop = document.getElementById("moveTop");
 	var moveRight = document.getElementById("moveRight");
@@ -141,26 +138,18 @@ $(document).ready(function() {
 	//Rotation
 	var rotateControl = document.querySelector(".rotation-circle");
 
-
-
 	rotateControl.addEventListener("click", function(event) {
-		// ctx.clearRect(0, 0, canvas.width, canvas.height);
-		// ctx.translate(93.5, 125.5);
-
-		// console.log(deg);
-		// ctx.drawImage(originalPhoto, x, y);
-		// ctx.rotate(deg * Math.PI / 180);
-
-		// deg += 5;
-
+		if (deg == 1) {
+			deg += 14;
+		} else {
+			deg += 15;
+		}
 		ctx.save();
 		ctx.translate(93.5, 125.5);
 		ctx.rotate(deg * Math.PI / 180);
 		ctx.translate(-93.5, -125.5);
 		ctx.drawImage(originalPhoto, 0, 0);
 		ctx.restore();
-		deg += 5;
-
 	}, false);
 
 
