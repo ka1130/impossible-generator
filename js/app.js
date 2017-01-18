@@ -52,6 +52,7 @@
     uploadPhoto.addEventListener("change", function(event) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       readURL(this);
+      ctx.drawImage(userPhoto, 0, 0, userPhoto.width, userPhoto.height, 0, 0, canvas.width, canvas.height);
       ctx.save();
     }, false);
 
