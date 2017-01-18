@@ -49,21 +49,33 @@
   	}
 
   	uploadPhoto.addEventListener("change", function(event) {
-  		readURL(this);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		readURL(this);  
+  		ctx.save();		
   	}, false);
 
 
-  	//Filters - Grayscale
+  	// Filters - Grayscale
 
   	function drawImage(imageObj) {
-  		var grayscaleVal = grayscaleRangeSlider.value * 0.01;
+  		ctx.drawImage(userPhoto, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
+  		
+  	}
 
-  		ctx.drawImage(user, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
-
-  		var imageData = ctx.getImageData(x, y, imageObj.width, imageObj.height);
+  	grayscaleRangeSlider.addEventListener("input", function(event) {
+  		ctx.drawImage(userPhoto, x, y);
+  		// var imgContainer = document.querySelector("#imgContainer");
+  		// var imgList = imgContainer.getElementsByTagName("img");
+  		// var form1 = document.querySelector("#form1");
+  		// var imgHideList = form1.getElementsByTagName("img");
+ // 		drawImage(userPhoto, x, y);
+  		var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
   		//pobierz pozycję i wymiary z kontekstu
   		var data = imageData.data;
-  		//zapisz te dane do zmiennej data, imageData.data przechowuje wartości poszczególnych pikseli (0-255)
+  		//zapisz te dane do zmiennej data, 
+  		//imageData.data przechowuje wartości poszczególnych pikseli (0-255)
+
+  		var grayscaleVal = grayscaleRangeSlider.value * 0.01;		
 
   		for (var i = 0; i < data.length; i += 4) {
   			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
@@ -75,28 +87,13 @@
   			data[i + 2] = brightness / grayscaleVal;
   		}
   		// overwrite original image
-  		ctx.globalCompositeOperation = "source-in";
+  		
   		ctx.putImageData(imageData, x, y); //przetworzone dane umieść z powrotem na danej pozycji x i y
-
-  	}
-
-  	grayscaleRangeSlider.addEventListener("input", function(event) {
-
-  		var imgContainer = document.querySelector("#imgContainer");
-  		var imgList = imgContainer.getElementsByTagName("img");
-  		var form1 = document.querySelector("#form1");
-  		var imgHideList = form1.getElementsByTagName("img");
-
-  		if (imgList.length == 1) {
-  			canvas.parentNode.insertBefore(userPhoto.cloneNode(true), canvas);
-  		}
-
-  		imgHideList[0].style.display = "none";
-  		drawImage(userPhoto);
 
   	}, false);
 
   	resetBtn.addEventListener("click", function(event) {
+  		ctx.restore();
   		ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
   	}, false);
 
@@ -119,12 +116,14 @@
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		ctx.scale(0.99, 0.99);
+  		userPhoto.style.display = "none";
   	}, false);
 
   	zoomOut.addEventListener("click", function(event) {
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		ctx.scale(1.01, 1.01);
+  		userPhoto.style.display = "none";
   	}, false);
 
 
@@ -134,12 +133,14 @@
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		y -= 2;
+  		userPhoto.style.display = "none";
   	}, false);
 
   	moveRight.addEventListener("click", function(event) {
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		x += 2;
+  		userPhoto.style.display = "none";
   	}, false);
 
 
@@ -147,12 +148,14 @@
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		x -= 2;
+  		userPhoto.style.display = "none";
   	}, false);
 
   	moveBottom.addEventListener("click", function(event) {
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.drawImage(userPhoto, x, y);
   		y += 2;
+  		userPhoto.style.display = "none";
   	}, false);
 
 
@@ -164,6 +167,7 @@
   		ctx.rotate(15 * Math.PI / 180 );
   		ctx.translate(-93.5, -125.5);
   		ctx.drawImage(userPhoto, x, y);
+  		userPhoto.style.display = "none";
   	}, false);
 
 
