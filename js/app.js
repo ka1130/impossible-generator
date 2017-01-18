@@ -2,36 +2,17 @@ $(document).ready(function() {
 
 	// Upload a photo
 
-	var uploadPhoto = $("#uploadPhotoBtn");
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(event) {
-				$("#userPhoto").attr("src", event.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	uploadPhoto.on("change", function(event) {
-		readURL(this);
-	});
-
-
-	//Filters - Grayscale
-
+	var uploadPhoto = document.getElementById("uploadPhotoBtn");
+	var userPhoto = document.getElementById("userPhoto");
 	var imageObj = new Image();
 
 	var grayscaleBtn = document.getElementsByTagName("button")[0];
 	var canvas = document.getElementById("imgCanvas");
 	var originalPhoto = document.getElementById("userPhoto");
-	var grayscaleRangeSlider = $("#grayscaleRange");
-	var brightenRangeSlider = $("#brightenRange");
-	var blurRangeSlider = $("#blurRange");
-	var resetBtn = $("#resetBtn");
+	var grayscaleRangeSlider = document.getElementById("grayscaleRange");
+	var brightenRangeSlider = document.getElementById("brightenRange");
+	var blurRangeSlider = document.getElementById("blurRange");
+	var resetBtn = document.getElementById("resetBtn");
 	var ctx = canvas.getContext("2d");
 
 	var moveTop = document.getElementById("moveTop");
@@ -48,9 +29,28 @@ $(document).ready(function() {
 	var y = 0;
 	var deg = 1;
 
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function(event) {
+				userPhoto.setAttribute("src", event.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	uploadPhoto.addEventListener("change", function(event) {
+		readURL(this);
+	}, false);
+
+
+	//Filters - Grayscale
+
 	function drawImage(imageObj) {
 
-		var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
+		var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
 		ctx.drawImage(imageObj, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
 
@@ -73,22 +73,25 @@ $(document).ready(function() {
 
 	}
 
-	grayscaleRangeSlider.on("input", function(event) {
+	grayscaleRangeSlider.addEventListener("input", function(event) {
 
-		var imgList = $("#imgContainer").find("img");
+		var imgContainer = document.querySelector("#imgContainer");
+		var imgList = imgContainer.getElementsByTagName("img");
+		var form1 = document.querySelector("#form1");
+		var imgHide = form1.getElementsByTagName("img")[0];
 
 		if (imgList.length == 1) {
 			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
 		}
 
-		$("#form1").find("img").css("display", "none");
+		imgHide.style.display = "none";
+		drawImage(userPhoto);
 
-		drawImage(document.getElementById("userPhoto"));
-	});
+	}, false);
 
-	resetBtn.on("click", function(event) {
+	resetBtn.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, 0, 0);
-	});
+	}, false);
 
 	//przycinanie obrazu
 
