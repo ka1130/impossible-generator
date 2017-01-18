@@ -103,18 +103,33 @@
 
     // Filters: Blur
 
+    function blur(passes) {
+      passes = passes || 4;
+      ctx.globalAlpha = 0.125;
+      // Loop for each blur pass.
+      for (var i = 1; i <= passes; i++) {
+        for (var y = -1; y < 2; y++) {
+          for (var x = -1; x < 2; x++) {
+            ctx.drawImage(userPhoto, x, y);
+          }
+        }
+      }
+      ctx.globalAlpha = 1.0;
+    }
+
     blurRangeSlider.addEventListener("input", function(event) {
       ctx.drawImage(userPhoto, x, y);
-      var blurVal = blurRangeSlider.value * 0.03;
-      userPhoto.style.webkitFilter = "blur(" + blurVal + "px)";
-      canvas.style.display = "none";
+      // var blurVal = blurRangeSlider.value * 0.03;
+      // userPhoto.style.webkitFilter = "blur(" + blurVal + "px)";
+      // canvas.style.display = "none";
+      blur();
     }, false);
 
 
     // Filters: Megative
 
     negativeRangeSlider.addEventListener("input", function(event) {
-      
+
     }, false);
 
 
@@ -206,7 +221,7 @@
     }
 
     download.addEventListener("click", function(event) {
-//      event.preventDefault();
+      //      event.preventDefault();
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
       console.log("ok");
     }, false);
