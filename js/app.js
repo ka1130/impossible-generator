@@ -11,7 +11,6 @@
   	var grayscaleBtn = document.getElementsByTagName("button")[0];
   	var canvas = document.getElementById("imgCanvas");
   	var ctx = canvas.getContext("2d");
-  	var originalPhoto = document.getElementById("userPhoto");
   	var grayscaleRangeSlider = document.getElementById("grayscaleRange");
   	var brightenRangeSlider = document.getElementById("brightenRange");
   	var blurRangeSlider = document.getElementById("blurRange");
@@ -57,10 +56,9 @@
   	//Filters - Grayscale
 
   	function drawImage(imageObj) {
- 		
   		var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
-  		ctx.drawImage(originalPhoto, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
+  		ctx.drawImage(user, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
 
   		var imageData = ctx.getImageData(x, y, imageObj.width, imageObj.height);
   		//pobierz pozycję i wymiary z kontekstu
@@ -90,7 +88,7 @@
   		var imgHideList = form1.getElementsByTagName("img");
 
   		if (imgList.length == 1) {
-  			canvas.parentNode.insertBefore(originalPhoto.cloneNode(true), canvas);
+  			canvas.parentNode.insertBefore(userPhoto.cloneNode(true), canvas);
   		}
 
   		imgHideList[0].style.display = "none";
@@ -99,7 +97,7 @@
   	}, false);
 
   	resetBtn.addEventListener("click", function(event) {
-  		ctx.drawImage(originalPhoto, 0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
   	}, false);
 
   	//przycinanie obrazu
@@ -118,40 +116,42 @@
   	//Zoom-in, Zoom-out
 
   	zoomIn.addEventListener("click", function(event) {
-
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		ctx.scale(0.99, 0.99);
-
   	}, false);
 
   	zoomOut.addEventListener("click", function(event) {
-
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		ctx.scale(1.01, 1.01);
-
   	}, false);
 
 
   	//Move
 
   	moveTop.addEventListener("click", function(event) {
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		y -= 2;
   	}, false);
 
   	moveRight.addEventListener("click", function(event) {
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		x += 2;
   	}, false);
 
 
   	moveLeft.addEventListener("click", function(event) {
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		x -= 2;
   	}, false);
 
   	moveBottom.addEventListener("click", function(event) {
-  		ctx.drawImage(originalPhoto, x, y);
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+  		ctx.drawImage(userPhoto, x, y);
   		y += 2;
   	}, false);
 
@@ -159,12 +159,11 @@
   	//Rotation
 
   	rotateControl.addEventListener("click", function(event) {
- // 		ctx.save();
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
   		ctx.translate(93.5, 125.5);
   		ctx.rotate(15 * Math.PI / 180 );
   		ctx.translate(-93.5, -125.5);
-  		ctx.drawImage(originalPhoto, x, y);
- // 		ctx.restore();
+  		ctx.drawImage(userPhoto, x, y);
   	}, false);
 
 
