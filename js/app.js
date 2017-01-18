@@ -13,6 +13,7 @@
     var grayscaleRangeSlider = document.getElementById("grayscaleRange");
     var brightenRangeSlider = document.getElementById("brightenRange");
     var blurRangeSlider = document.getElementById("blurRange");
+    var negativeRangeSlider = document.getElementById("negativeRange");
     var resetBtn = document.getElementById("resetBtn");
     var download = document.getElementById("download");
 
@@ -82,8 +83,8 @@
     }, false);
 
 
-
     // Filters: Brighten
+
     brightenRangeSlider.addEventListener("input", function(event) {
       ctx.drawImage(userPhoto, x, y);
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
@@ -99,7 +100,9 @@
       ctx.putImageData(imageData, x, y);
     }, false);
 
+
     // Filters: Blur
+
     blurRangeSlider.addEventListener("input", function(event) {
       ctx.drawImage(userPhoto, x, y);
       var blurVal = blurRangeSlider.value * 0.03;
@@ -107,7 +110,12 @@
       canvas.style.display = "none";
     }, false);
 
-    // Filters: Custom
+
+    // Filters: Megative
+
+    negativeRangeSlider.addEventListener("input", function(event) {
+      
+    }, false);
 
 
     // przycinanie obrazu
