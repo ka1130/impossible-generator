@@ -126,23 +126,23 @@
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
-        ctx.drawImage(userPhoto, x, y);
+      ctx.drawImage(userPhoto, x, y);
 
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        var data = imageData.data;
-        var negativeVal = negativeRangeSlider.value * 0.0005;
- 
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+      var negativeVal = negativeRangeSlider.value * 0.0005;
 
-        for (var i = 0; i < data.length; i += 4) {
-          data[i] = 255 - data[i] / (negativeVal / 0.01); // red
-          data[i + 1] = 255 - data[i + 1] / (negativeVal / 0.02); // green
-          data[i + 2] = 255 - data[i + 2] / (negativeVal / 0.05); // blue
-//          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
-        }
 
-        // overwrite original image
-        ctx.putImageData(imageData, 0, 0);
-   
+      for (var i = 0; i < data.length; i += 4) {
+        data[i] = 255 - data[i] / (negativeVal / 0.01); // red
+        data[i + 1] = 255 - data[i + 1] / (negativeVal / 0.02); // green
+        data[i + 2] = 255 - data[i + 2] / (negativeVal / 0.05); // blue
+        //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
+      }
+
+      // overwrite original image
+      ctx.putImageData(imageData, 0, 0);
+
 
     }, false);
 
@@ -230,14 +230,20 @@
 
     // Download pic
     function downloadCanvas(link, canvasId, filename) {
+      drawPolaroid();
       link.href = document.getElementById(canvasId).toDataURL();
       link.download = filename;
     }
 
+    function drawPolaroid() {
+      ctx.rect(x, y, canvas.width, canvas.height);
+      ctx.lineWidth = 20;
+      ctx.strokeStyle = "#fff";
+      ctx.stroke();
+    }
+
     download.addEventListener("click", function(event) {
-      //      event.preventDefault();
-      downloadCanvas(this, "imgCanvas", "impossible-photo.png");
-      console.log("ok");
+      downloadCanvas(this, "imgCanvas", "impossible-photo.png");      
     }, false);
 
 
