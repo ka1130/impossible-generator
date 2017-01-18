@@ -115,6 +115,7 @@ $(document).ready(function() {
 	var moveBottom = document.getElementById("moveBottom");
 	var x = 0;
 	var y = 0;
+	var deg = 1;
 
 	moveTop.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
@@ -139,9 +140,12 @@ $(document).ready(function() {
 
 	//Rotation
 	var rotateControl = document.querySelector(".rotation-circle");
-	console.log(rotateControl);
+	
 	rotateControl.addEventListener("click", function(event) {
-		ctx.rotate(20*Math.PI/180);
+		console.log(deg);
+		ctx.drawImage(originalPhoto, x, y);
+		ctx.rotate(deg*Math.PI/180);
+		deg +=5;
 	}, false);
 
 
