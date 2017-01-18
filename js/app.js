@@ -96,7 +96,6 @@
         data[i + 1] += brightenVal; // green
         data[i + 2] += brightenVal; // blue   
       }
-      console.log(brightenVal);
       ctx.putImageData(imageData, x, y);
     }, false);
 
@@ -104,8 +103,8 @@
     // Filters: Blur
 
     blurRangeSlider.addEventListener("input", function(event) {
-      
-      var blurVal = blurRangeSlider.value;
+
+      var blurVal = blurRangeSlider.value / 3;
 
       ctx.drawImage(userPhoto, x, y);
       var passes = 1 * blurVal;
@@ -126,6 +125,23 @@
     // Filters: Megative
 
     negativeRangeSlider.addEventListener("input", function(event) {
+
+        ctx.drawImage(userPhoto, x, y);
+
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        var negativeVal = negativeRangeSlider.value;
+
+        for (var i = 0; i < data.length; i += 4) {
+          data[i] = 255 - data[i]; // red
+          data[i + 1] = 255 - data[i + 1]; // green
+          data[i + 2] = 255 - data[i + 2]; // blue
+          // i+3 is alpha (the fourth element)
+        }
+
+        // overwrite original image
+        ctx.putImageData(imageData, 0, 0);
+   
 
     }, false);
 
