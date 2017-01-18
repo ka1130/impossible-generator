@@ -130,14 +130,14 @@
 
         var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         var data = imageData.data;
-        var negativeVal = negativeRangeSlider.value * 0.1;
+        var negativeVal = negativeRangeSlider.value * 0.0005;
  
 
         for (var i = 0; i < data.length; i += 4) {
-          data[i] = 255 - data[i] / negativeVal; // red
-          data[i + 1] = 255 - data[i + 1]; // green
-          data[i + 2] = 255 - data[i + 2]; // blue
-//          data[i + 3] = 155 + negativeVal - data[i + 3] // alpha
+          data[i] = 255 - data[i] / (negativeVal / 0.01); // red
+          data[i + 1] = 255 - data[i + 1] / (negativeVal / 0.02); // green
+          data[i + 2] = 255 - data[i + 2] / (negativeVal / 0.05); // blue
+//          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
         }
 
         // overwrite original image
