@@ -230,20 +230,27 @@
 
     // Download pic
     function downloadCanvas(link, canvasId, filename) {
-      drawPolaroid();
+      
       link.href = document.getElementById(canvasId).toDataURL();
       link.download = filename;
     }
 
     function drawPolaroid() {
-      ctx.rect(x, y, canvas.width, canvas.height);
-      ctx.lineWidth = 20;
+//      ctx.rect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 30;
       ctx.strokeStyle = "#fff";
-      ctx.stroke();
+      ctx.shadowColor = '#999';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetX = 15;
+      ctx.shadowOffsetY = 15;
+
+      // ctx.fill();
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
     }
 
     download.addEventListener("click", function(event) {
-      downloadCanvas(this, "imgCanvas", "impossible-photo.png");      
+      drawPolaroid();
+      downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
 
 
