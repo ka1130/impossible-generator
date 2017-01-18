@@ -57,9 +57,7 @@
   	//Filters - Grayscale
 
   	function drawImage(imageObj) {
-
  		
-
   		var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
   		ctx.drawImage(originalPhoto, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
@@ -121,39 +119,16 @@
 
   	zoomIn.addEventListener("click", function(event) {
 
-  		if (x === 0) {
-  			x = 0.99;
-  		}
-
-  		if (y === 0) {
-  			y = 0.99;
-  		}
-
   		ctx.drawImage(originalPhoto, x, y);
-  		ctx.scale(x, y);
+  		ctx.scale(0.99, 0.99);
 
-  		x *= 0.99;
-  		y *= 0.99;
-
-  		console.log(x, y);
   	}, false);
 
   	zoomOut.addEventListener("click", function(event) {
-  		if (x === 0) {
-  			x = 0.11;
-  		}
-
-  		if (y === 0) {
-  			y = 0.11;
-  		}
 
   		ctx.drawImage(originalPhoto, x, y);
-  		ctx.scale(x, y);
+  		ctx.scale(1.01, 1.01);
 
-  		x *= 1.11;
-  		y *= 1.11;
-  		
-  		console.log(x, y);
   	}, false);
 
 
