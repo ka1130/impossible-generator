@@ -103,10 +103,14 @@
 
     // Filters: Blur
 
-    function blur(passes) {
-      passes = passes || 4;
-      ctx.globalAlpha = 0.125;
-      // Loop for each blur pass.
+    blurRangeSlider.addEventListener("input", function(event) {
+      
+      var blurVal = blurRangeSlider.value;
+
+      ctx.drawImage(userPhoto, x, y);
+      var passes = 1 * blurVal;
+      ctx.globalAlpha = 1 / (blurVal * 2);
+      //overlay eight instances of the image over the original, each with 1/8th of full opacity
       for (var i = 1; i <= passes; i++) {
         for (var y = -1; y < 2; y++) {
           for (var x = -1; x < 2; x++) {
@@ -114,15 +118,8 @@
           }
         }
       }
-      ctx.globalAlpha = 1.0;
-    }
+      ctx.globalAlpha = 1.0 * blurVal;
 
-    blurRangeSlider.addEventListener("input", function(event) {
-      ctx.drawImage(userPhoto, x, y);
-      // var blurVal = blurRangeSlider.value * 0.03;
-      // userPhoto.style.webkitFilter = "blur(" + blurVal + "px)";
-      // canvas.style.display = "none";
-      blur();
     }, false);
 
 
