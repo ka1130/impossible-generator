@@ -96,7 +96,7 @@
     // Filters: Brighten
 
     brightenRangeSlider.addEventListener("input", function(event) {
-      ctx.drawImage(userPhoto, x, y);
+      drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
       var brightenVal = brightenRangeSlider.value * 0.75;
