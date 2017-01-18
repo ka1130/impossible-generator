@@ -31,7 +31,7 @@ $(document).ready(function() {
 	var brightenRangeSlider = $("#brightenRange");
 	var blurRangeSlider = $("#blurRange");
 	var resetBtn = $("#resetBtn");
-	var context = canvas.getContext("2d");
+	var ctx = canvas.getContext("2d");
 
 	function drawImage(imageObj) {
 
@@ -39,9 +39,9 @@ $(document).ready(function() {
 		var y = 0;
 		var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
 
-		context.drawImage(imageObj, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
+		ctx.drawImage(imageObj, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
 
-		var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
+		var imageData = ctx.getImageData(x, y, imageObj.width, imageObj.height);
 		//pobierz pozycję i wymiary z kontekstu
 		var data = imageData.data;
 		//zapisz te dane do zmiennej data, imageData.data przechowuje wartości poszczególnych pikseli (0-255)
@@ -57,7 +57,7 @@ $(document).ready(function() {
 		}
 
 		// overwrite original image
-		context.putImageData(imageData, x, y); //przetworzone dane umieść z powrotem na danej pozycji x i y
+		ctx.putImageData(imageData, x, y); //przetworzone dane umieść z powrotem na danej pozycji x i y
 
 	}
 
@@ -75,18 +75,18 @@ $(document).ready(function() {
 	});
 
 	resetBtn.on("click", function(event) {
-		context.drawImage(originalPhoto, 0, 0);
+		ctx.drawImage(originalPhoto, 0, 0);
 	});
 
 	//przycinanie obrazu
 
 	// window.onload(function() {
 
-	// 	context.beginPath();
-	// 	context.rect(canvas.width / 2, canvas.height / 2, 187, 251);
-	// 	context.clip();
-	// 	context.scale(2, 2);
-	// 	context.drawImage(userPhoto);
+	// 	ctx.beginPath();
+	// 	ctx.rect(canvas.width / 2, canvas.height / 2, 187, 251);
+	// 	ctx.clip();
+	// 	ctx.scale(2, 2);
+	// 	ctx.drawImage(userPhoto);
 
 
 	// });
@@ -96,34 +96,49 @@ $(document).ready(function() {
 	var zoomOut = document.getElementById("zoom-out");
 
 	zoomIn.addEventListener("click", function(event) {
-		context.scale(0.99, 0.99);
-		context.drawImage(originalPhoto, 0, 0);
+		ctx.scale(0.99, 0.99);
+		ctx.drawImage(originalPhoto, 0, 0);
 
 	}, false);
 
 	zoomOut.addEventListener("click", function(event) {
-		context.scale(1.01, 1.01);
-		context.drawImage(originalPhoto, 0, 0);
+		ctx.scale(1.01, 1.01);
+		ctx.drawImage(originalPhoto, 0, 0);
 	});
 
+
+
+	//Move
+	var moveTop = document.getElementById("moveTop");
+	var moveRight = document.getElementById("moveRight");
+	var moveLeft = document.getElementById("moveLeft");
+	var moveBottom = document.getElementById("moveBottom");
 	var x = 0;
 	var y = 0;
 
-	var drawFunc = function() {
+	moveTop.addEventListener("click", function(event) {
+		ctx.drawImage(originalPhoto, x, y);
+		y -= 2;
+		console.log(x, y);
+	});
 
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		y -= 14;
-		context.drawImage(imageObj, x, y);
-		
-		requestAnimationFrame(drawFunc);
-	};
+	moveRight.addEventListener("click", function(event) {
+		ctx.drawImage(originalPhoto, x, y);
+		x -= 2;
+		console.log(x, y);
+	});
 
-	//Move
-	document.getElementById("moveTop").addEventListener("click", function(event) {
 
-		drawFunc();
+	moveLeft.addEventListener("click", function(event) {
+		ctx.drawImage(originalPhoto, x, y);
+		x += 2;
+		console.log(x, y);
+	});
 
-		console.log("moved");
+	moveBottom.addEventListener("click", function(event) {
+		ctx.drawImage(originalPhoto, x, y);
+		y += 2;
+		console.log(x, y);
 	});
 
 

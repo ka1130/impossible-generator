@@ -264,3 +264,9 @@ canvas {
     height: 1rem;
     cursor: pointer;
 }
+
+#moveTop, #moveRight, #moveLeft, #moveBottom {
+    display: block;
+
+    cursor: pointer;
+}
