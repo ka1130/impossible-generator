@@ -26,7 +26,7 @@
   	var zoomOut = document.getElementById("zoom-out");
 
   	var rotateControl = document.querySelector(".rotation-circle");
-  	var deg = 1;
+  	var deg;
   	var x;
   	var y;
 
@@ -182,17 +182,20 @@
   	//Rotation
 
   	rotateControl.addEventListener("click", function(event) {
-  		if (deg == 1) {
-  			deg -= 16;
-  		} else {
-  			deg -= 15;
+  		if (typeof deg === "undefined") {
+  			deg = 360;
+  		} 
+  		deg -= 15;
+  		if (deg === 0) {
+  			deg = 360;
   		}
-  		ctx.save();
+  		console.log(deg);
+ // 		ctx.save();
   		ctx.translate(93.5, 125.5);
   		ctx.rotate(deg * Math.PI / 180);
   		ctx.translate(-93.5, -125.5);
-  		ctx.drawImage(originalPhoto, 0, 0);
-  		ctx.restore();
+  		ctx.drawImage(originalPhoto, x, y);
+ // 		ctx.restore();
   	}, false);
 
 
