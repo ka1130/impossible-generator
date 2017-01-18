@@ -10,8 +10,12 @@
         background-size: cover;
     }
     #download {
-        @include create-button($color-light, #000, 1.3rem);
         margin-left: 10px;
+        width: 50px;
+        height: 23px;
+        display: inline-block;
+        @include create-button($color-light, #000, 1.3rem);
+
     }
     .controls {
         display: flex;
