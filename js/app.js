@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	// Upload a photo
+
 	var uploadPhoto = $("#uploadPhotoBtn");
 
 	function readURL(input) {
@@ -19,6 +20,7 @@ $(document).ready(function() {
 		readURL(this);
 	});
 
+
 	//Filters - Grayscale
 
 	var imageObj = new Image();
@@ -32,10 +34,22 @@ $(document).ready(function() {
 	var resetBtn = $("#resetBtn");
 	var ctx = canvas.getContext("2d");
 
+	var moveTop = document.getElementById("moveTop");
+	var moveRight = document.getElementById("moveRight");
+	var moveLeft = document.getElementById("moveLeft");
+	var moveBottom = document.getElementById("moveBottom");
+
+	var zoomIn = document.getElementById("zoom-in");
+	var zoomOut = document.getElementById("zoom-out");
+
+	var rotateControl = document.querySelector(".rotation-circle");
+
+	var x = 0;
+	var y = 0;
+	var deg = 1;
+
 	function drawImage(imageObj) {
 
-		var x = 0;
-		var y = 0;
 		var grayscaleVal = grayscaleRangeSlider.val() * 0.01;
 
 		ctx.drawImage(imageObj, x, y); //namaluj mi nowy obraz na jakimś x i jakimś y
@@ -54,7 +68,6 @@ $(document).ready(function() {
 			// blue
 			data[i + 2] = brightness / grayscaleVal;
 		}
-
 		// overwrite original image
 		ctx.putImageData(imageData, x, y); //przetworzone dane umieść z powrotem na danej pozycji x i y
 
@@ -91,13 +104,10 @@ $(document).ready(function() {
 	// });
 
 	//Zoom-in, Zoom-out
-	var zoomIn = document.getElementById("zoom-in");
-	var zoomOut = document.getElementById("zoom-out");
 
 	zoomIn.addEventListener("click", function(event) {
 		ctx.scale(0.99, 0.99);
 		ctx.drawImage(originalPhoto, 0, 0);
-
 	}, false);
 
 	zoomOut.addEventListener("click", function(event) {
@@ -105,14 +115,8 @@ $(document).ready(function() {
 		ctx.drawImage(originalPhoto, 0, 0);
 	}, false);
 
+
 	//Move
-	var moveTop = document.getElementById("moveTop");
-	var moveRight = document.getElementById("moveRight");
-	var moveLeft = document.getElementById("moveLeft");
-	var moveBottom = document.getElementById("moveBottom");
-	var x = 0;
-	var y = 0;
-	var deg = 1;
 
 	moveTop.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
@@ -135,14 +139,14 @@ $(document).ready(function() {
 		y += 2;
 	}, false);
 
+
 	//Rotation
-	var rotateControl = document.querySelector(".rotation-circle");
 
 	rotateControl.addEventListener("click", function(event) {
 		if (deg == 1) {
-			deg += 14;
+			deg -= 16;
 		} else {
-			deg += 15;
+			deg -= 15;
 		}
 		ctx.save();
 		ctx.translate(93.5, 125.5);
