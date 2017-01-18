@@ -106,6 +106,26 @@ $(document).ready(function() {
 		context.drawImage(originalPhoto, 0, 0);
 	});
 
+	var x = 0;
+	var y = 0;
+
+	var drawFunc = function() {
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		y -= 14;
+		context.drawImage(imageObj, x, y);
+		
+		requestAnimationFrame(drawFunc);
+	};
+
+	//Move
+	document.getElementById("moveTop").addEventListener("click", function(event) {
+
+		drawFunc();
+
+		console.log("moved");
+	});
+
 
 
 });
