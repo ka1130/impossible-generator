@@ -104,7 +104,7 @@ $(document).ready(function() {
 	zoomOut.addEventListener("click", function(event) {
 		ctx.scale(1.01, 1.01);
 		ctx.drawImage(originalPhoto, 0, 0);
-	});
+	}, false);
 
 
 
@@ -119,27 +119,30 @@ $(document).ready(function() {
 	moveTop.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
 		y -= 2;
-		console.log(x, y);
-	});
+	}, false);
 
 	moveRight.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
 		x -= 2;
-		console.log(x, y);
-	});
+	}, false);
 
 
 	moveLeft.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
 		x += 2;
-		console.log(x, y);
-	});
+	}, false);
 
 	moveBottom.addEventListener("click", function(event) {
 		ctx.drawImage(originalPhoto, x, y);
 		y += 2;
-		console.log(x, y);
-	});
+	}, false);
+
+	//Rotation
+	var rotateControl = document.querySelector(".rotation-circle");
+	console.log(rotateControl);
+	rotateControl.addEventListener("click", function(event) {
+		ctx.rotate(20*Math.PI/180);
+	}, false);
 
 
 
