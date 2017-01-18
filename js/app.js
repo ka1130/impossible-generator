@@ -6,7 +6,6 @@
 
     var uploadPhoto = document.getElementById("uploadPhotoBtn");
     var userPhoto = document.getElementById("userPhoto");
-    //	var imageObj = new Image();
 
     var grayscaleBtn = document.getElementsByTagName("button")[0];
     var canvas = document.getElementById("imgCanvas");
@@ -15,6 +14,7 @@
     var brightenRangeSlider = document.getElementById("brightenRange");
     var blurRangeSlider = document.getElementById("blurRange");
     var resetBtn = document.getElementById("resetBtn");
+    var download = document.getElementById("download");
 
     var moveTop = document.getElementById("moveTop");
     var moveRight = document.getElementById("moveRight");
@@ -103,7 +103,7 @@
     blurRangeSlider.addEventListener("input", function(event) {
       ctx.drawImage(userPhoto, x, y);
       var blurVal = blurRangeSlider.value * 0.03;
-      userPhoto.style.webkitFilter = "blur(" + blurVal +"px)";
+      userPhoto.style.webkitFilter = "blur(" + blurVal + "px)";
       canvas.style.display = "none";
     }, false);
 
@@ -189,6 +189,18 @@
       userPhoto.style.webkitFilter = "blur(0px)";
       ctx.restore();
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
+    }, false);
+
+    // Download pic
+    function downloadCanvas(link, canvasId, filename) {
+      link.href = document.getElementById(canvasId).toDataURL();
+      link.download = filename;
+    }
+
+    download.addEventListener("click", function(event) {
+//      event.preventDefault();
+      downloadCanvas(this, "imgCanvas", "impossible-photo.png");
+      console.log("ok");
     }, false);
 
 
