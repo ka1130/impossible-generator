@@ -29,12 +29,22 @@
     var x;
     var y;
 
+    var hRatio = canvas.width / userPhoto.width;
+    var vRatio = canvas.height / userPhoto.height;
+
     if (typeof x === "undefined") {
       x = 0;
     }
 
     if (typeof y === "undefined") {
       y = 0;
+    }
+
+    function drawNewImage() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, 0, 0);
+      // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
+      //   0, 0, canvas.width, canvas.height);
     }
 
     function readURL(input) {
@@ -50,13 +60,8 @@
     }
 
     uploadPhoto.addEventListener("change", function(event) {
-      var hRatio = canvas.width / userPhoto.width;
-      var vRatio = canvas.height / userPhoto.height;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
       readURL(this);
-      ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio, 
-                                0, 0, canvas.width, canvas.height);
+      drawNewImage();
       ctx.save();
     }, false);
 
@@ -64,7 +69,7 @@
     // Filters: Grayscale
 
     grayscaleRangeSlider.addEventListener("input", function(event) {
-      ctx.drawImage(userPhoto, x, y);
+      drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       //pobierz pozycję i wymiary z kontekstu
       var data = imageData.data;
@@ -72,7 +77,7 @@
       //imageData.data przechowuje wartości poszczególnych pikseli (0-255)
       var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
-      ctx.drawImage(userPhoto, x, y);
+      drawNewImage();
 
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
