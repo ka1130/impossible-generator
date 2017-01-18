@@ -50,9 +50,13 @@
     }
 
     uploadPhoto.addEventListener("change", function(event) {
+      var hRatio = canvas.width / userPhoto.width;
+      var vRatio = canvas.height / userPhoto.height;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       readURL(this);
-      ctx.drawImage(userPhoto, 0, 0, userPhoto.width, userPhoto.height, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio, 
+                                0, 0, canvas.width, canvas.height);
       ctx.save();
     }, false);
 
@@ -231,13 +235,13 @@
 
     // Download pic
     function downloadCanvas(link, canvasId, filename) {
-      
+
       link.href = document.getElementById(canvasId).toDataURL();
       link.download = filename;
     }
 
     function drawPolaroid() {
-//      ctx.rect(0, 0, canvas.width, canvas.height);
+      //      ctx.rect(0, 0, canvas.width, canvas.height);
       ctx.lineWidth = 30;
       ctx.strokeStyle = "#fff";
       ctx.shadowColor = '#999';
