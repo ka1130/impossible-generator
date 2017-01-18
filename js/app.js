@@ -57,21 +57,16 @@
 
   	// Filters - Grayscale
 
-  	function drawNewImage() {
-  		ctx.clearRect(0, 0, canvas.width, canvas.height);
-  		ctx.drawImage(userPhoto, x, y); 
-  		userPhoto.style.display = "none";
-  	}
-
   	grayscaleRangeSlider.addEventListener("input", function(event) {
-
+       ctx.drawImage(userPhoto, x, y);
   		var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
   		//pobierz pozycję i wymiary z kontekstu
   		var data = imageData.data;
   		//zapisz te dane do zmiennej data, 
   		//imageData.data przechowuje wartości poszczególnych pikseli (0-255)
+      var grayscaleVal = grayscaleRangeSlider.value * 0.01;		
 
-  		var grayscaleVal = grayscaleRangeSlider.value * 0.01;		
+      ctx.drawImage(userPhoto, x, y);
 
   		for (var i = 0; i < data.length; i += 4) {
   			var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
@@ -110,12 +105,16 @@
   	//Zoom-in, Zoom-out
 
   	zoomIn.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		ctx.scale(0.99, 0.99);
   	}, false);
 
   	zoomOut.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		ctx.scale(1.01, 1.01);
   	}, false);
 
@@ -123,23 +122,31 @@
   	//Move
 
   	moveTop.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		y -= 2;
   	}, false);
 
   	moveRight.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		x += 2;
   	}, false);
 
 
   	moveLeft.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		x -= 2;
   	}, false);
 
   	moveBottom.addEventListener("click", function(event) {
-  		drawNewImage()
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   		y += 2;
   	}, false);
 
@@ -151,7 +158,8 @@
   		ctx.translate(93.5, 125.5);
   		ctx.rotate(15 * Math.PI / 180 );
   		ctx.translate(-93.5, -125.5);
-  		drawNewImage()
+  		ctx.drawImage(userPhoto, x, y); 
+      userPhoto.style.display = "none";
   	}, false);
 
 
