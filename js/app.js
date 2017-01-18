@@ -143,18 +143,24 @@ $(document).ready(function() {
 
 
 
-
-
 	rotateControl.addEventListener("click", function(event) {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.translate(canvas.width / 2, canvas.width / 2);
+		// ctx.clearRect(0, 0, canvas.width, canvas.height);
+		// ctx.translate(93.5, 125.5);
 
-		console.log(deg);
-		ctx.drawImage(originalPhoto, x, y);
+		// console.log(deg);
+		// ctx.drawImage(originalPhoto, x, y);
+		// ctx.rotate(deg * Math.PI / 180);
+
+		// deg += 5;
+
+		ctx.save();
+		ctx.translate(93.5, 125.5);
 		ctx.rotate(deg * Math.PI / 180);
-		
-		ctx.translate(-canvas.width / 2, -canvas.width / 2);
+		ctx.translate(-93.5, -125.5);
+		ctx.drawImage(originalPhoto, 0, 0);
+		ctx.restore();
 		deg += 5;
+
 	}, false);
 
 
