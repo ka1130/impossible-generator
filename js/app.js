@@ -79,7 +79,6 @@
 
       ctx.putImageData(imageData, x, y);
       //przetworzone dane umieść z powrotem na danej pozycji x i y
-
     }, false);
 
 
@@ -91,8 +90,6 @@
       var data = imageData.data;
       var brightenVal = brightenRangeSlider.value * 0.75;
 
-      ctx.drawImage(userPhoto, x, y);
-
       for (var i = 0; i < data.length; i += 4) {
         data[i] += brightenVal; // red
         data[i + 1] += brightenVal; // green
@@ -100,13 +97,14 @@
       }
       console.log(brightenVal);
       ctx.putImageData(imageData, x, y);
-
     }, false);
 
     // Filters: Blur
     blurRangeSlider.addEventListener("input", function(event) {
-      var blurVal = blurRangeSlider.value * 0.035;
+      ctx.drawImage(userPhoto, x, y);
+      var blurVal = blurRangeSlider.value * 0.03;
       userPhoto.style.webkitFilter = "blur(" + blurVal +"px)";
+      canvas.style.display = "none";
     }, false);
 
     // Filters: Custom
@@ -188,6 +186,7 @@
     // Reset
 
     resetBtn.addEventListener("click", function(event) {
+      userPhoto.style.webkitFilter = "blur(0px)";
       ctx.restore();
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
     }, false);
