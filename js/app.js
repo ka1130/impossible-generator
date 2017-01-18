@@ -70,8 +70,8 @@
 
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-        
-        data[i] = brightness / grayscaleVal;// red       
+
+        data[i] = brightness / grayscaleVal; // red       
         data[i + 1] = brightness / grayscaleVal // green        
         data[i + 2] = brightness / grayscaleVal; // blue
       }
@@ -89,7 +89,7 @@
       ctx.drawImage(userPhoto, x, y);
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var brightenVal = brightenRangeSlider.value * 0.5;
+      var brightenVal = brightenRangeSlider.value * 0.75;
 
       ctx.drawImage(userPhoto, x, y);
 
@@ -98,14 +98,15 @@
         data[i + 1] += brightenVal; // green
         data[i + 2] += brightenVal; // blue   
       }
-
+      console.log(brightenVal);
       ctx.putImageData(imageData, x, y);
 
     }, false);
 
     // Filters: Blur
     blurRangeSlider.addEventListener("input", function(event) {
-
+      var blurVal = blurRangeSlider.value * 0.035;
+      userPhoto.style.webkitFilter = "blur(" + blurVal +"px)";
     }, false);
 
     // Filters: Custom
