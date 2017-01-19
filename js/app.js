@@ -299,14 +299,17 @@
     //add Polaroid border
 
     function borderImage(x) {
+      ctx.beginPath();
       ctx.lineWidth = x; // This is your border thickness
       canvas.width += x * 2;
       canvas.height += x * 2;
       ctx.fillStyle = "#fff";
       ctx.strokeStyle = "#fff";
+      ctx.globalCompositeOperation="source-over";
+      ctx.rect(0, 0, canvas.width, 30);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.stroke();
-      ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x);
+      ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
     }
 
     download.addEventListener("click", function(event) {
