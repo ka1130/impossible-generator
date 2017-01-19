@@ -300,25 +300,17 @@
 
     function borderImage(x) {
       ctx.lineWidth = x; // This is your border thickness
-      ctx.strokeStyle = "#fff";
       canvas.width += x * 2;
       canvas.height += x * 2;
-      ctx.rect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff";
+      ctx.strokeStyle = "#fff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.stroke();
       ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x);
     }
 
-    function drawPolaroid() {
-      //      ctx.rect(0, 0, canvas.width, canvas.height);
-      ctx.lineWidth = 30;
-      ctx.strokeStyle = "#fff";
-
-      // ctx.fill();
-      ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    }
-
     download.addEventListener("click", function(event) {
-      borderImage(10);
+      borderImage(20);
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
 
