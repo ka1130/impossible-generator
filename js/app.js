@@ -45,14 +45,64 @@
       ctx.drawImage(userPhoto, 0, 0);
       // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
       //   0, 0, canvas.width, canvas.height);
+      var MAX_WIDTH = 374;
+      var MAX_HEIGHT = 502;
+      var width = userPhoto.width;
+      var height = userPhoto.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(userPhoto, 0, 0, width, height);
+
     }
+
+    // Photo Uploader
 
     function readURL(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function(event) {
+          var canvas = document.getElementById("imgCanvas");
+          var ctx = canvas.getContext("2d");
           userPhoto.setAttribute("src", event.target.result);
+          var canvas = document.createElement("canvas");
+          ctx.drawImage(userPhoto, 0, 0);
+
+          var MAX_WIDTH = 374;
+          var MAX_HEIGHT = 502;
+          var width = userPhoto.width;
+          var height = userPhoto.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(userPhoto, 0, 0, width, height);
+
+          var dataurl = canvas.toDataURL("image/png");
+          userPhoto.setAttribute("src", dataurl);
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -64,6 +114,7 @@
       drawNewImage();
       ctx.save();
     }, false);
+
 
 
     // Filters: Grayscale
@@ -116,7 +167,7 @@
 
       var blurVal = blurRangeSlider.value / 3;
 
-      ctx.drawImage(userPhoto, x, y);
+      drawNewImage();
       var passes = 1 * blurVal;
       ctx.globalAlpha = 1 / (blurVal * 2);
       //overlay eight instances of the image over the original, each with 1/8th of full opacity
@@ -136,7 +187,7 @@
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
-      ctx.drawImage(userPhoto, x, y);
+      drawNewImage();
 
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       var data = imageData.data;
@@ -241,26 +292,20 @@
     // Download Polaroid
 
     function downloadCanvas(link, canvasId, filename) {
-      link.href = document.getElementById(canvasId).toDataURL();
+      link.href = canvas.toDataURL();
       link.download = filename;
     }
 
     //add Polaroid border
 
-    function borderImage(image, amount, style) {
-      var paddedImage = document.createElement("canvas"); // create a new image 
-      amount = Math.round(amount); // ensure that the amount is a int value
-      paddedImage.width = image.width + amount * 2; // set the size
-      paddedImage.height = image.height + amount * 2;
-      // get a context so you can draw on it
-      var ctx = paddedImage.getContext("2d");
-      ctx.strokeStyle = style; // set the colour;
-      ctx.lineWidth = amount;
-      // draw the border
-      ctx.strokeRect(amount / 2, amount / 2, image.width + amount, image.height + amount);
-      // draw the image on top
-      ctx.drawImage(image, amount, amount);
-      return paddedImage; // return the new image
+    function borderImage(x) {
+      ctx.lineWidth = x; // This is your border thickness
+      ctx.strokeStyle = "#fff";
+      canvas.width += x * 2;
+      canvas.height += x * 2;
+      ctx.rect(0, 0, canvas.width, canvas.height);
+      ctx.stroke();
+      ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x);
     }
 
     function drawPolaroid() {
@@ -273,11 +318,9 @@
     }
 
     download.addEventListener("click", function(event) {
-      borderImage(userPhoto, 10, "#fff");
+      borderImage(10);
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
-
-
 
 
 

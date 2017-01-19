@@ -15,7 +15,6 @@
         height: 23px;
         display: inline-block;
         @include create-button($color-light, #000, 1.3rem);
-
     }
     .controls {
         display: flex;
@@ -129,6 +128,11 @@
                 left: -38%;
                 width: 200px;
                 height: 100px;
+                image-rendering: optimizeQuality;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: optimize-contrast;
+                -ms-interpolation-mode: nearest-neighbor;
             }
         }
     }
@@ -205,7 +209,7 @@
         border-color: transparent;
         color: transparent;
     }
-    input[type=reset]{
+    input[type=reset] {
         @include create-button(#999, #fff, 1.3rem);
         margin-left: 10px;
         font-weight: normal;
@@ -261,16 +265,25 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
+    image-rendering: optimizeQuality;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
-#zoom-in, #zoom-out {
+#zoom-in,
+#zoom-out {
     display: block;
     width: 1rem;
     height: 1rem;
     cursor: pointer;
 }
 
-#moveTop, #moveRight, #moveLeft, #moveBottom {
+#moveTop,
+#moveRight,
+#moveLeft,
+#moveBottom {
     display: block;
     cursor: pointer;
 }
