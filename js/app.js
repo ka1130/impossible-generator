@@ -1,7 +1,5 @@
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    console.log("DOM fully loaded and parsed");
-
     // Upload a photo
 
     var uploadPhoto = document.getElementById("uploadPhotoBtn");
@@ -32,7 +30,7 @@
     var hRatio = canvas.width / userPhoto.width;
     var vRatio = canvas.height / userPhoto.height;
 
-    var polaroidImageData = ctx.createImageData(canvas.width, canvas.height);
+    var tmp = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     if (typeof x === "undefined") {
       x = 0;
@@ -65,6 +63,7 @@
       }
       canvas.width = width;
       canvas.height = height;
+
       ctx.drawImage(userPhoto, 0, 0, width, height);
 
     }
@@ -119,9 +118,7 @@
 
 
 
-    // Filters: Grayscale
-
-    grayscaleRangeSlider.addEventListener("input", function(event) {
+grayscaleRangeSlider.addEventListener("input", function(event) {
       drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       //pobierz pozycję i wymiary z kontekstu
@@ -161,6 +158,7 @@
       }
       ctx.putImageData(imageData, x, y);
     }, false);
+
 
 
     // Filters: Blur
@@ -286,7 +284,6 @@
     // Reset
 
     resetBtn.addEventListener("click", function(event) {
-      userPhoto.style.webkitFilter = "blur(0px)";
       ctx.restore();
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
     }, false);
@@ -310,13 +307,11 @@
       //      ctx.globalCompositeOperation = "source-over";
       ctx.rect(0, 0, canvas.width, 30);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fill();
       // ctx.shadowColor = '#999';
       // ctx.shadowBlur = 20;
       // ctx.shadowOffsetX = 15;
       // ctx.shadowOffsetY = 15;
-
       ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
     }
 
@@ -324,6 +319,7 @@
       borderImage(20);
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
       canvas.style.display = "none";
+      location.reload();
     }, false);
 
     // Play Camera Sound
@@ -336,7 +332,7 @@
     download.addEventListener("click", function(event) {
       console.log("ok");
       audioElement.play();
-    });
+    }, false);
 
 
 
