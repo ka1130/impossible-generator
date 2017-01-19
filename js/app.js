@@ -308,8 +308,10 @@
       ctx.globalCompositeOperation="source-over";
       ctx.rect(0, 0, canvas.width, 30);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.stroke();
+      ctx.stroke();      
       ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
+      ctx.strokeStyle = "#000";
+      canvas.stroke();
     }
 
     download.addEventListener("click", function(event) {
