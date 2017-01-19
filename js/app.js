@@ -132,7 +132,7 @@
     }, false);
 
 
-    // Filters: Megative
+    // Filters: Negative
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
@@ -238,30 +238,46 @@
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
     }, false);
 
-    // Download pic
-    function downloadCanvas(link, canvasId, filename) {
+    // Download Polaroid
 
+    function downloadCanvas(link, canvasId, filename) {
       link.href = document.getElementById(canvasId).toDataURL();
       link.download = filename;
+    }
+
+    //add Polaroid border
+
+    function borderImage(image, amount, style) {
+      var paddedImage = document.createElement("canvas"); // create a new image 
+      amount = Math.round(amount); // ensure that the amount is a int value
+      paddedImage.width = image.width + amount * 2; // set the size
+      paddedImage.height = image.height + amount * 2;
+      // get a context so you can draw on it
+      var ctx = paddedImage.getContext("2d");
+      ctx.strokeStyle = style; // set the colour;
+      ctx.lineWidth = amount;
+      // draw the border
+      ctx.strokeRect(amount / 2, amount / 2, image.width + amount, image.height + amount);
+      // draw the image on top
+      ctx.drawImage(image, amount, amount);
+      return paddedImage; // return the new image
     }
 
     function drawPolaroid() {
       //      ctx.rect(0, 0, canvas.width, canvas.height);
       ctx.lineWidth = 30;
       ctx.strokeStyle = "#fff";
-      ctx.shadowColor = '#999';
-      ctx.shadowBlur = 20;
-      ctx.shadowOffsetX = 15;
-      ctx.shadowOffsetY = 15;
 
       // ctx.fill();
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
     }
 
     download.addEventListener("click", function(event) {
-      drawPolaroid();
+      borderImage(userPhoto, 10, "#fff");
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
+
+
 
 
 
