@@ -1,0 +1,19 @@
+#impossible-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #b3aaa2;
+    background-image: url(../img/sandpaper.png);
+}
+
+#impossible .container {
+    width: 100%;
+    max-width: 900px;
+    background-size: cover;
+}
+
+.photo_rectangle_inverse {
+  -webkit-clip-path: url(#shape);
+  clip-path: url(#shape);
+  position: relative;
+  -webkit-transform: translateZ(1px)
+}

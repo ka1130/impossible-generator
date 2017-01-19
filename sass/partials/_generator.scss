@@ -128,11 +128,6 @@
                 left: -38%;
                 width: 200px;
                 height: 100px;
-                image-rendering: optimizeQuality;
-                image-rendering: -moz-crisp-edges;
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: optimize-contrast;
-                -ms-interpolation-mode: nearest-neighbor;
             }
         }
     }
@@ -219,7 +214,15 @@
             overflow: hidden;
             position: relative;
             float: left;
-            @include create-button($color-light, #fff, 1.3rem)
+            -webkit-transition: All 0.1s ease-in-out;
+            -moz-transition: All 0.1s ease-in-out;
+            -o-transition: All 0.1s ease-in-out;
+            -ms-transition: All 0.1s ease-in-out;
+            transition: All 0.1s ease-in-out;
+            @include create-button($color-light, #fff, 1.3rem);
+            &:hover {
+                background-color: #bbb;
+            }
         }
         .file-container input[type="file"] {
             cursor: inherit;

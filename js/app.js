@@ -129,6 +129,8 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       drawNewImage();
 
+      // ctx.restore();
+
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
@@ -152,12 +154,15 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       var data = imageData.data;
       var brightenVal = brightenRangeSlider.value * 0.75;
 
+      ctx.restore();
+
       for (var i = 0; i < data.length; i += 4) {
         data[i] += brightenVal; // red
         data[i + 1] += brightenVal; // green
         data[i + 2] += brightenVal; // blue   
       }
       ctx.putImageData(imageData, x, y);
+      
       ctx.save();
     }, false);
 
@@ -170,6 +175,8 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
 //      drawNewImage();
       var passes = 1 * blurVal;
+      ctx.restore();
+
       ctx.globalAlpha = 1 / (blurVal * 2);
       //overlay eight instances of the image over the original, each with 1/8th of full opacity
       for (var i = 1; i <= passes; i++) {
@@ -180,7 +187,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
         }
       }
       ctx.globalAlpha = 1.0 * blurVal;
-
+      ctx.save();
     }, false);
 
 
@@ -188,12 +195,11 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
-      drawNewImage();
+      ctx.restore();
 
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       var data = imageData.data;
       var negativeVal = negativeRangeSlider.value * 0.0005;
-
 
       for (var i = 0; i < data.length; i += 4) {
         data[i] = 255 - data[i] / (negativeVal / 0.01); // red
@@ -204,7 +210,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       // overwrite original image
       ctx.putImageData(imageData, 0, 0);
-
+      ctx.save();
 
     }, false);
 
