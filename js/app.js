@@ -323,9 +323,9 @@
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
 
-    // Add Audio
+    // Play Camera Sound
     var audioElement = document.createElement("audio");
-    audioElement.setAttribute("src", "../sounds/camera.mp3");
+    audioElement.setAttribute("src", "sounds/camera.mp3");
     audioElement.setAttribute("autoplay:false", "autoplay");
     audioElement.load();
     $.get();
