@@ -32,6 +32,8 @@
     var hRatio = canvas.width / userPhoto.width;
     var vRatio = canvas.height / userPhoto.height;
 
+    var polaroidImageData = ctx.createImageData(canvas.width, canvas.height);
+
     if (typeof x === "undefined") {
       x = 0;
     }
@@ -314,13 +316,14 @@
       // ctx.shadowBlur = 20;
       // ctx.shadowOffsetX = 15;
       // ctx.shadowOffsetY = 15;
-      ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
 
+      ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
     }
 
     download.addEventListener("click", function(event) {
       borderImage(20);
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
+      canvas.style.display = "none";
     }, false);
 
     // Play Camera Sound
