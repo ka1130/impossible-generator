@@ -42,7 +42,7 @@
 
     function drawNewImage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, 0, 0);
+      //      ctx.drawImage(userPhoto, 0, 0);
       // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
       //   0, 0, canvas.width, canvas.height);
       var MAX_WIDTH = 374;
@@ -305,19 +305,35 @@
       canvas.height += x * 2;
       ctx.fillStyle = "#fff";
       ctx.strokeStyle = "#fff";
-      ctx.globalCompositeOperation="source-over";
+      //      ctx.globalCompositeOperation = "source-over";
       ctx.rect(0, 0, canvas.width, 30);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.stroke();      
+
+      ctx.fill();
+      // ctx.shadowColor = '#999';
+      // ctx.shadowBlur = 20;
+      // ctx.shadowOffsetX = 15;
+      // ctx.shadowOffsetY = 15;
       ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
-      ctx.strokeStyle = "#000";
-      canvas.stroke();
+
     }
 
     download.addEventListener("click", function(event) {
       borderImage(20);
       downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     }, false);
+
+    // Add Audio
+    var audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", "../sounds/camera.mp3");
+    audioElement.setAttribute("autoplay:false", "autoplay");
+    audioElement.load();
+    $.get();
+
+    download.addEventListener("click", function(event) {
+      console.log("ok");
+      audioElement.play();
+    });
 
 
 

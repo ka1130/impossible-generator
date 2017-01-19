@@ -56,22 +56,24 @@
                             <input type="file" id="uploadPhotoBtn" />
                         </label>
                         <div id="imgContainer">
-                            <img id="userPhoto" src="" width="187" height="251" class="resize-image"/>
+                            <img id="userPhoto" src="" width="187" height="251" class="resize-image" />
                             <canvas id="imgCanvas" width="187" height="251">
-                                Your browser does not support the HTML 5 Canvas. 
+                                Your browser does not support the HTML 5 Canvas.
                             </canvas>
                         </div>
                         <div class="input-group">
                             <a href="" value="Get it" id="download">Get it</a>
                             <input type="reset" value="reset" id="resetBtn">
                         </div>
+                        <audio id="camera-sound">
+                            <source src="sounds/camera.mp3">
+                        </audio>
                     </form>
                 </div>
             </div>
         </div>
     </section>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <!-- <script src="js/component.js"></script> -->
     <script src="js/app.js"></script>
 </body>
 
