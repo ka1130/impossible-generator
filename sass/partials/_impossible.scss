@@ -17,3 +17,11 @@
   position: relative;
   -webkit-transform: translateZ(1px);
 }
+
+#impossible p {
+	color: #614233;
+	padding: 0 0 3rem 1rem;
+	text-decoration: underline;
+	cursor: pointer;
+
+}

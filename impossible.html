@@ -59,7 +59,9 @@
                     </defs>
                     <image height="600px" width="900" xlink:href='img/impossible-camera.jpeg' class='photo_rectangle_inverse' id="img-masked" />
                 </svg>
-                <p>Isn't life a series of images that change as they repeat themselves? {A.Warhol}</p>
+                <p>
+                    Isn't life a series of images that change as they repeat themselves? {A.Warhol}
+                </p>
             </div>
         </section>
     </div>
@@ -67,7 +69,8 @@
     <script src="js/velocity.min.js"></script>
     <script src="js/velocity.ui.min.js"></script>
     <script>
-    $("p").on("mouseover", function(event) {
+    $("#img-masked").velocity("transition.perspectiveUpIn", 2000)
+    $("p").on("click", function(event) {
         $("#img-masked").velocity("transition.perspectiveUpIn", 2000)
             .delay(500)
             .velocity("transition.perspectiveUpOut", 500);
