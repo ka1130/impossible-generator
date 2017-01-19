@@ -139,6 +139,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       // overwrite original image
 
       ctx.putImageData(imageData, x, y);
+      ctx.save();
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
 
@@ -146,7 +147,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
     // Filters: Brighten
 
     brightenRangeSlider.addEventListener("input", function(event) {
-      drawNewImage();
+
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
       var brightenVal = brightenRangeSlider.value * 0.75;
@@ -157,6 +158,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
         data[i + 2] += brightenVal; // blue   
       }
       ctx.putImageData(imageData, x, y);
+      ctx.save();
     }, false);
 
 
@@ -164,10 +166,9 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
     // Filters: Blur
 
     blurRangeSlider.addEventListener("input", function(event) {
-
       var blurVal = blurRangeSlider.value / 3;
 
-      drawNewImage();
+//      drawNewImage();
       var passes = 1 * blurVal;
       ctx.globalAlpha = 1 / (blurVal * 2);
       //overlay eight instances of the image over the original, each with 1/8th of full opacity
