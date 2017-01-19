@@ -13,7 +13,7 @@
     <div id="impossible-wrapper">
         <section id="impossible">
             <div class="container">
-                <svg height="600px" width="600px">
+                <svg height="600px" width="900px">
                     <defs>
                         <clipPath id="shape">
                             <path fill="none" d="M63.517,427.934H17.055v-6.462h8.909V183.926h-8.909v-6.464h46.462v6.464h-8.909v237.546h8.909V427.934z" />
@@ -57,11 +57,22 @@
     v-70.39c0-9.546-4.135-14.324-12.401-14.324c-8.384,0-12.575,4.778-12.575,14.324v70.39H856.848z" />
                         </clipPath>
                     </defs>
-                    <image transform="translate(900,0)" height="600px" width="900" xlink:href='img/impossible-camera.jpeg' class='photo_rectangle_inverse' />
-                </svg>'
+                    <image height="600px" width="900" xlink:href='img/impossible-camera.jpeg' class='photo_rectangle_inverse' id="img-masked" />
+                </svg>
+                <p>Isn't life a series of images that change as they repeat themselves? {A.Warhol}</p>
             </div>
         </section>
     </div>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/velocity.min.js"></script>
+    <script src="js/velocity.ui.min.js"></script>
+    <script>
+    $("p").on("mouseover", function(event) {
+        $("#img-masked").velocity("transition.perspectiveUpIn", 2000)
+            .delay(500)
+            .velocity("transition.perspectiveUpOut", 500);
+    });
+    </script>
 </body>
 
 </html>

@@ -343,4 +343,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
 
 
+
+
+
   });
