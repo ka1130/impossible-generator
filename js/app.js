@@ -7,6 +7,7 @@
 
     var grayscaleBtn = document.getElementsByTagName("button")[0];
     var canvas = document.getElementById("imgCanvas");
+    var tempCanvas = canvas;
     var ctx = canvas.getContext("2d");
     var grayscaleRangeSlider = document.getElementById("grayscaleRange");
     var brightenRangeSlider = document.getElementById("brightenRange");
@@ -77,6 +78,8 @@
         reader.onload = function(event) {
           var canvas = document.getElementById("imgCanvas");
           var ctx = canvas.getContext("2d");
+	  //robimy kopie canvasa da blur
+	  tempCanvas = canvas;
           userPhoto.setAttribute("src", event.target.result);
           var canvas = document.createElement("canvas");
           ctx.drawImage(userPhoto, 0, 0);
@@ -141,7 +144,9 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       // overwrite original image
 
       ctx.putImageData(imageData, x, y);
-      ctx.save();
+	//robimy kopie canvasa da blur
+	tempCanvas = canvas;
+      //ctx.save();
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
 
@@ -152,9 +157,17 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var brightenVal = brightenRangeSlider.value * 0.75;
+      var brightenVal;
 
-      ctx.restore();
+	//pierwsze wejscie w metode - oldValue jest jeszcze undefined, wiec przypisujemy mu wartosc domyslna slidera
+	if(brightenRangeSlider.oldValue === undefined) brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
+
+	//obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany (jasniej/ciemniej)
+
+	brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
+      brightenRangeSlider.oldValue = brightenRangeSlider.value;
+
+      //ctx.restore();
 
       for (var i = 0; i < data.length; i += 4) {
         data[i] += brightenVal; // red
@@ -163,7 +176,9 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       }
       ctx.putImageData(imageData, x, y);
       
-      ctx.save();
+	//robimy kopie canvasa da blur
+	tempCanvas = canvas;
+      //ctx.save();
     }, false);
 
 
@@ -175,19 +190,19 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
 //      drawNewImage();
       var passes = 1 * blurVal;
-      ctx.restore();
+      //ctx.restore();
 
       ctx.globalAlpha = 1 / (blurVal * 2);
       //overlay eight instances of the image over the original, each with 1/8th of full opacity
       for (var i = 1; i <= passes; i++) {
         for (var y = -1; y < 2; y++) {
           for (var x = -1; x < 2; x++) {
-            ctx.drawImage(userPhoto, x, y);
+            ctx.drawImage(tempCanvas, x, y);
           }
         }
       }
       ctx.globalAlpha = 1.0 * blurVal;
-      ctx.save();
+      //ctx.save();
     }, false);
 
 
@@ -195,7 +210,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
-      ctx.restore();
+      //ctx.restore();
 
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       var data = imageData.data;
@@ -210,7 +225,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       // overwrite original image
       ctx.putImageData(imageData, 0, 0);
-      ctx.save();
+      //ctx.save();
 
     }, false);
 
@@ -340,9 +355,6 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       console.log("ok");
       audioElement.play();
     }, false);
-
-
-
 
 
 
