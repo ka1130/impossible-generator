@@ -70,9 +70,12 @@
                         "We've always supported vintage Polaroid cameras with new instant film," says Oskar Smolokowski, CEO of Impossible Project. "But to ensure a future for the medium, we wanted to make a new camera—one entirely designed with current realities in mind. We wanted to preserve the magic of a fully analog camera, but use the advances and technologies of 2016 to give it more features."
                     </p>
                 </div>
-                <p class="caption">
-                    Isn't life a series of images that change as they repeat themselves? {A.Warhol}
-                </p>
+                <div class="bottom">
+                    <p class="caption">
+                        Isn't life a series of images that change as they repeat themselves? {A.Warhol}
+                    </p>
+                    <p class="continue"><a href="generator.html">Crash your pic on a fly!</a></p>
+                </div>
             </div>
         </section>
     </div>
@@ -80,6 +83,10 @@
     <script src="js/velocity.min.js"></script>
     <script src="js/velocity.ui.min.js"></script>
     <script>
+    $(".text-about").velocity("fadeIn", {
+        duration: 1500,
+        easing: "spring"
+    });
     $("p").on("click", function(event) {
         $("svg").velocity("fadeIn", {
             duration: 300

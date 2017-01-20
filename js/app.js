@@ -129,7 +129,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       drawNewImage();
 
-      // ctx.restore();
+      ctx.restore();
 
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
@@ -162,7 +162,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 	brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
       brightenRangeSlider.oldValue = brightenRangeSlider.value;
 
-      //ctx.restore();
+      ctx.restore();
 
       for (var i = 0; i < data.length; i += 4) {
         data[i] += brightenVal; // red
@@ -171,7 +171,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       }
       ctx.putImageData(imageData, x, y);
       
-      //ctx.save();
+      ctx.save();
     }, false);
 
 
@@ -203,7 +203,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
     negativeRangeSlider.addEventListener("input", function(event) {
 
-      //ctx.restore();
+      ctx.restore();
 
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       var data = imageData.data;

@@ -27,7 +27,7 @@
     .caption {
         color: #614233;
         padding: 0 0 3rem 1rem;
-       	text-decoration: underline;
+        text-decoration: underline;
         cursor: pointer;
         margin-top: 1rem;
     }
@@ -43,15 +43,25 @@
                 color: inherit;
                 padding: 0 3px;
                 &:before {
-                	content: ">>";
+                    content: ">>";
                 }
                 &:after {
-                	content: "<<";
+                    content: "<<";
                 }
                 &:hover {
-                	background-color: #cabeb4;
+                    background-color: #cabeb4;
                 }
             }
         }
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    p {
+        color: #614233;
+        margin-left: 1rem;
+        margin-top: 1rem;
     }
 }
