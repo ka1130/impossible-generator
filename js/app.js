@@ -7,7 +7,6 @@
 
     var grayscaleBtn = document.getElementsByTagName("button")[0];
     var canvas = document.getElementById("imgCanvas");
-    var tempCanvas = canvas;
     var ctx = canvas.getContext("2d");
     var grayscaleRangeSlider = document.getElementById("grayscaleRange");
     var brightenRangeSlider = document.getElementById("brightenRange");
@@ -78,8 +77,6 @@
         reader.onload = function(event) {
           var canvas = document.getElementById("imgCanvas");
           var ctx = canvas.getContext("2d");
-	  //robimy kopie canvasa da blur
-	  tempCanvas = canvas;
           userPhoto.setAttribute("src", event.target.result);
           var canvas = document.createElement("canvas");
           ctx.drawImage(userPhoto, 0, 0);
@@ -144,8 +141,6 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       // overwrite original image
 
       ctx.putImageData(imageData, x, y);
-	//robimy kopie canvasa da blur
-	tempCanvas = canvas;
       //ctx.save();
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
@@ -176,8 +171,6 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       }
       ctx.putImageData(imageData, x, y);
       
-	//robimy kopie canvasa da blur
-	tempCanvas = canvas;
       //ctx.save();
     }, false);
 
@@ -197,7 +190,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       for (var i = 1; i <= passes; i++) {
         for (var y = -1; y < 2; y++) {
           for (var x = -1; x < 2; x++) {
-            ctx.drawImage(tempCanvas, x, y);
+            ctx.drawImage(userPhoto, x, y);
           }
         }
       }

@@ -59,10 +59,18 @@
                     </defs>
                     <image height="600px" width="900" xlink:href='img/impossible-camera.jpeg' class='photo_rectangle_inverse' id="img-masked" />
                 </svg>
-                <p class="intro">
-                    When Polaroid announced the end of instant film back in 2008, the <a href="#">Impossible Project</a> took up the task of breathing new life into instant film photography. After stepping in to buy the last remaining Polaroid factory only days before it shut its doors, the company has been committed to reinventing instant film, bringing back a range of older models with a modern twist. Their latest effort is no exception. This time around, Impossible Project teamed up with Teenage Engineering to design a brand-new camera from scratch. Released earlier this month and now available for pre-order, the I-1 is an analog, instant camera with app-enabled controls built specifically for today's needs. "We've always supported vintage Polaroid cameras with new instant film," says Oskar Smolokowski, CEO of Impossible Project. "But to ensure a future for the medium, we wanted to make a new camera—one entirely designed with current realities in mind. We wanted to preserve the magic of a fully analog camera, but use the advances and technologies of 2016 to give it more features."
-                </p>
-                <p>
+                <div class="text-about">
+                    <p class="intro">
+                        When Polaroid announced the end of instant film back in 2008, the <a href="https://us.impossible-project.com/">Impossible Project</a> took up the task of breathing new life into instant film photography. After stepping in to buy the last remaining Polaroid factory only days before it shut its doors, the company has been committed to reinventing instant film, <a href="http://www.core77.com/posts/23383/iPhone-Camera-Polaroid-Film-The-Impossible-Projects-Instant-Lab-Now-Available-on-Kickstarter">bringing back a range of older models with a modern twist</a>.
+                    </p>
+                    <p class="intro">
+                        Their latest effort is no exception. This time around, Impossible Project teamed up with <a href="https://www.teenageengineering.com/">Teenage Engineering</a> to design a brand-new camera from scratch. Released earlier this month and now available for pre-order, the I-1 is an analog, instant camera with app-enabled controls built specifically for today's needs.
+                    </p>
+                    <p class="intro">
+                        "We've always supported vintage Polaroid cameras with new instant film," says Oskar Smolokowski, CEO of Impossible Project. "But to ensure a future for the medium, we wanted to make a new camera—one entirely designed with current realities in mind. We wanted to preserve the magic of a fully analog camera, but use the advances and technologies of 2016 to give it more features."
+                    </p>
+                </div>
+                <p class="caption">
                     Isn't life a series of images that change as they repeat themselves? {A.Warhol}
                 </p>
             </div>
@@ -72,9 +80,12 @@
     <script src="js/velocity.min.js"></script>
     <script src="js/velocity.ui.min.js"></script>
     <script>
-    $("#img-masked").velocity("transition.perspectiveUpIn", 2000)
     $("p").on("click", function(event) {
-        $("#img-masked").velocity("transition.perspectiveUpIn", 2000)
+        $("svg").velocity("fadeIn", {
+            duration: 300
+        });
+        $(".intro").hide();
+        $("#img-masked").velocity("transition.perspectiveUpIn", 1500)
             .delay(500)
             .velocity("transition.perspectiveUpOut", 500);
     });
