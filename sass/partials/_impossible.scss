@@ -26,10 +26,11 @@
     }
     .caption {
         color: #614233;
-        padding: 0 0 3rem 1rem;
         text-decoration: underline;
         cursor: pointer;
         margin-top: 1rem;
+        margin-bottom: 1rem;
+        // margin-left: 1rem;
     }
     .text-about {
         width: 900px;
@@ -63,5 +64,12 @@
         color: #614233;
         margin-left: 1rem;
         margin-top: 1rem;
+    }
+}
+
+.continue {
+    a {
+        color: #614233;
+        text-transform: uppercase;
     }
 }

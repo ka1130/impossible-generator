@@ -74,7 +74,7 @@
                     <p class="caption">
                         Isn't life a series of images that change as they repeat themselves? {A.Warhol}
                     </p>
-                    <p class="continue"><a href="generator.html">Crash your pic on a fly!</a></p>
+                    <p class="continue"><a id="crash" href="generator.html" target="_blank">Crash your pic on a fly!</a></p>
                 </div>
             </div>
         </section>
@@ -83,10 +83,7 @@
     <script src="js/velocity.min.js"></script>
     <script src="js/velocity.ui.min.js"></script>
     <script>
-    $(".text-about").velocity("fadeIn", {
-        duration: 1500,
-        easing: "spring"
-    });
+
     $("p").on("click", function(event) {
         $("svg").velocity("fadeIn", {
             duration: 300
@@ -94,8 +91,12 @@
         $(".intro").hide();
         $("#img-masked").velocity("transition.perspectiveUpIn", 1500)
             .delay(500)
-            .velocity("transition.perspectiveUpOut", 500);
+            .velocity("transition.perspectiveUpOut", 500)
+            .velocity("fadeIn", 500);
     });
+    // $("#crash").on("mouseover", function(event) {
+    //     $(this).velocity('bounce');
+    // });
     </script>
 </body>
 

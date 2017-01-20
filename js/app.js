@@ -129,7 +129,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
 
       drawNewImage();
 
-      ctx.restore();
+      // ctx.restore();
 
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
@@ -141,10 +141,11 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       // overwrite original image
 
       ctx.putImageData(imageData, x, y);
+  //robimy kopie canvasa da blur
+  tempCanvas = canvas;
       //ctx.save();
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
-
 
     // Filters: Brighten
 
