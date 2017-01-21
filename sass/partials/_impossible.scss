@@ -72,6 +72,10 @@
         color: #614233;
         text-transform: uppercase;
     }
+    &:hover {
+        text-decoration: line-through;
+    }
+
 }
 
 .css-typing
@@ -90,3 +94,4 @@
 @-webkit-keyframes type{
     from { width: 0; }
 }
+
