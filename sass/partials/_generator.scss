@@ -5,6 +5,8 @@
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    max-width: 1200px;
+    background-color: #000;
     .container {
         background-image: url(../img/pexels-photo.jpg);
         background-repeat: no-repeat;
@@ -30,6 +32,9 @@ nav {
         font-family: "Phenomena";
         justify-content: space-around;
         margin-top: 5%;
+        @media screen and (min-width: 720px) {
+            margin-top: 2.5%;
+        }
         li {
             color: #fff;
             list-style-type: none;
@@ -116,7 +121,8 @@ nav {
     border-radius: 5px;
     z-index: 1;
     position: relative;
-    @media screen and (max-width: 720px) {
+    margin: 5% auto;
+    @media screen and (max-width: 900px) {
         margin: 10% auto;
     }
     img {

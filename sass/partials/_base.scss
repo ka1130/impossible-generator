@@ -22,11 +22,19 @@
     font-style: normal;
 }
 
+body {
+    background-color: #000;
+    margin: 0 auto;
+}
+
 .app-wrapper {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+    max-width: 1024px;
 	justify-content: center;
 	align-content: center;
 	font-family: "Phenomena", sans-serif;
+    background-color: #000;
+    margin: 0 auto;
 }
