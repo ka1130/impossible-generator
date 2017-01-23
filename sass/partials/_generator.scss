@@ -183,40 +183,7 @@ nav {
     width: 30%;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    position: relative;
     div {
-        display: flex;
-        flex-direction: column;
-        .tools-middle {
-            display: flex;
-            flex-direction: row;
-            span {
-                display: block;
-                &:nth-child(2) {
-                    margin: 0 10%;
-                    line-height: 3rem;
-                    height: 3rem;
-                }
-            }
-        }
-        .arrow {
-            font-size: 3rem;
-            align-content: center;
-            justify-content: center;
-        }
-        .arrow-top {
-            @include rotate-element(90deg);
-        }
-        .arrow-left {
-            @include rotate-element(180deg);
-        }
-        .arrow-bottom {
-            @include rotate-element(-90deg);
-        }
-        &:nth-child(2) {
-            display: flex;
-            flex-direction: row;
-        }
+
     }
 }
