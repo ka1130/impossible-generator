@@ -234,7 +234,6 @@
 
     function movePhoto() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, 0, 0);
       userPhoto.style.display = "none";      
     }
 
@@ -308,15 +307,12 @@
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
-        data[i] = brightness / grayscaleVal; // red       
-        data[i + 1] = brightness / grayscaleVal // green        
-        data[i + 2] = brightness / grayscaleVal; // blue
+        data[i] = brightness;// red       
+        data[i + 1] = brightness; // green        
+        data[i + 2] = brightness; // blue
       }
 
       ctx.putImageData(imageData, x, y);
-      //robimy kopie canvasa da blur
-      tempCanvas = canvas;
-      //ctx.save();
 
     }, false);
 
