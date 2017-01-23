@@ -1,292 +1,145 @@
 #generator {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: 100vh;
     width: 100%;
-    background-color: #989898;
-    margin: 0 auto;
+    overflow: hidden;
     .container {
-        background-image: url(../img/upload-photo-bg.jpg);
+        background-image: url(../img/pexels-photo.jpg);
         background-repeat: no-repeat;
-        width: 100%;
-        max-width: 900px;
-        background-size: cover;
-    }
-    #download {
-        margin-left: 10px;
-        width: 50px;
-        height: 23px;
-        display: inline-block;
-        @include create-button($color-light, #000, 1.3rem);
-    }
-    .controls {
-        display: flex;
-        height: 100vh;
-        justify-content: space-between;
-    }
-    .controls-position {
-        margin-top: -400px;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        width: 10vw;
-        position: relative;
-        span,
-        p {
-            position: absolute;
-            font-family: "Phenomena";
-            &:first-child {
-                //arrow-top
-                top: -70px;
-                left: 15px;
-                font-size: 3.3rem;
-                @include rotate-element(-90deg);
-            }
-            &:nth-child(2) {
-                //arrow-left
-                top: -18px;
-                left: -37px;
-                font-size: 3.3rem;
-                @include rotate-element(180deg);
-            }
-            &:nth-child(3) {
-                //paragraph
-                top: -2px;
-                left: -3px;
-                font-size: 1.3rem;
-                font-weight: bold;
-            }
-            &:nth-child(4) {
-                //arrow-right
-                top: -22px;
-                left: 73px;
-                font-size: 3.3rem;
-            }
-            &:nth-child(5) {
-                //arrow-bottom
-                top: 20px;
-                left: 20px;
-                font-size: 3.3rem;
-                @include rotate-element(90deg);
-            }
-        }
-    }
-    .controls-zoom {
-        top: 100px;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        width: 10vw;
-        position: relative;
-        font-family: 'Phenomena';
-        font-weight: 300;
-        span,
-        p {
-            position: absolute;
-            &:first-child {
-                //minus
-                top: -19px;
-                left: -38px;
-                font-size: 3.5rem;
-            }
-            &:nth-child(2) {
-                //text
-                font-size: 1.3rem;
-                top: 10px;
-                left: 5px;
-                font-weight: bold;
-            }
-            &:nth-child(3) {
-                //plus
-                top: -13px;
-                left: 60px;
-                font-size: 3.5rem;
-            }
-        }
-    }
-    .controls-rotation {
-        top: 200px;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        position: relative;
-        p {
-            position: absolute;
-            top: 20px;
-            left: -5px;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-        .rotation-circle {
-            position: relative;
-            width: 200px;
-            height: 100px;
-            cursor: pointer;
-            img {
-                position: absolute;
-                top: -10%;
-                left: -38%;
-                width: 200px;
-                height: 100px;
-            }
-        }
-    }
-    .col-left,
-    .col-right {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        width: 50%;
-        justify-content: center;
-    }
-    .col-left {
-        margin-left: 8rem;
-    }
-    .col-right {
-        margin-left: 15rem;
-        position: relative;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        .slider-filter {
-            width: 200px;
-            height: 100px;
-            position: absolute;
-            top: 19%;
-            left: 0;
-            display: flex;
-            p {
-                font-size: 1.3rem;
-                font-weight: bold;
-                position: absolute;
-                top: 0;
-                left: -30%;
-            }
-            &#brighten-range {
-                top: 30%;
-            }
-            &#blur-range {
-                top: 42%;
-            }
-            &#negative-range {
-                top: 54%;
-            }
-        }
-    }
-    input[type=range] {
-        -webkit-appearance: none;
-        width: 100%;
+        background-position: center center;
+        background-size: contain;
         background-color: #000;
-        width: 150px;
-        height: 3px;
-        position: absolute;
-        top: 15%;
-        left: 15%;
-    }
-    input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        @include range-style();
-    }
-    input[type=range]::-moz-range-thumb {
-        @include range-style();
-    }
-    input[type=range]::-ms-thumb {
-        @include range-style();
-    }
-    input[type=range]:focus {
-        outline: none;
-    }
-    input[type=range]::-ms-track {
+        background-attachment: fixed;
         width: 100%;
+        height: 100%;
+        position: relative;
+        display: inline;
+    }
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    max-height: 100vh;
+    .tools-panel {
+        width: 100%;
+        display: flex;
+        font-family: "Phenomena";
+        justify-content: space-around;
+        margin-top: 5%;
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    .overlay {
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+    height: 100%;
+    list-style-type: none;
+    li {
+        text-decoration: none;
+        font-size: 2rem;
+        color: #eee;
+        display: block;
+        transition: 0.3s;
+        height: 25%;
         cursor: pointer;
-        background: transparent;
-        border-color: transparent;
-        color: transparent;
     }
-    input[type=reset] {
-        @include create-button(#999, #fff, 1.3rem);
-        margin-left: 10px;
-        font-weight: normal;
+    #toggleGrayscale {
+        margin-top: 20%;
     }
-    #form1 {
-        .file-container {
-            overflow: hidden;
-            position: relative;
-            float: left;
-            -webkit-transition: All 0.1s ease-in-out;
-            -moz-transition: All 0.1s ease-in-out;
-            -o-transition: All 0.1s ease-in-out;
-            -ms-transition: All 0.1s ease-in-out;
-            transition: All 0.1s ease-in-out;
-            @include create-button($color-light, #fff, 1.3rem);
-            &:hover {
-                background-color: #bbb;
-            }
-        }
-        .file-container input[type="file"] {
-            cursor: inherit;
-            display: block;
-            font-size: 999px;
-            filter: alpha(opacity=0);
-            min-height: 100%;
-            min-width: 100%;
-            opacity: 0;
-            position: absolute;
-            right: 0;
-            text-align: right;
-            bottom: 10%;
-            cursor: pointer;
-        }
+    #closeFiltersNav {
+        position: absolute;
+        top: 2%;
+        right: 8%;
+        font-size: 3rem;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .overlay {
+        overflow-y: auto;
     }
 }
 
 #imgContainer {
-    position: absolute;
-    top: 30%;
-    right: 143.5%;
-    width: 77%;
-    height: 38%;
-    @include rotate-element(-.5deg);
-}
-
-#form1 {
-    margin-left: -15rem;
-    margin-top: 45%;
-    .input-group {
-        margin-top: 280%;
-        margin-left: -10%;
-        @include rotate-element(-.5deg);
+    background-color: #fff;
+    overflow: hidden;
+    display: block;
+    vertical-align: middle;
+    text-align: center;
+    width: 250px;
+    height: 350px;
+    box-shadow: 0 0 10px 2px #999;
+    border-radius: 5px;
+    z-index: 1;
+    position: relative;
+    @media screen and (max-width: 720px) {
+        margin: 10% auto;
+    }
+    img {
+        background-color: #000;
+        width: 210px;
+        height: 250px;
+        margin: 17px auto;
+    }
+    #download {
+        @include create-button(#aaa, #fff, 1.9rem);
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 1rem;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        &:hover {
+            background-color: #ccc;
+            color: #555;
+        }
+    }
+    #resetBtn {
+        @include create-button(#aaa, #fff, 1.9rem);
+        text-decoration: none;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        &:hover {
+            background-color: #ccc;
+            color: #555;
+        }
     }
 }
 
-#uploadPhotoBtn {
-    @include rotate-element(-.5deg);
-}
-
-canvas {
+#imgCanvas {
     position: absolute;
-    top: 0;
-    left: 0;
-    image-rendering: optimizeQuality;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    -ms-interpolation-mode: nearest-neighbor;
-}
-
-#zoom-in,
-#zoom-out {
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    cursor: pointer;
-}
-
-#moveTop,
-#moveRight,
-#moveLeft,
-#moveBottom {
-    display: block;
-    cursor: pointer;
+    top: 4.8%;
+    left: 7.8%;
+    width: 210px;
+    height: 250px;
+    z-index: 0;
 }

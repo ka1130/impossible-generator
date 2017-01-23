@@ -118,7 +118,7 @@
 
 
 
-grayscaleRangeSlider.addEventListener("input", function(event) {
+    grayscaleRangeSlider.addEventListener("input", function(event) {
       drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       //pobierz pozycję i wymiary z kontekstu
@@ -141,8 +141,8 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       // overwrite original image
 
       ctx.putImageData(imageData, x, y);
-  //robimy kopie canvasa da blur
-  tempCanvas = canvas;
+      //robimy kopie canvasa da blur
+      tempCanvas = canvas;
       //ctx.save();
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
@@ -155,12 +155,12 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
       var data = imageData.data;
       var brightenVal;
 
-	//pierwsze wejscie w metode - oldValue jest jeszcze undefined, wiec przypisujemy mu wartosc domyslna slidera
-	if(brightenRangeSlider.oldValue === undefined) brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
+      //pierwsze wejscie w metode - oldValue jest jeszcze undefined, wiec przypisujemy mu wartosc domyslna slidera
+      if (brightenRangeSlider.oldValue === undefined) brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
 
-	//obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany (jasniej/ciemniej)
+      //obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany (jasniej/ciemniej)
 
-	brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
+      brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
       brightenRangeSlider.oldValue = brightenRangeSlider.value;
 
       ctx.restore();
@@ -171,7 +171,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
         data[i + 2] += brightenVal; // blue   
       }
       ctx.putImageData(imageData, x, y);
-      
+
       ctx.save();
     }, false);
 
@@ -182,7 +182,7 @@ grayscaleRangeSlider.addEventListener("input", function(event) {
     blurRangeSlider.addEventListener("input", function(event) {
       var blurVal = blurRangeSlider.value / 3;
 
-//      drawNewImage();
+      //      drawNewImage();
       var passes = 1 * blurVal;
       //ctx.restore();
 

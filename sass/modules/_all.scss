@@ -1,9 +1,15 @@
-@mixin horizontal-gradient($color1, $color2, $color3) {
-    background: $color1;
-    background: -webkit-linear-gradient(left, $color1, $color2, $color3);
-    background: -o-linear-gradient(right, $color1, $color2, $color3);
-    background: -moz-linear-gradient(right, $color1, $color2, $color3);
-    background: linear-gradient(to right, $color1, $color2, $color3);
+@mixin range-style() {
+    background: transparent;
+    left: 0;
+    top: 0;
+    background-image: url(../img/indicator.svg);
+    background-repeat: no-repeat;
+    width: 13px;
+    height: 25px;
+    margin-top: 3px;
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
 }
 
 @mixin create-button($bg-color, $font-color, $font-size) {
@@ -15,27 +21,8 @@
     text-transform: uppercase;
     text-align: center;
     font-size: $font-size;
-    padding: 0.5rem;
-    border-radius: 8px;
+    padding: 0.4rem;
+    border-radius: 5px;
     cursor: pointer;
     border: 0px;
-}
-
-@mixin rotate-element($deg) {
-    display: block;
-    -ms-transform: rotate($deg);
-    -webkit-transform: rotate($deg);
-    transform: rotate($deg);
-}
-
-@mixin range-style() {
-    background: transparent;
-    left: 20%;
-    top: -10px;
-    background-image: url(../img/indicator.svg);
-    background-repeat: no-repeat;
-    width: 13px;
-    height: 25px;
-    margin-top: 3px;
-    cursor: pointer;
 }

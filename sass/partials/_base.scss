@@ -22,46 +22,11 @@
     font-style: normal;
 }
 
-html,
-body {
-    @include horizontal-gradient(#000,
-    #333,
-    #b3b3b3);
-}
-
-body {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.container {
-    width: 900px;
-    height: 100vh;
-    box-sizing: border-box;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    justify-content: space-between;
-}
-
-a {
-    text-decoration: none;
-    border: none;
-}
-
-p {
-    font-family: 'Phenomena';
-    font-style: normal;
-    font-weight: normal;
-}
-
-button {
-    border: 0px;
-    &:focus {
-        outline: 0;
-    }
+.app-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: center;
+	align-content: center;
+	font-family: "Phenomena", sans-serif;
 }

@@ -1,0 +1,59 @@
+.controls {
+    max-width: 45%;
+    max-height: 20%;
+    margin: -8% auto 1%;
+    color: #fff;
+    position: relative;
+    .controls-position {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        visibility: hidden;
+        span {
+            padding: 0;
+            cursor: pointer;
+            max-height: 2.8rem;
+        }
+    }
+    .controls-zoom {
+        display: flex;
+        margin: 10% auto;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        span {
+            padding: 15%;
+            cursor: pointer;
+        }
+    }
+    .controls-rotation {
+        display: flex;
+        margin: 10% auto;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+    }
+}
+
+.left-right {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    max-height: 5%;
+    padding: 0;
+    margin: 0;
+}
