@@ -26,3 +26,9 @@
     cursor: pointer;
     border: 0px;
 }
+
+@mixin rotate-element($deg) {
+    -ms-transform: rotate($deg); /* IE 9 */
+    -webkit-transform: rotate($deg); /* Chrome, Safari, Opera */
+    transform: rotate($deg);
+}
