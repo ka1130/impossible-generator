@@ -1,17 +1,32 @@
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    // Upload a photo
+    //Define variables
 
-    var uploadPhoto = document.getElementById("uploadPhotoBtn");
-    var userPhoto = document.getElementById("userPhoto");
+    var togglePosition = document.getElementById("togglePosition");
+    var toggleZoom = document.getElementById("toggleZoom");
+    var toggleRotation = document.getElementById("toggleRotation");
+    var toggleGrayscale = document.getElementById("toggleGrayscale");
+    var toggleBrightness = document.getElementById("toggleBrightness");
+    var toggleBlur = document.getElementById("toggleBlur");
+    var toggleNegative = document.getElementById("toggleNegative");
+    var controlsPosition = document.getElementsByClassName("controls-position")[0];
+    var controlsZoom = document.getElementsByClassName("controls-zoom")[0];
+    var controlsRotation = document.getElementsByClassName("controls-rotation")[0];
+    var toolsNav = document.getElementById("toolsNav");
+    var sliderFilters = document.getElementsByClassName("slider-filter");
+    var grayscaleRange = document.getElementById("grayscale-range");
 
-    var grayscaleBtn = document.getElementsByTagName("button")[0];
-    var canvas = document.getElementById("imgCanvas");
-    var ctx = canvas.getContext("2d");
     var grayscaleRangeSlider = document.getElementById("grayscaleRange");
     var brightenRangeSlider = document.getElementById("brightenRange");
     var blurRangeSlider = document.getElementById("blurRange");
     var negativeRangeSlider = document.getElementById("negativeRange");
+
+    var imgContainer = document.getElementById("imgContainer");
+    var userPhoto = document.getElementById("userPhoto");
+    var inputFile = document.getElementById("inputFile");
+    var uploadPhoto = document.getElementById("uploadPhoto");
+    var canvas = document.getElementById("imgCanvas");
+    var ctx = canvas.getContext("2d");
     var resetBtn = document.getElementById("resetBtn");
     var download = document.getElementById("download");
 
@@ -24,13 +39,9 @@
     var zoomOut = document.getElementById("zoom-out");
 
     var rotateControl = document.querySelector(".rotation-circle");
+
     var x;
     var y;
-
-    var hRatio = canvas.width / userPhoto.width;
-    var vRatio = canvas.height / userPhoto.height;
-
-    var tmp = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     if (typeof x === "undefined") {
       x = 0;
@@ -41,12 +52,12 @@
     }
 
     function drawNewImage() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(x, y, canvas.width, canvas.height);
       //      ctx.drawImage(userPhoto, 0, 0);
       // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
       //   0, 0, canvas.width, canvas.height);
-      var MAX_WIDTH = 374;
-      var MAX_HEIGHT = 502;
+      var MAX_WIDTH = 600;
+      var MAX_HEIGHT = 1000;
       var width = userPhoto.width;
       var height = userPhoto.height;
 
@@ -64,25 +75,112 @@
       canvas.width = width;
       canvas.height = height;
 
-      ctx.drawImage(userPhoto, 0, 0, width, height);
-
+      ctx.drawImage(userPhoto, x, y, width, height);
+      ctx.clearRect(x, y, canvas.width, canvas.height);
     }
 
-    // Photo Uploader
+    //Responsive tools navigation
+
+    var openFiltersNav = document.getElementById("openFiltersNav");
+    var closeFiltersNav = document.getElementById("closeFiltersNav");
+    var toolsNav = document.getElementById("toolsNav");
+
+    function openNav() {
+      toolsNav.style.height = "100%";
+    }
+
+    function closeNav() {
+      toolsNav.style.height = "0%";
+    }
+
+    function closeControls() {
+      controlsPosition.style.visibility = "hidden";
+      controlsZoom.style.visibility = "hidden";
+      controlsRotation.style.visibility = "hidden";
+    }
+
+    openFiltersNav.addEventListener("click", openNav, false);
+    closeFiltersNav.addEventListener("click", closeNav, false);
+
+
+    // Toggle bottom panel tools
+
+    togglePosition.addEventListener("click", function(event) {
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+      }
+      controlsPosition.style.visibility = "visible";
+      controlsZoom.style.visibility = "hidden";
+      controlsRotation.style.visibility = "hidden";
+    }, false);
+
+    toggleZoom.addEventListener("click", function(event) {
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+      }
+      controlsPosition.style.visibility = "hidden";
+      controlsZoom.style.visibility = "visible";
+      controlsRotation.style.visibility = "hidden";
+    }, false);
+
+    toggleRotation.addEventListener("click", function(event) {
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+      }
+      controlsPosition.style.visibility = "hidden";
+      controlsZoom.style.visibility = "hidden";
+      controlsRotation.style.visibility = "visible";
+    }, false);
+
+    toggleGrayscale.addEventListener("click", function(event) {
+      closeNav();
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+        sliderFilters[0].style.visibility = "visible";
+      }
+      closeControls();
+    }, false);
+
+    toggleBrightness.addEventListener("click", function(event) {
+      closeNav();
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+        sliderFilters[1].style.visibility = "visible";
+      }
+      closeControls();
+    }, false);
+
+    toggleBlur.addEventListener("click", function(event) {
+      closeNav();
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+        sliderFilters[2].style.visibility = "visible";
+      }
+      closeControls();
+    }, false);
+
+    toggleNegative.addEventListener("click", function(event) {
+      closeNav();
+      for (var i = 0; i < sliderFilters.length; i++) {
+        sliderFilters[i].style.visibility = "hidden";
+        sliderFilters[3].style.visibility = "visible";
+      }
+      closeControls();
+    }, false);
+
+
+    // Upload a photo
 
     function readURL(input) {
+
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function(event) {
-          var canvas = document.getElementById("imgCanvas");
-          var ctx = canvas.getContext("2d");
           userPhoto.setAttribute("src", event.target.result);
-          var canvas = document.createElement("canvas");
-          ctx.drawImage(userPhoto, 0, 0);
 
-          var MAX_WIDTH = 374;
-          var MAX_HEIGHT = 502;
+          var MAX_WIDTH = 1200;
+          var MAX_HEIGHT = 2000;
           var width = userPhoto.width;
           var height = userPhoto.height;
 
@@ -99,24 +197,88 @@
           }
           canvas.width = width;
           canvas.height = height;
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(userPhoto, 0, 0, width, height);
+          ctx.drawImage(userPhoto, x, y, width, height);
 
           var dataurl = canvas.toDataURL("image/png");
           userPhoto.setAttribute("src", dataurl);
         }
-
         reader.readAsDataURL(input.files[0]);
       }
     }
 
-    uploadPhoto.addEventListener("change", function(event) {
+    $("#inputFile").change(function() {
       readURL(this);
       drawNewImage();
       ctx.save();
+    });
+
+
+    uploadPhoto.addEventListener("click", function(event) {
+      $("#inputFile").trigger("click");
     }, false);
 
 
+    // Move
+
+    moveTop.addEventListener("click", function(event) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+      y -= 2;
+    }, false);
+
+    moveRight.addEventListener("click", function(event) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+      x += 2;
+    }, false);
+
+    moveLeft.addEventListener("click", function(event) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+      x -= 2;
+    }, false);
+
+    moveBottom.addEventListener("click", function(event) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+      y += 2;
+    }, false);
+
+
+    // Zoom-in, Zoom-out
+
+    zoomIn.addEventListener("click", function(event) {
+      ctx.scale(0.99, 0.99);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+    }, false);
+
+    zoomOut.addEventListener("click", function(event) {
+      ctx.scale(1.01, 1.01);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+    }, false);
+
+
+    // Rotation
+
+    rotateControl.addEventListener("click", function(event) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.translate(93.5, 125.5);
+      ctx.rotate(15 * Math.PI / 180);
+      ctx.translate(-93.5, -125.5);
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+    }, false);
+
+
+    // Filters: Grayscale
 
     grayscaleRangeSlider.addEventListener("input", function(event) {
       drawNewImage();
@@ -147,6 +309,7 @@
       //przetworzone dane umieść z powrotem na danej pozycji x i y
     }, false);
 
+
     // Filters: Brighten
 
     brightenRangeSlider.addEventListener("input", function(event) {
@@ -155,7 +318,7 @@
       var data = imageData.data;
       var brightenVal;
 
-      //pierwsze wejscie w metode - oldValue jest jeszcze undefined, wiec przypisujemy mu wartosc domyslna slidera
+      //pierwsze wejście w metodę - oldValue jest jeszcze undefined, więc przypisujemy mu wartość domyślną slidera
       if (brightenRangeSlider.oldValue === undefined) brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
 
       //obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany (jasniej/ciemniej)
@@ -224,78 +387,6 @@
     }, false);
 
 
-    // przycinanie obrazu
-
-    // window.onload(function() {
-
-    // 	ctx.beginPath();
-    // 	ctx.rect(canvas.width / 2, canvas.height / 2, 187, 251);
-    // 	ctx.clip();
-    // 	ctx.scale(2, 2);
-    // 	ctx.drawImage(userPhoto);
-
-
-    // });
-
-    // Zoom-in, Zoom-out
-
-    zoomIn.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      ctx.scale(0.99, 0.99);
-    }, false);
-
-    zoomOut.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      ctx.scale(1.01, 1.01);
-    }, false);
-
-
-    // Move
-
-    moveTop.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      y -= 2;
-    }, false);
-
-    moveRight.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      x += 2;
-    }, false);
-
-    moveLeft.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      x -= 2;
-    }, false);
-
-    moveBottom.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      y += 2;
-    }, false);
-
-
-    // Rotation
-
-    rotateControl.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.translate(93.5, 125.5);
-      ctx.rotate(15 * Math.PI / 180);
-      ctx.translate(-93.5, -125.5);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-    }, false);
-
 
     // Reset
 
@@ -303,6 +394,7 @@
       ctx.restore();
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
     }, false);
+
 
     // Download Polaroid
 
@@ -338,7 +430,9 @@
       location.reload();
     }, false);
 
+
     // Play Camera Sound
+
     var audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "sounds/camera.mp3");
     audioElement.setAttribute("autoplay:false", "autoplay");
@@ -346,7 +440,6 @@
     $.get();
 
     download.addEventListener("click", function(event) {
-      console.log("ok");
       audioElement.play();
     }, false);
 
