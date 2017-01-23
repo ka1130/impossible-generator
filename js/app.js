@@ -3,15 +3,23 @@
     //Define variables
 
     var togglePosition = document.getElementById("togglePosition");
-    var toggleZoom = document.getElementById("toggleZoom");
-    var toggleRotation = document.getElementById("toggleRotation");
-    var toggleGrayscale = document.getElementById("toggleGrayscale");
-    var toggleBrightness = document.getElementById("toggleBrightness");
-    var toggleBlur = document.getElementById("toggleBlur");
-    var toggleNegative = document.getElementById("toggleNegative");
+    var toggleZoom = togglePosition.nextElementSibling;
+    var toggleRotation = toggleZoom.nextElementSibling;
+
+    var toolsNav = document.getElementById("toolsNav");
+    var toggleGrayscale = toolsNav.firstElementChild.children[1];
+    var toggleBrightness = toggleGrayscale.nextElementSibling;
+    var toggleBlur = toggleBrightness.nextElementSibling;
+    var toggleNegative = toggleBlur.nextElementSibling;
+
     var controlsPosition = document.getElementsByClassName("controls-position")[0];
     var controlsZoom = document.getElementsByClassName("controls-zoom")[0];
     var controlsRotation = document.getElementsByClassName("controls-rotation")[0];
+
+    var openFiltersNav = document.getElementById("openFiltersNav");
+    var closeFiltersNav = document.getElementById("closeFiltersNav");
+    
+
     var toolsInfo = controlsRotation.parentElement.lastElementChild;
     var toolsNav = document.getElementById("toolsNav");
     var sliderFilters = document.getElementsByClassName("slider-filter");
@@ -81,10 +89,6 @@
     }
 
     //Responsive tools navigation
-
-    var openFiltersNav = document.getElementById("openFiltersNav");
-    var closeFiltersNav = document.getElementById("closeFiltersNav");
-    var toolsNav = document.getElementById("toolsNav");
 
     function openNav() {
       toolsNav.style.height = "100%";
