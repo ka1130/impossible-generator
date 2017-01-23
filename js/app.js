@@ -232,33 +232,45 @@
 
     // Move
 
-    function movePhoto() {
+    var a;
+    var b;
+
+    function clearImage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      userPhoto.style.display = "none";      
+      userPhoto.style.display = "none";
+
+      if (typeof a === "undefined") {
+        a = 0;
+      }
+
+      if (typeof b === "undefined") {
+        b = 0;
+      }
     }
 
+
     moveTop.addEventListener("click", function(event) {
-      movePhoto();
-      y -= 2;
-      ctx.drawImage(userPhoto, x, y);
+      clearImage();
+      ctx.translate(a, b -= 2);
+      ctx.drawImage(userPhoto, a, b);
     }, false);
 
     moveRight.addEventListener("click", function(event) {
-      movePhoto();
-      x += 2;
-      ctx.drawImage(userPhoto, x, y);
+      clearImage();
+      ctx.translate(a += 2, b);
+      ctx.drawImage(userPhoto, a, b);
     }, false);
 
-    moveLeft.addEventListener("click", function(event) {
-      movePhoto();
-      x -= 2;
-      ctx.drawImage(userPhoto, x, y);
+    moveLeft.addEventListener("click", function(event) {      
+      clearImage();
+      ctx.translate(a -= 2, b);
+      ctx.drawImage(userPhoto, a, b);
     }, false);
 
     moveBottom.addEventListener("click", function(event) {
-      movePhoto();
-      y += 2;
-      ctx.drawImage(userPhoto, x, y);
+      clearImage();
+      ctx.translate(a, b += 2);
+      ctx.drawImage(userPhoto, a, b);
     }, false);
 
 
@@ -282,14 +294,12 @@
     // Rotation
 
     rotateControl.addEventListener("click", function(event) {
-      ctx.restore();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
       ctx.rotate(15 * Math.PI / 180); //by 15deg
       ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
       ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
-      ctx.save();
+      userPhoto.style.display = "none"; 
     }, false);
 
 
@@ -307,7 +317,7 @@
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
-        data[i] = brightness;// red       
+        data[i] = brightness; // red       
         data[i + 1] = brightness; // green        
         data[i + 2] = brightness; // blue
       }
