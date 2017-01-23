@@ -30,9 +30,14 @@ nav {
         font-family: "Phenomena";
         justify-content: space-around;
         margin-top: 5%;
-        a {
+        li {
             color: #fff;
-            text-decoration: none;
+            list-style-type: none;
+            display: inline-block;
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
         }
     }
     .overlay {

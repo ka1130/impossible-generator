@@ -12,6 +12,7 @@
     var controlsPosition = document.getElementsByClassName("controls-position")[0];
     var controlsZoom = document.getElementsByClassName("controls-zoom")[0];
     var controlsRotation = document.getElementsByClassName("controls-rotation")[0];
+    var toolsInfo = controlsRotation.parentElement.lastElementChild;
     var toolsNav = document.getElementById("toolsNav");
     var sliderFilters = document.getElementsByClassName("slider-filter");
     var grayscaleRange = document.getElementById("grayscale-range");
