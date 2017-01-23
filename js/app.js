@@ -19,9 +19,9 @@
     var toolsNav = document.getElementById("toolsNav");
     var openFiltersNav = document.getElementById("openFiltersNav");
     var closeFiltersNav = toolsNav.firstElementChild.firstElementChild;
-    
+
     var toolsInfo = controlsRotation.parentElement.lastElementChild;
-    
+
     var sliderFilters = document.getElementsByClassName("slider-filter");
     var grayscaleRange = document.getElementById("grayscale-range");
 
@@ -59,6 +59,9 @@
     if (typeof y === "undefined") {
       y = 0;
     }
+
+
+    // Put photo on canvas
 
     function drawNewImage() {
       ctx.clearRect(x, y, canvas.width, canvas.height);
@@ -229,32 +232,34 @@
 
     // Move
 
-    moveTop.addEventListener("click", function(event) {
+    function movePhoto() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
+      ctx.drawImage(userPhoto, 0, 0);
+      userPhoto.style.display = "none";      
+    }
+
+    moveTop.addEventListener("click", function(event) {
+      movePhoto();
       y -= 2;
+      ctx.drawImage(userPhoto, x, y);
     }, false);
 
     moveRight.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
+      movePhoto();
       x += 2;
+      ctx.drawImage(userPhoto, x, y);
     }, false);
 
     moveLeft.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
+      movePhoto();
       x -= 2;
+      ctx.drawImage(userPhoto, x, y);
     }, false);
 
     moveBottom.addEventListener("click", function(event) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none";
+      movePhoto();
       y += 2;
+      ctx.drawImage(userPhoto, x, y);
     }, false);
 
 
@@ -278,12 +283,14 @@
     // Rotation
 
     rotateControl.addEventListener("click", function(event) {
+      ctx.restore();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.translate(93.5, 125.5);
-      ctx.rotate(15 * Math.PI / 180);
-      ctx.translate(-93.5, -125.5);
+      ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
+      ctx.rotate(15 * Math.PI / 180); //by 15deg
+      ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
       ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
+      ctx.save();
     }, false);
 
 
@@ -298,10 +305,6 @@
       //imageData.data przechowuje wartości poszczególnych pikseli (0-255)
       var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
-      drawNewImage();
-
-      // ctx.restore();
-
       for (var i = 0; i < data.length; i += 4) {
         var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
@@ -309,13 +312,12 @@
         data[i + 1] = brightness / grayscaleVal // green        
         data[i + 2] = brightness / grayscaleVal; // blue
       }
-      // overwrite original image
 
       ctx.putImageData(imageData, x, y);
       //robimy kopie canvasa da blur
       tempCanvas = canvas;
       //ctx.save();
-      //przetworzone dane umieść z powrotem na danej pozycji x i y
+
     }, false);
 
 
@@ -354,7 +356,6 @@
     blurRangeSlider.addEventListener("input", function(event) {
       var blurVal = blurRangeSlider.value / 3;
 
-      //      drawNewImage();
       var passes = 1 * blurVal;
       //ctx.restore();
 
@@ -380,7 +381,7 @@
 
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       var data = imageData.data;
-      var negativeVal = negativeRangeSlider.value * 0.0005;
+      var negativeVal = negativeRangeSlider.value * 0.01;
 
       for (var i = 0; i < data.length; i += 4) {
         data[i] = 255 - data[i] / (negativeVal / 0.01); // red
@@ -389,9 +390,7 @@
         //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
       }
 
-      // overwrite original image
       ctx.putImageData(imageData, 0, 0);
-      //ctx.save();
 
     }, false);
 
