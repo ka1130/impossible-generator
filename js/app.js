@@ -102,6 +102,7 @@
       controlsPosition.style.visibility = "hidden";
       controlsZoom.style.visibility = "hidden";
       controlsRotation.style.visibility = "hidden";
+      toolsInfo.style.visibility = "hidden";
     }
 
     openFiltersNav.addEventListener("click", openNav, false);
@@ -117,6 +118,7 @@
       controlsPosition.style.visibility = "visible";
       controlsZoom.style.visibility = "hidden";
       controlsRotation.style.visibility = "hidden";
+      toolsInfo.style.visibility = "hidden";
     }, false);
 
     toggleZoom.addEventListener("click", function(event) {
@@ -126,6 +128,7 @@
       controlsPosition.style.visibility = "hidden";
       controlsZoom.style.visibility = "visible";
       controlsRotation.style.visibility = "hidden";
+      toolsInfo.style.visibility = "hidden";
     }, false);
 
     toggleRotation.addEventListener("click", function(event) {
@@ -135,6 +138,7 @@
       controlsPosition.style.visibility = "hidden";
       controlsZoom.style.visibility = "hidden";
       controlsRotation.style.visibility = "visible";
+      toolsInfo.style.visibility = "hidden";
     }, false);
 
     toggleGrayscale.addEventListener("click", function(event) {
