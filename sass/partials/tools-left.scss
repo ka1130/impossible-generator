@@ -22,9 +22,7 @@
             margin-top: 60%;
             span{
                 display: block;
-                &:nth-child(odd) {
-                    font-size: 2.5rem;
-                }
+
             }
         }
         &:last-child {
@@ -32,13 +30,11 @@
         }
     }
     .arrow {
-        font-size: 2.5rem;
         display: block;
         position: absolute;
         cursor: pointer;
     }
     .arrow-top {
-        @include rotate-element(-90deg);
         top: 0;
         left: 20%;
     }
@@ -58,7 +54,6 @@
         left: 40%;
     }
     .arrow-bottom {
-        @include rotate-element(90deg);
         top: 30%;
         left: 20%;
     }

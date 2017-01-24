@@ -1,8 +1,11 @@
 footer {
-    color: #fff;
     position: absolute;
     bottom: 2%;
     right: 2%;
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
     p {
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
