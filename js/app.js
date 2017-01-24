@@ -131,9 +131,11 @@
     //Responsive tools navigation
 
     function openNav() {
-
-      // if (window.matchMedia("(max-width: 479px)").matches)
+      if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "100%";
+      } else {
+        $("#toolsNav").slideToggle(500);
+      }
     }
 
     function closeNav() {
