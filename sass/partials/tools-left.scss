@@ -1,0 +1,65 @@
+#tools-left,
+#tools-left {
+    color: #fff;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 7%;
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
+}
+
+#tools-left {
+    top: 10%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    div {
+        margin-bottom: 10%;
+        &:first-child {
+        }
+        &:nth-child(2) {
+            margin-top: 60%;
+            span{
+                display: block;
+                &:nth-child(odd) {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+        &:last-child {
+            margin-top: 20%;
+        }
+    }
+    .arrow {
+        font-size: 2.5rem;
+        display: block;
+        position: absolute;
+        cursor: pointer;
+    }
+    .arrow-top {
+        @include rotate-element(-90deg);
+        top: 0;
+        left: 20%;
+    }
+    .arrow-left {
+        top: 15%;
+        left: 0;
+    }
+    .position-text {
+        display: flex;
+        position: absolute;
+        top: 19%;
+        left: 13%;
+        align-content: center;
+    }
+    .arrow-right {
+        top: 15%;
+        left: 40%;
+    }
+    .arrow-bottom {
+        @include rotate-element(90deg);
+        top: 30%;
+        left: 20%;
+    }
+}
