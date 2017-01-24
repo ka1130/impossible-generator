@@ -64,7 +64,8 @@
     // Move tools-left container dynamically
 
     function setMarginLeft() {
-      var offsetLeft = uploadPhoto.getBoundingClientRect().left;
+      var spanLeft = $("#leftBorder");
+      var offsetLeft = spanLeft.position().left;
       $("#tools-left").css({
         marginLeft: offsetLeft
       });
