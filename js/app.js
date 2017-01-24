@@ -61,6 +61,20 @@
     }
 
 
+    // Move tools-left container dynamically
+
+    function setMarginLeft() {
+      var offsetLeft = uploadPhoto.getBoundingClientRect().left;
+      $("#tools-left").css({
+        marginLeft: offsetLeft
+      });
+    }
+
+    window.addEventListener("resize", setMarginLeft, false);
+
+    window.addEventListener("load", setMarginLeft, true);
+
+
     // Put photo on canvas
 
     function drawNewImage() {
@@ -179,19 +193,6 @@
       }
       closeControls();
     }, false);
-
-
-    // Move tools-left container dynamically
-
-
-
-    window.addEventListener("resize", function(event) {
-      var offsetLeft = uploadPhoto.getBoundingClientRect().left;
-
-      $("#tools-left").css({ marginLeft: offsetLeft });
-
-    }, false);
-
 
 
     // Upload a photo
