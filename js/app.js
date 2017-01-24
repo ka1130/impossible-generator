@@ -134,7 +134,7 @@
       if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "100%";
       } else {
-        $("#closeFiltersNav").show();
+        $(".overlay-content").show();
         $("#toolsNav").slideToggle(500);
       }
     }
@@ -512,7 +512,7 @@
       link.href = canvas.toDataURL();
       link.download = filename;
     }
-    
+
 
     //add Polaroid border
 
