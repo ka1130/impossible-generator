@@ -12,24 +12,37 @@
 #tools-left {
     margin-top: 50px;
     .arrows {}
-    .arrow-top {}
+    .arrow-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
     .arrow-left {
-        margin-top: 30px;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 0;
     }
     .arrow-right {
-         margin-top: 30px;
+        position: absolute;
+        top: 0;
+        left: 40px;
+        right: 0;
     }
     .arrow-bottom {
-         margin-top: 40px;
+        position: absolute;
+        top: 0;
+        left: 60px;
+        right: 0;
     }
     .zoom {
         position: absolute;
-        top: 30px;
+        top: 70px;
         left: 0;
     }
     .rotate {
-               position: absolute;
-        top: 60px;
-        left: 0; 
+        position: absolute;
+        top: 100px;
+        left: 0;
     }
 }
