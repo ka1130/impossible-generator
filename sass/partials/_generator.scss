@@ -60,15 +60,17 @@ nav {
     }
     .overlay {
         height: 0%;
-        width: 100%;
-        position: fixed;
-        z-index: 20;
-        top: 0;
-        left: 0;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.9);
-        overflow-y: hidden;
-        transition: 0.5s;
+        @media screen and (max-width: 479px) {
+            width: 100%;
+            position: fixed;
+            z-index: 20;
+            top: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-y: hidden;
+            transition: 0.5s;
+        }
     }
 }
 
@@ -81,39 +83,41 @@ nav {
 }
 
 .overlay-content {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    margin-top: 0;
-    height: 100%;
-    list-style-type: none;
-    li {
-        text-decoration: none;
-        font-size: 2rem;
-        color: #eee;
-        display: block;
-        transition: 0.3s;
-        height: 25%;
-        cursor: pointer;
-    }
-    #toggleGrayscale {
-        margin-top: 20%;
-    }
-    #closeFiltersNav {
-        position: absolute;
-        top: 2%;
-        right: 8%;
-        font-size: 3rem;
-        color: #fff;
-        text-decoration: none;
+    @media screen and (max-width: 479px) {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        position: relative;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        margin-top: 0;
+        height: 100%;
+        list-style-type: none;
+        li {
+            text-decoration: none;
+            font-size: 2rem;
+            color: #eee;
+            display: block;
+            transition: 0.3s;
+            height: 25%;
+            cursor: pointer;
+        }
+        #toggleGrayscale {
+            margin-top: 20%;
+        }
+        #closeFiltersNav {
+            position: absolute;
+            top: 2%;
+            right: 8%;
+            font-size: 3rem;
+            color: #fff;
+            text-decoration: none;
+        }
     }
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-height: 450px) and (max-width: 479px) {
     .overlay {
         overflow-y: auto;
     }

@@ -116,7 +116,9 @@
     //Responsive tools navigation
 
     function openNav() {
-      toolsNav.style.height = "100%";
+
+      if (window.matchMedia("(max-width: 479px)").matches)
+        toolsNav.style.height = "100%";
     }
 
     function closeNav() {
@@ -152,6 +154,7 @@
       $("#toggleRotation").css({
         "cursor": "auto"
       });
+      toolsInfo.innerHTML = "choose your tool in the left-hand panel";
     }
 
 
