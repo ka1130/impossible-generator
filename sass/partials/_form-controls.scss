@@ -18,22 +18,10 @@
         justify-content: center;
         align-content: center;
         align-self: center;
-        // &:first-child {
-        //     visibility: visible;
-        // }
-        // &:nth-child(2) {
-        //     visibility: visible;
-        // }
-        // &:nth-child(3) {
-        //     visibility: visible;
-        // }
-        // &:nth-child(4) {
-        //     visibility: visible;
-        // }
         p {
             text-align: center;
             font-size: 2rem;
-            margin: 15% auto;
+            margin: 10px auto 15px;
         }
         input {
             display: block;
@@ -43,9 +31,9 @@
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
+            max-width: 200px;
             background-color: #fff;
             height: 3px;
-            margin-top: 10%;
         }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;

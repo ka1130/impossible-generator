@@ -1,7 +1,7 @@
 @mixin range-style() {
     background: transparent;
     left: 0;
-    top: 0;
+    top: 50px;
     background-image: url(../img/indicator.svg);
     background-repeat: no-repeat;
     width: 13px;

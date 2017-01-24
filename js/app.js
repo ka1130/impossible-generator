@@ -132,7 +132,7 @@
 
     function openNav() {
 
-      if (window.matchMedia("(max-width: 479px)").matches)
+      // if (window.matchMedia("(max-width: 479px)").matches)
         toolsNav.style.height = "100%";
     }
 
