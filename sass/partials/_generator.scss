@@ -58,7 +58,8 @@ nav {
             }
         }
     }
-    .overlay {        
+    .overlay {
+        height: 0%;
         @media screen and (max-width: 479px) {
             height: 0%;
             width: 100%;
