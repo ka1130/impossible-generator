@@ -181,6 +181,19 @@
     }, false);
 
 
+    // Move tools-left container dynamically
+
+
+
+    window.addEventListener("resize", function(event) {
+      var offsetLeft = uploadPhoto.getBoundingClientRect().left;
+
+      $("#tools-left").css({ marginLeft: offsetLeft });
+
+    }, false);
+
+
+
     // Upload a photo
 
     function readURL(input) {
@@ -261,7 +274,7 @@
       ctx.drawImage(userPhoto, a, b);
     }, false);
 
-    moveLeft.addEventListener("click", function(event) {      
+    moveLeft.addEventListener("click", function(event) {
       clearImage();
       ctx.translate(a -= 2, b);
       ctx.drawImage(userPhoto, a, b);
@@ -299,7 +312,7 @@
       ctx.rotate(15 * Math.PI / 180); //by 15deg
       ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
       ctx.drawImage(userPhoto, x, y);
-      userPhoto.style.display = "none"; 
+      userPhoto.style.display = "none";
     }, false);
 
 

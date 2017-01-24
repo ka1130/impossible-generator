@@ -1,9 +1,13 @@
 #tools-left,
-#tools-left {
+#tools-right {
     color: #fff;
     font-size: 1.2rem;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 720px) {
         display: none;
     }
+}
+
+#tools-left {
+    margin-left: 0;
 }
 
