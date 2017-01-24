@@ -134,13 +134,16 @@
       if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "100%";
       } else {
+        toolsNav.style.height = "100%";
         $(".overlay-content").show();
         $("#toolsNav").slideToggle(500);
       }
     }
 
     function closeNav() {
-      toolsNav.style.height = "0%";
+      if (window.matchMedia("(max-width: 479px)").matches) {
+        toolsNav.style.height = "0%";
+      } 
     }
 
     function closeControls() {
