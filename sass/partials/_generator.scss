@@ -148,10 +148,7 @@ nav {
     border-radius: 5px;
     z-index: 1;
     position: relative;
-    margin: 5% auto;
-    @media screen and (max-width: 900px) {
-        margin: 10% auto;
-    }
+    margin: 8% auto;
     img {
         background-color: #000;
         width: 210px;
