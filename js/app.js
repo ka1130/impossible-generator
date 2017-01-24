@@ -134,6 +134,7 @@
       if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "100%";
       } else {
+        $("#closeFiltersNav").show();
         $("#toolsNav").slideToggle(500);
       }
     }
@@ -174,7 +175,6 @@
       toolsInfo.innerHTML = "choose your tool in the left-hand panel";
     }
 
-
     function showPositionControls(event) {
       if (mq.matches) {
         event.target.removeEventListener("click", showPositionControls);
@@ -184,7 +184,7 @@
         }
         controlsPosition.style.visibility = "visible";
         controlsZoom.style.visibility = "hidden";
-        controlsRotation.style.visibility = "hidden";
+        controlsRotation.style.visibility = "hidden";e
         toolsInfo.style.visibility = "hidden";
       }
     }
@@ -303,7 +303,6 @@
       ctx.save();
     });
 
-
     uploadPhoto.addEventListener("click", function(event) {
       $("#inputFile").trigger("click");
     }, false);
@@ -402,7 +401,6 @@
     toolsLeftRotate.addEventListener("click", rotateElement, false);
 
 
-
     // Filters: Grayscale
 
     grayscaleRangeSlider.addEventListener("input", function(event) {
@@ -456,7 +454,6 @@
     }, false);
 
 
-
     // Filters: Blur
 
     blurRangeSlider.addEventListener("input", function(event) {
@@ -501,7 +498,6 @@
     }, false);
 
 
-
     // Reset
 
     resetBtn.addEventListener("click", function(event) {
@@ -516,6 +512,7 @@
       link.href = canvas.toDataURL();
       link.download = filename;
     }
+    
 
     //add Polaroid border
 
