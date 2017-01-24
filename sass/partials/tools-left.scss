@@ -2,12 +2,34 @@
 #tools-right {
     color: #fff;
     font-size: 1.2rem;
+    position: absolute;
+    max-height: 100%;
     @media screen and (max-width: 720px) {
         display: none;
     }
 }
 
 #tools-left {
-    margin-left: 0;
+    margin-top: 50px;
+    .arrows {}
+    .arrow-top {}
+    .arrow-left {
+        margin-top: 30px;
+    }
+    .arrow-right {
+         margin-top: 30px;
+    }
+    .arrow-bottom {
+         margin-top: 40px;
+    }
+    .zoom {
+        position: absolute;
+        top: 30px;
+        left: 0;
+    }
+    .rotate {
+               position: absolute;
+        top: 60px;
+        left: 0; 
+    }
 }
-
