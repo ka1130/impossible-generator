@@ -72,7 +72,6 @@
     }
 
     window.addEventListener("resize", setMarginLeft, false);
-
     window.addEventListener("load", setMarginLeft, true);
 
 
@@ -129,35 +128,67 @@
 
     // Toggle bottom panel tools
 
-    togglePosition.addEventListener("click", function(event) {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
-      }
-      controlsPosition.style.visibility = "visible";
-      controlsZoom.style.visibility = "hidden";
-      controlsRotation.style.visibility = "hidden";
-      toolsInfo.style.visibility = "hidden";
-    }, false);
+    // Disable unnecessary buttons on bigger screens
 
-    toggleZoom.addEventListener("click", function(event) {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
-      }
-      controlsPosition.style.visibility = "hidden";
-      controlsZoom.style.visibility = "visible";
-      controlsRotation.style.visibility = "hidden";
-      toolsInfo.style.visibility = "hidden";
-    }, false);
+    var mq = window.matchMedia("(min-width: 571px)");
 
-    toggleRotation.addEventListener("click", function(event) {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
+    if (mq.matches) {
+      $("#togglePosition").attr("disabled", true);
+      $("#toggleZoom").attr("disabled", true);
+      $("#toggleRotation").attr("disabled", true);
+      $("#togglePosition").css( {"cursor": "auto"} );
+      $("#toggleZoom").css( {"cursor": "auto"} );
+      $("#toggleRotation").css( {"cursor": "auto"} );
+    }
+
+
+    function showPositionControls(event) {
+      if (mq.matches) {
+        event.target.removeEventListener("click", showPositionControls);
+      } else {
+        for (var i = 0; i < sliderFilters.length; i++) {
+          sliderFilters[i].style.visibility = "hidden";
+          controlsPosition.style.visibility = "visible";
+          controlsZoom.style.visibility = "hidden";
+          controlsRotation.style.visibility = "hidden";
+          toolsInfo.style.visibility = "hidden";
+        }
       }
-      controlsPosition.style.visibility = "hidden";
-      controlsZoom.style.visibility = "hidden";
-      controlsRotation.style.visibility = "visible";
-      toolsInfo.style.visibility = "hidden";
-    }, false);
+    }
+
+    function showZoomControls(event) {
+      if (mq.matches) {
+        event.target.removeEventListener("click", showZoomControls);
+      } else {
+        for (var i = 0; i < sliderFilters.length; i++) {
+          sliderFilters[i].style.visibility = "hidden";
+          controlsPosition.style.visibility = "hidden";
+          controlsZoom.style.visibility = "visible";
+          controlsRotation.style.visibility = "hidden";
+          toolsInfo.style.visibility = "hidden";
+        }
+      }
+    }
+
+    function showRotationControls(event) {
+      if (mq.matches) {
+        event.target.removeEventListener("click", showRotationControls);
+      } else {
+        for (var i = 0; i < sliderFilters.length; i++) {
+          sliderFilters[i].style.visibility = "hidden";
+          controlsPosition.style.visibility = "hidden";
+          controlsZoom.style.visibility = "hidden";
+          controlsRotation.style.visibility = "visible";
+          toolsInfo.style.visibility = "hidden";
+        }
+      }
+    }
+
+    togglePosition.addEventListener("click", showPositionControls, false);
+
+    toggleZoom.addEventListener("click", showZoomControls, false);
+
+    toggleRotation.addEventListener("click", showRotationControls, false);
 
     toggleGrayscale.addEventListener("click", function(event) {
       closeNav();
@@ -470,6 +501,7 @@
 
     download.addEventListener("click", function(event) {
       audioElement.play();
+      console.log("ok");
     }, false);
 
 

@@ -72,6 +72,14 @@ nav {
     }
 }
 
+#togglePosition,
+#toggleZoom,
+#toggleRotation {
+    @media screen and (min-width: 571px) {
+        opacity: 0;
+    }
+}
+
 .overlay-content {
     display: flex;
     flex-direction: column;
@@ -167,4 +175,3 @@ nav {
     height: 250px;
     z-index: 0;
 }
-
