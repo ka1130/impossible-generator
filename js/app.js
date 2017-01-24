@@ -43,6 +43,11 @@
     var moveRight = document.getElementById("moveRight");
     var moveLeft = document.getElementById("moveLeft");
     var moveBottom = document.getElementById("moveBottom");
+    var toolsLeftMoveTop = document.getElementById("toolsLeftMoveTop");
+    var toolsLeftMoveLeft = document.getElementById("toolsLeftMoveLeft");
+    var toolsLeftMoveRight = document.getElementById("toolsLeftMoveRight");
+    var toolsLeftMoveBottom = document.getElementById("toolsLeftMoveBottom");
+
 
     var zoomIn = document.getElementById("zoom-in");
     var zoomOut = document.getElementById("zoom-out");
@@ -127,7 +132,6 @@
 
 
     // Toggle bottom panel tools
-
     // Disable unnecessary buttons on bigger screens
 
     var mq = window.matchMedia("(min-width: 571px)");
@@ -136,9 +140,15 @@
       $("#togglePosition").attr("disabled", true);
       $("#toggleZoom").attr("disabled", true);
       $("#toggleRotation").attr("disabled", true);
-      $("#togglePosition").css( {"cursor": "auto"} );
-      $("#toggleZoom").css( {"cursor": "auto"} );
-      $("#toggleRotation").css( {"cursor": "auto"} );
+      $("#togglePosition").css({
+        "cursor": "auto"
+      });
+      $("#toggleZoom").css({
+        "cursor": "auto"
+      });
+      $("#toggleRotation").css({
+        "cursor": "auto"
+      });
     }
 
 
@@ -294,12 +304,14 @@
       }
     }
 
-
-    moveTop.addEventListener("click", function(event) {
+    function moveElementTop(event) {
       clearImage();
       ctx.translate(a, b -= 2);
       ctx.drawImage(userPhoto, a, b);
-    }, false);
+    }
+
+    moveTop.addEventListener("click", moveElementTop, false);
+    toolsLeftMoveTop.addEventListener("click", moveElementTop, false);
 
     moveRight.addEventListener("click", function(event) {
       clearImage();
