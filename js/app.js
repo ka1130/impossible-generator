@@ -82,6 +82,21 @@
     window.addEventListener("resize", setMarginLeft, false);
     window.addEventListener("load", setMarginLeft, true);
 
+    // Move right-hand dropdown menu dynamically
+
+    function setMarginRight() {
+      var filtersLeft = $("#openFiltersNav");
+      var offsetLeft = filtersLeft.position().left;
+      $("#toolsNav").css({
+        "left": offsetLeft,
+        "top": "50px",
+        "position": "absolute"
+      });
+    }
+
+    window.addEventListener("resize", setMarginRight, false);
+    window.addEventListener("load", setMarginRight, true);
+
 
     // Put photo on canvas
 

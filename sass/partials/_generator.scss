@@ -59,8 +59,9 @@ nav {
         }
     }
     .overlay {
-        height: 0%;
+        height: 100%;
         @media screen and (max-width: 479px) {
+            height: 0%;
             width: 100%;
             position: fixed;
             z-index: 20;
@@ -83,9 +84,18 @@ nav {
 }
 
 .overlay-content {
+    display: flex;
+    flex-direction: column;
+    li {
+        text-decoration: none;
+        font-size: 2rem;
+        color: #eee;
+        display: block;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: right;
+    }
     @media screen and (max-width: 479px) {
-        display: flex;
-        flex-direction: column;
         align-content: center;
         position: relative;
         top: 0;
@@ -95,13 +105,8 @@ nav {
         height: 100%;
         list-style-type: none;
         li {
-            text-decoration: none;
-            font-size: 2rem;
-            color: #eee;
-            display: block;
             transition: 0.3s;
             height: 25%;
-            cursor: pointer;
         }
         #toggleGrayscale {
             margin-top: 20%;
