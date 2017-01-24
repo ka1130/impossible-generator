@@ -58,8 +58,7 @@ nav {
             }
         }
     }
-    .overlay {
-        display: none;
+    .overlay {        
         @media screen and (max-width: 479px) {
             height: 0%;
             width: 100%;
@@ -67,6 +66,7 @@ nav {
             z-index: 20;
             top: 0;
             left: 0;
+            text-align: center;
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.9);
             overflow-y: hidden;
@@ -117,6 +117,7 @@ nav {
         li {
             height: 25%;
             font-size: 2rem;
+            text-align: center;
         }
         #toggleGrayscale {
             margin-top: 20%;
@@ -132,8 +133,10 @@ nav {
     }
 }
 
-.overlay {
-    overflow-y: auto;
+@media screen and (max-width: 479px) {
+    .overlay {
+        overflow-y: auto;
+    }
 }
 
 #imgContainer {

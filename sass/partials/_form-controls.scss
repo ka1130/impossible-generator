@@ -21,7 +21,10 @@
         p {
             text-align: center;
             font-size: 2rem;
-            margin: 10px auto 15px;
+            @media screen and (max-width: 400px) {
+                margin: 10px auto 15px;
+            }
+            
         }
         input {
             display: block;

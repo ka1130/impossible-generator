@@ -72,11 +72,13 @@
     // Move tools-left container dynamically
 
     function setMarginLeft() {
-      var spanLeft = $("#leftBorder");
-      var offsetLeft = spanLeft.position().left;
-      $("#tools-left").css({
-        marginLeft: offsetLeft
-      });
+      if (window.matchMedia("(min-width: 480px)").matches) {
+        var spanLeft = $("#leftBorder");
+        var offsetLeft = spanLeft.position().left;
+        $("#tools-left").css({
+          marginLeft: offsetLeft
+        });
+      }
     }
 
     window.addEventListener("resize", setMarginLeft, false);
@@ -85,13 +87,18 @@
     // Move right-hand dropdown menu dynamically
 
     function setMarginRight() {
-      var filtersLeft = $("#openFiltersNav");
-      var offsetLeft = filtersLeft.position().left;
-      $("#toolsNav").css({
-        "left": offsetLeft,
-        "top": "50px",
-        "position": "absolute"
-      });
+
+      if (window.matchMedia("(min-width: 480px)").matches) {
+        var filtersLeft = $("#openFiltersNav");
+        var offsetLeft = filtersLeft.position().left;
+        $("#toolsNav").css({
+          "left": offsetLeft,
+          "top": "50px",
+          "position": "absolute",
+          "display": "block",
+          "overflow-y": "auto"
+        });
+      }
     }
 
     window.addEventListener("resize", setMarginRight, false);
@@ -132,6 +139,7 @@
 
     function openNav() {
       if (window.matchMedia("(max-width: 479px)").matches) {
+        toolsNav.style.visibility = "visible";
         toolsNav.style.height = "100%";
       } else {
         toolsNav.style.height = "100%";
@@ -143,7 +151,7 @@
     function closeNav() {
       if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "0%";
-      } 
+      }
     }
 
     function closeControls() {
@@ -187,7 +195,8 @@
         }
         controlsPosition.style.visibility = "visible";
         controlsZoom.style.visibility = "hidden";
-        controlsRotation.style.visibility = "hidden";e
+        controlsRotation.style.visibility = "hidden";
+        e
         toolsInfo.style.visibility = "hidden";
       }
     }
