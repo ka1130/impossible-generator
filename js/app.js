@@ -181,11 +181,11 @@
       } else {
         for (var i = 0; i < sliderFilters.length; i++) {
           sliderFilters[i].style.visibility = "hidden";
-          controlsPosition.style.visibility = "visible";
-          controlsZoom.style.visibility = "hidden";
-          controlsRotation.style.visibility = "hidden";
-          toolsInfo.style.visibility = "hidden";
         }
+        controlsPosition.style.visibility = "visible";
+        controlsZoom.style.visibility = "hidden";
+        controlsRotation.style.visibility = "hidden";
+        toolsInfo.style.visibility = "hidden";
       }
     }
 
@@ -195,11 +195,11 @@
       } else {
         for (var i = 0; i < sliderFilters.length; i++) {
           sliderFilters[i].style.visibility = "hidden";
-          controlsPosition.style.visibility = "hidden";
-          controlsZoom.style.visibility = "visible";
-          controlsRotation.style.visibility = "hidden";
-          toolsInfo.style.visibility = "hidden";
         }
+        controlsPosition.style.visibility = "hidden";
+        controlsZoom.style.visibility = "visible";
+        controlsRotation.style.visibility = "hidden";
+        toolsInfo.style.visibility = "hidden";
       }
     }
 
@@ -209,11 +209,11 @@
       } else {
         for (var i = 0; i < sliderFilters.length; i++) {
           sliderFilters[i].style.visibility = "hidden";
-          controlsPosition.style.visibility = "hidden";
-          controlsZoom.style.visibility = "hidden";
-          controlsRotation.style.visibility = "visible";
-          toolsInfo.style.visibility = "hidden";
         }
+        controlsPosition.style.visibility = "hidden";
+        controlsZoom.style.visibility = "hidden";
+        controlsRotation.style.visibility = "visible";
+        toolsInfo.style.visibility = "hidden";
       }
     }
 
