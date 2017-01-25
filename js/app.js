@@ -244,9 +244,7 @@
 
     function drawNewImage() {
       ctx.clearRect(x, y, canvas.width, canvas.height);
-      //      ctx.drawImage(userPhoto, 0, 0);
-      // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
-      //   0, 0, canvas.width, canvas.height);
+      
       var MAX_WIDTH = 600;
       var MAX_HEIGHT = 1000;
       var width = userPhoto.width;
@@ -321,20 +319,17 @@
 
     // Move
 
-    var a;
-    var b;
+    var inMemCanvas = document.createElement("canvas");
+    inMemCanvas.width = canvas.width;
+    inMemCanvas.height = canvas.height;
+    inMemCanvas.offsetLeft = canvas.offsetLeft;
+    inMemCanvas.offsetTop = canvas.offsetTop;
+    var a = inMemCanvas.offsetLeft;
+    var b = inMemCanvas.offsetTop;
 
     function clearImage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       userPhoto.style.display = "none";
-
-      if (typeof a === "undefined") {
-        a = 0;
-      }
-
-      if (typeof b === "undefined") {
-        b = 0;
-      }
     }
 
     function moveElementTop(event) {
