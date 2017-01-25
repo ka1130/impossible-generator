@@ -320,37 +320,53 @@
     // Move
 
     var inMemCanvas = document.createElement("canvas");
-    inMemCanvas.width = canvas.width;
-    inMemCanvas.height = canvas.height;
-    inMemCanvas.offsetLeft = canvas.offsetLeft;
-    inMemCanvas.offsetTop = canvas.offsetTop;
-    var a = inMemCanvas.offsetLeft;
-    var b = inMemCanvas.offsetTop;
+    var a = 0;
+    var b = 0;
+    var rotation;
+    inMemCanvas.width = 210;
+    inMemCanvas.height = 250;
+
+    if (typeof rotation === "undefined" ) {
+      rotation = 0;
+    }
 
     function clearImage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       userPhoto.style.display = "none";
+      ctx.save();   
+      ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2);
+      ctx.restore();
     }
 
     function moveElementTop(event) {
       clearImage();
+      ctx.save();
+      ctx.rotate(0);
       ctx.translate(a, b -= 2);
+      ctx.rotate(rotation);
       ctx.drawImage(userPhoto, a, b);
+      ctx.restore();
     }
 
     function moveElementLeft(event) {
+      a = inMemCanvas.offsetLeft;
+      b = inMemCanvas.offsetTop;
       clearImage();
       ctx.translate(a -= 2, b);
       ctx.drawImage(userPhoto, a, b);
     }
 
     function moveElementRight(event) {
+      a = inMemCanvas.offsetLeft;
+      b = inMemCanvas.offsetTop;
       clearImage();
       ctx.translate(a += 2, b);
       ctx.drawImage(userPhoto, a, b);
     }
 
     function moveElementBottom(event) {
+      a = inMemCanvas.offsetLeft;
+      b = inMemCanvas.offsetTop;
       clearImage();
       ctx.translate(a, b += 2);
       ctx.drawImage(userPhoto, a, b);
@@ -393,8 +409,6 @@
 
 
     // Rotation
-
-    var rotation = 0;
 
     function rotateElement(event) {
       ctx.save();
@@ -568,7 +582,6 @@
     // Reset
 
     resetBtn.addEventListener("click", function(event) {
-      //     ctx.restore();
       ctx.save();
       ctx.rotate(rotation);
       ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2); //added offsets to clear tidbits
