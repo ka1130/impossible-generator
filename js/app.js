@@ -16,7 +16,6 @@
     var controlsZoom = controlsPosition.nextElementSibling;
     var controlsRotation = controlsZoom.nextElementSibling;
 
-    var toolsNav = document.getElementById("toolsNav");
     var openFiltersNav = document.getElementById("openFiltersNav");
     var closeFiltersNav = toolsNav.firstElementChild.firstElementChild;
 
@@ -105,36 +104,6 @@
     window.addEventListener("load", setMarginRight, true);
 
 
-    // Put photo on canvas
-
-    function drawNewImage() {
-      ctx.clearRect(x, y, canvas.width, canvas.height);
-      //      ctx.drawImage(userPhoto, 0, 0);
-      // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
-      //   0, 0, canvas.width, canvas.height);
-      var MAX_WIDTH = 600;
-      var MAX_HEIGHT = 1000;
-      var width = userPhoto.width;
-      var height = userPhoto.height;
-
-      if (width > height) {
-        if (width > MAX_WIDTH) {
-          height *= MAX_WIDTH / width;
-          width = MAX_WIDTH;
-        }
-      } else {
-        if (height > MAX_HEIGHT) {
-          width *= MAX_HEIGHT / height;
-          height = MAX_HEIGHT;
-        }
-      }
-      canvas.width = width;
-      canvas.height = height;
-
-      ctx.drawImage(userPhoto, x, y, width, height);
-      ctx.clearRect(x, y, canvas.width, canvas.height);
-    }
-
     //Responsive tools navigation
 
     function openNav() {
@@ -143,7 +112,7 @@
         toolsNav.style.height = "100%";
       } else {
         toolsNav.style.height = "100%";
-        $(".overlay-content").slideToggle();
+        $("#toolsNav").slideToggle();
       }
     }
 
@@ -269,6 +238,37 @@
       }
       closeControls();
     }, false);
+
+    
+    // Put photo on canvas
+
+    function drawNewImage() {
+      ctx.clearRect(x, y, canvas.width, canvas.height);
+      //      ctx.drawImage(userPhoto, 0, 0);
+      // ctx.drawImage(userPhoto, 0, 0, userPhoto.width * hRatio, userPhoto.height * vRatio,
+      //   0, 0, canvas.width, canvas.height);
+      var MAX_WIDTH = 600;
+      var MAX_HEIGHT = 1000;
+      var width = userPhoto.width;
+      var height = userPhoto.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+
+      ctx.drawImage(userPhoto, x, y, width, height);
+      ctx.clearRect(x, y, canvas.width, canvas.height);
+    }
 
 
     // Upload a photo
@@ -410,6 +410,8 @@
 
     rotateControl.addEventListener("click", rotateElement, false);
     toolsLeftRotate.addEventListener("click", rotateElement, false);
+
+
 
 
     // Filters: Grayscale
