@@ -55,3 +55,25 @@ function funScale(event) {
 
     ctx.save();
 }
+
+
+// Filters: Negative
+
+negativeRangeSlider.addEventListener("input", function(event) {
+
+    ctx.restore();
+
+    var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
+    var data = imageData.data;
+    var negativeVal = negativeRangeSlider.value * 3;
+
+    for (var i = 0; i < data.length; i += 4) {
+        data[i] = 255 - data[i] - negativeVal; // red
+        data[i + 1] = 255 - data[i + 1] - negativeVal; // green
+        data[i + 2] = 255 - data[i + 2] - negativeVal; // blue
+        //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
+    }
+
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+}, false);
