@@ -239,7 +239,7 @@
       closeControls();
     }, false);
 
-    
+
     // Put photo on canvas
 
     function drawNewImage() {
@@ -433,7 +433,7 @@
         data[i + 2] = brightness; // blue
       }
 
-      ctx.putImageData(imageData, x, y);
+      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
 
     }, false);
 
@@ -461,7 +461,7 @@
         data[i + 1] += brightenVal; // green
         data[i + 2] += brightenVal; // blue   
       }
-      ctx.putImageData(imageData, x, y);
+      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
 
       ctx.save();
     }, false);
@@ -495,7 +495,7 @@
 
       ctx.restore();
 
-      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
       var data = imageData.data;
       var negativeVal = negativeRangeSlider.value * 0.01;
 
@@ -506,7 +506,7 @@
         //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
       }
 
-      ctx.putImageData(imageData, 0, 0);
+      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
 
     }, false);
 
