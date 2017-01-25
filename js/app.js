@@ -54,7 +54,8 @@
     var toolsLeftZoomOut = document.getElementById("toolsLeftZoomOut");
 
     var rotateControl = document.querySelector(".rotation-circle");
-    var toolsLeftRotate = document.getElementById("toolsLeftRotate");
+    var rotateCCwise = document.getElementById("toolsLeftRotate").children[0];
+    var rotateCwise = rotateCCwise.nextElementSibling;
 
     var x;
     var y;
@@ -164,7 +165,6 @@
         controlsPosition.style.visibility = "visible";
         controlsZoom.style.visibility = "hidden";
         controlsRotation.style.visibility = "hidden";
-        e
         toolsInfo.style.visibility = "hidden";
       }
     }
@@ -261,10 +261,10 @@
           height = MAX_HEIGHT;
         }
       }
-      canvas.width = width;
-      canvas.height = height;
+      // canvas.width = width;
+      // canvas.height = height;
 
-      ctx.drawImage(userPhoto, x, y, width, height);
+      ctx.drawImage(userPhoto, x, y, userPhoto.width, userPhoto.height, x, y, canvas.width, canvas.height);
       ctx.clearRect(x, y, canvas.width, canvas.height);
     }
 
@@ -279,8 +279,8 @@
         reader.onload = function(event) {
           userPhoto.setAttribute("src", event.target.result);
 
-          var MAX_WIDTH = 1200;
-          var MAX_HEIGHT = 2000;
+          var MAX_WIDTH = 300;
+          var MAX_HEIGHT = 500;
           var width = userPhoto.width;
           var height = userPhoto.height;
 
@@ -326,21 +326,19 @@
     inMemCanvas.width = 210;
     inMemCanvas.height = 250;
 
-    if (typeof rotation === "undefined" ) {
+    if (typeof rotation === "undefined") {
       rotation = 0;
     }
 
     function clearImage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       userPhoto.style.display = "none";
-      ctx.save();   
-      ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2);
-      ctx.restore();
     }
 
     function moveElementTop(event) {
-      clearImage();
       ctx.save();
+      clearImage();
+      
       ctx.rotate(0);
       ctx.translate(a, b -= 2);
       ctx.rotate(rotation);
@@ -349,27 +347,36 @@
     }
 
     function moveElementLeft(event) {
-      a = inMemCanvas.offsetLeft;
-      b = inMemCanvas.offsetTop;
-      clearImage();
+      ctx.save();
+      clearImage();      
+      ctx.rotate(0);
       ctx.translate(a -= 2, b);
       ctx.drawImage(userPhoto, a, b);
+      ctx.rotate(rotation);
+      ctx.drawImage(userPhoto, a, b);
+      ctx.restore();
     }
 
     function moveElementRight(event) {
-      a = inMemCanvas.offsetLeft;
-      b = inMemCanvas.offsetTop;
-      clearImage();
+      ctx.save();
+      clearImage();    
+      ctx.rotate(0);
       ctx.translate(a += 2, b);
       ctx.drawImage(userPhoto, a, b);
+      ctx.rotate(rotation);
+      ctx.drawImage(userPhoto, a, b);
+      ctx.restore();
     }
 
     function moveElementBottom(event) {
-      a = inMemCanvas.offsetLeft;
-      b = inMemCanvas.offsetTop;
-      clearImage();
+      ctx.save();
+      clearImage();     
+      ctx.rotate(0);
       ctx.translate(a, b += 2);
       ctx.drawImage(userPhoto, a, b);
+      ctx.rotate(rotation);
+      ctx.drawImage(userPhoto, a, b);
+      ctx.restore();
     }
 
     moveTop.addEventListener("click", moveElementTop, false);
@@ -388,15 +395,16 @@
     // Zoom-in, Zoom-out
 
     function zoomInElement(event) {
+      clearImage();
       ctx.scale(0.99, 0.99);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(x, y, canvas.width, canvas.height);
       ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
     }
 
     function zoomOutElement(event) {
       ctx.scale(1.01, 1.01);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(x, y, canvas.width, canvas.height);
       ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
     }
@@ -422,8 +430,22 @@
       ctx.restore();
     }
 
+    function rotateElementCCwise(event) {
+      ctx.save();
+      rotation -= (15 * Math.PI / 180);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
+      ctx.rotate(rotation); //by 15deg
+      ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
+      ctx.drawImage(userPhoto, x, y);
+      userPhoto.style.display = "none";
+      ctx.restore();
+    }
+
     rotateControl.addEventListener("click", rotateElement, false);
-    toolsLeftRotate.addEventListener("click", rotateElement, false);
+    rotateCwise.addEventListener("click", rotateElement, false);
+    rotateCCwise.addEventListener("click", rotateElementCCwise, false);
+
 
 
     // Get into pixel edition
@@ -539,22 +561,30 @@
     // Filters: Blur
 
     blurRangeSlider.addEventListener("input", function(event) {
-      var blurVal = blurRangeSlider.value / 3;
+      // var blurVal = blurRangeSlider.value / 3;
 
-      var passes = 1 * blurVal;
-      //ctx.restore();
+      // var passes = 1 * blurVal;
+      // //ctx.restore();
 
-      ctx.globalAlpha = 1 / (blurVal * 2);
-      //overlay eight instances of the image over the original, each with 1/8th of full opacity
-      for (var i = 1; i <= passes; i++) {
-        for (var y = -1; y < 2; y++) {
-          for (var x = -1; x < 2; x++) {
-            ctx.drawImage(userPhoto, x, y);
-          }
-        }
-      }
-      ctx.globalAlpha = 1.0 * blurVal;
+      // ctx.globalAlpha = 1 / (blurVal * 2);
+      // //overlay eight instances of the image over the original, each with 1/8th of full opacity
+      // for (var i = 1; i <= passes; i++) {
+      //   for (var y = -1; y < 2; y++) {
+      //     for (var x = -1; x < 2; x++) {
+      //       ctx.drawImage(userPhoto, x, y);
+      //     }
+      //   }
+      // }
+      // ctx.globalAlpha = 1.0 * blurVal;
       //ctx.save();
+      var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+      var data = imageData.data;
+
+
+      ctx.filter = 'invert(100%)';
+
+      ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
     }, false);
 
 
@@ -566,12 +596,12 @@
 
       var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
       var data = imageData.data;
-      var negativeVal = negativeRangeSlider.value * 0.01;
+      var negativeVal = negativeRangeSlider.value * 3;
 
       for (var i = 0; i < data.length; i += 4) {
-        data[i] = 255 - data[i] / (negativeVal / 0.01); // red
-        data[i + 1] = 255 - data[i + 1] / (negativeVal / 0.02); // green
-        data[i + 2] = 255 - data[i + 2] / (negativeVal / 0.05); // blue
+        data[i] = 255 - data[i] - negativeVal; // red
+        data[i + 1] = 255 - data[i + 1] - negativeVal; // green
+        data[i + 2] = 255 - data[i + 2] - negativeVal; // blue
         //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
       }
 
