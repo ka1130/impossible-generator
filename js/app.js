@@ -1,4 +1,4 @@
-  document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function(event) {
 
     //Define variables
 
@@ -22,9 +22,10 @@
     var toolsInfo = controlsRotation.parentElement.lastElementChild;
 
     var sliderFilters = document.getElementsByClassName("slider-filter");
-    var grayscaleRange = document.getElementById("grayscale-range");
+    var grayScaleBtns = document.getElementsByClassName("grayscale-btns")[0];
+    var grayScaleOn = grayScaleBtns.children[1];
+    var grayScaleOff = grayScaleOn.nextElementSibling;
 
-    var grayscaleRangeSlider = document.getElementById("grayscaleRange");
     var brightenRangeSlider = document.getElementById("brightenRange");
     var blurRangeSlider = document.getElementById("blurRange");
     var negativeRangeSlider = document.getElementById("negativeRange");
@@ -207,9 +208,9 @@
       closeNav();
       for (var i = 0; i < sliderFilters.length; i++) {
         sliderFilters[i].style.visibility = "hidden";
-        sliderFilters[0].style.visibility = "visible";
       }
       closeControls();
+      grayScaleBtns.style.visibility = "visible";
     }, false);
 
     toggleBrightness.addEventListener("click", function(event) {
@@ -338,7 +339,7 @@
     function moveElementTop(event) {
       ctx.save();
       clearImage();
-      
+
       ctx.rotate(0);
       ctx.translate(a, b -= 2);
       ctx.rotate(rotation);
@@ -348,7 +349,7 @@
 
     function moveElementLeft(event) {
       ctx.save();
-      clearImage();      
+      clearImage();
       ctx.rotate(0);
       ctx.translate(a -= 2, b);
       ctx.drawImage(userPhoto, a, b);
@@ -359,7 +360,7 @@
 
     function moveElementRight(event) {
       ctx.save();
-      clearImage();    
+      clearImage();
       ctx.rotate(0);
       ctx.translate(a += 2, b);
       ctx.drawImage(userPhoto, a, b);
@@ -370,7 +371,7 @@
 
     function moveElementBottom(event) {
       ctx.save();
-      clearImage();     
+      clearImage();
       ctx.rotate(0);
       ctx.translate(a, b += 2);
       ctx.drawImage(userPhoto, a, b);
@@ -398,15 +399,16 @@
       clearImage();
       ctx.scale(0.99, 0.99);
       ctx.clearRect(x, y, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
+      ctx.drawImage(userPhoto, x, y);
     }
 
     function zoomOutElement(event) {
+      clearImage();
       ctx.scale(1.01, 1.01);
       ctx.clearRect(x, y, canvas.width, canvas.height);
-      ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
+      ctx.drawImage(userPhoto, x, y);
     }
 
     zoomIn.addEventListener("click", zoomInElement, false);
@@ -447,7 +449,6 @@
     rotateCCwise.addEventListener("click", rotateElementCCwise, false);
 
 
-
     // Get into pixel edition
 
     function manipulatePixels() {
@@ -468,34 +469,60 @@
     // Filters: Grayscale
 
     function grayScale(event) {
-      // drawNewImage();
+
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var val = grayscaleRangeSlider.value;
-      var oldVal = grayscaleRangeSlider.oldValue;
-
-      if (typeof oldVal == "undefined") {
-        oldVal = 10;
-      };
 
       ctx.restore();
 
-      val = (val - oldVal); //* 0.00003
-      oldVal = val;
-
       for (var i = 0; i < data.length; i += 4) {
         var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
-        data[i] = gray - (val * 0.1111); //red
-        data[i + 1] = gray + (val * 1.0000011); //green
-        data[i + 2] = gray - (val * 0.11141); //blue
+        data[i] = gray; //red
+        data[i + 1] = gray; //green
+        data[i + 2] = gray; //blue
       }
 
       ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
       ctx.save();
+
     }
 
-    grayscaleRangeSlider.addEventListener("input", grayScale, false);
+    // function grayScalePlay(event) {
+    //   // drawNewImage();
+    //   var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+    //   var data = imageData.data;
+    //   var val = grayscaleRangeSlider.value;
+    //   var oldVal = grayscaleRangeSlider.oldValue;
+
+    //   if (typeof oldVal == "undefined") {
+    //     oldVal = 10;
+    //   };
+
+    //   ctx.restore();
+
+    //   val = (val - oldVal); //* 0.00003
+    //   oldVal = val;
+
+    //   for (var i = 0; i < data.length; i += 4) {
+    //     var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
+    //     data[i] = gray - (val * 0.1111); //red
+    //     data[i + 1] = gray + (val * 1.0000011); //green
+    //     data[i + 2] = gray - (val * 0.11141); //blue
+    //   }
+
+    //   ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+    //   ctx.save();
+    // }
+
+    grayScaleOn.addEventListener("click", grayScale, false);
+
+    grayScaleOff.addEventListener("click", function(event) {
+      ctx.clearRect(x, y, canvas.width, canvas.height);
+      ctx.drawImage(userPhoto, x, y);
+      
+    }, false);
 
 
     // Filters: Funscale

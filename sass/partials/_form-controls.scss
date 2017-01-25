@@ -25,7 +25,6 @@
             @media screen and (max-width: 400px) {
                 margin: 10px auto 15px;
             }
-            
         }
         input {
             display: block;
@@ -59,11 +58,38 @@
             border-color: transparent;
             color: transparent;
         }
-
     }
 }
 
 #inputFile {
     -webkit-appearance: none;
     display: none;
+}
+
+.grayscale-btns {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    button {
+        width: 50px;
+        margin: 10px 0 0 15px;
+        &:nth-child(2) {
+            @include create-button($color-accent, #fff, 1.2rem);
+        }
+        &:last-child {
+            @include create-button(#333, #fff, 1.2rem);
+        }
+    }
+    p {
+        text-align: center;
+        font-size: 2rem;
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+        @media screen and (max-width: 400px) {
+            margin: 10px auto 15px;
+        }
+    }
 }
