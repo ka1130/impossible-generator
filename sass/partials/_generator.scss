@@ -32,7 +32,7 @@ nav {
         display: flex;
         font-family: "Phenomena";
         justify-content: space-around;
-        margin-top: 5%;
+        margin-top: 15px;
         @media screen and (min-width: 720px) {
             margin-top: 2.5%;
         }
@@ -152,7 +152,7 @@ nav {
     border-radius: 5px;
     z-index: 1;
     position: relative;
-    margin: 8% auto;
+    margin: 20px auto;
     img {
         background-color: #000;
         width: 210px;

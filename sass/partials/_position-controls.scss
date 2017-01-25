@@ -51,14 +51,14 @@
     .tools-info {
         color: #fff;
         position: absolute;
-        top: 10%;
+        top: 15px;
         left: -25%;
         right: 0;
         font-size: 1.5rem;
         text-align: center;
         width: 150%;
         @media screen and (min-width: 900px) {
-            top: 40%;
+            top: 30px;
         }
     }
 }
