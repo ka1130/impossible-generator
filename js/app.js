@@ -434,24 +434,25 @@
       // drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var val;
+      var val = grayscaleRangeSlider.value;
+      var oldVal = grayscaleRangeSlider.oldValue;
 
       //pierwsze wejście w metodę - oldValue jest jeszcze undefined, 
       //więc przypisujemy mu wartość domyślną slidera
-      if (grayscaleRangeSlider.oldValue === undefined) {
-        grayscaleRangeSlider.oldValue = grayscaleRangeSlider.defaultValue;
+      if (typeof oldVal == "undefined") {
+        oldVal = 1;
       };
 
-      //obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany
+        ctx.restore();
 
-      val = (grayscaleRangeSlider.value - grayscaleRangeSlider.oldValue) * 0.00003;
-      grayscaleRangeSlider.oldValue = grayscaleRangeSlider.value;
+      val = (val - oldVal); //* 0.00003
+      oldVal = val;
 
-      ctx.restore();
+
 
       for (var i = 0; i < data.length; i += 4) {
-          var gray = (data[i] * .3 + val) + (data[i + 1] * .59 + val * 2) + (data[i + 2] * .11);
-          data[i]  = gray; //red
+          var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
+          data[i] += (val * 0.001); //red
           data[i + 1] = gray; //green
           data[i + 2] = gray; //blue
       }
