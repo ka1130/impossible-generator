@@ -428,30 +428,51 @@
 
     }
 
+    // Function grayScale
 
+    function grayScale(event) {
+      // drawNewImage();
+      var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+      var data = imageData.data;
+
+      ctx.restore();
+
+      for (var i = 0; i < data.length; i += 4) {
+          var gray = data[i] * .3 + data[i + 1] * .59 + data[i + 2] * .11;
+          data[i] = gray; //red
+          data[i + 1] = gray; //green
+          data[i + 2] = gray; //blue
+      }
+
+      ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+      ctx.save();
+    }
+
+    grayscaleRangeSlider.addEventListener("input", grayScale, false);
 
     // Filters: Grayscale
 
-    grayscaleRangeSlider.addEventListener("input", function(event) {
-      drawNewImage();
-      var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
-      //pobierz pozycję i wymiary z kontekstu
-      var data = imageData.data;
-      //zapisz te dane do zmiennej data, 
-      //imageData.data przechowuje wartości poszczególnych pikseli (0-255)
-      var grayscaleVal = grayscaleRangeSlider.value * 0.01;
+    // grayscaleRangeSlider.addEventListener("input", function(event) {
+    //   drawNewImage();
+    //   var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+    //   //pobierz pozycję i wymiary z kontekstu
+    //   var data = imageData.data;
+    //   //zapisz te dane do zmiennej data, 
+    //   //imageData.data przechowuje wartości poszczególnych pikseli (0-255)
+    //   var grayscaleVal = grayscaleRangeSlider.value * 0.01;
 
-      for (var i = 0; i < data.length; i += 4) {
-        var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+    //   for (var i = 0; i < data.length; i += 4) {
+    //     var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
-        data[i] = brightness; // red       
-        data[i + 1] = brightness; // green        
-        data[i + 2] = brightness; // blue
-      }
+    //     data[i] = brightness; // red       
+    //     data[i + 1] = brightness; // green        
+    //     data[i + 2] = brightness; // blue
+    //   }
 
-      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
+    //   ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
 
-    }, false);
+    // }, false);
 
 
     // Filters: Brighten
@@ -477,7 +498,7 @@
         data[i + 1] += brightenVal; // green
         data[i + 2] += brightenVal; // blue   
       }
-      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
+      ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
       ctx.save();
     }, false);
@@ -522,7 +543,7 @@
         //          data[i + 3] = 255 - data[i + 3] * negativeVal * 0.9; // alpha
       }
 
-      ctx.putImageData(imageData, x, y, userPhoto.width, userPhoto.height);
+      ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
     }, false);
 
