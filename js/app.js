@@ -434,13 +434,13 @@
       // drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var grayscaleVal = grayscaleRangeSlider.value * 0.01;
+      var val = grayscaleRangeSlider.value * 0.00003;
 
       ctx.restore();
 
       for (var i = 0; i < data.length; i += 4) {
-          var gray = data[i] * .3 + data[i + 1] * .59 + data[i + 2] * .11;
-          data[i] = gray; //red
+          var gray = (data[i] * .3 + val) + (data[i + 1] * .59 + val * 2) + (data[i + 2] * .11);
+          data[i]  = gray; //red
           data[i + 1] = gray; //green
           data[i + 2] = gray; //blue
       }
