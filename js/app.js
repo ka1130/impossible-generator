@@ -119,7 +119,7 @@
     function closeNav() {
       if (window.matchMedia("(max-width: 479px)").matches) {
         toolsNav.style.height = "0%";
-      } 
+      }
     }
 
     function closeControls() {
@@ -411,6 +411,22 @@
     rotateControl.addEventListener("click", rotateElement, false);
     toolsLeftRotate.addEventListener("click", rotateElement, false);
 
+    // Get into pixel edition
+
+    function manipulatePixels() {
+      var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+      var data = imageData.data;
+
+      for (var i = 0; i < data.length; i += 4) {
+          var r = data[i]; //red
+          var g = data[i + 1]; //green
+          var b = data[i + 2]; //blue
+          var a = data[i + 3];  //alpha
+      }
+
+      ctx.putImageData(data, x, y, userPhoto.width, userPhoto.height);
+
+    }
 
 
 
