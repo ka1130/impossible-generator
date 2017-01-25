@@ -434,7 +434,18 @@
       // drawNewImage();
       var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
       var data = imageData.data;
-      var val = grayscaleRangeSlider.value * 0.00003;
+      var val;
+
+      //pierwsze wejście w metodę - oldValue jest jeszcze undefined, 
+      //więc przypisujemy mu wartość domyślną slidera
+      if (grayscaleRangeSlider.oldValue === undefined) {
+        grayscaleRangeSlider.oldValue = grayscaleRangeSlider.defaultValue;
+      };
+
+      //obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany
+
+      val = (grayscaleRangeSlider.value - grayscaleRangeSlider.oldValue) * 0.00003;
+      grayscaleRangeSlider.oldValue = grayscaleRangeSlider.value;
 
       ctx.restore();
 
@@ -462,10 +473,10 @@
       var data = imageData.data;
       var brightenVal;
 
-      //pierwsze wejście w metodę - oldValue jest jeszcze undefined, więc przypisujemy mu wartość domyślną slidera
-      if (brightenRangeSlider.oldValue === undefined) brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
-
-      //obliczanie wielkości (gdby krok slidera był większy niż 1) i kierunku zmiany (jasniej/ciemniej)
+      
+      if (brightenRangeSlider.oldValue === undefined) {
+        brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
+      }
 
       brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
       brightenRangeSlider.oldValue = brightenRangeSlider.value;
