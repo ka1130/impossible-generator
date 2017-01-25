@@ -244,7 +244,7 @@
 
     function drawNewImage() {
       ctx.clearRect(x, y, canvas.width, canvas.height);
-      
+
       var MAX_WIDTH = 600;
       var MAX_HEIGHT = 1000;
       var width = userPhoto.width;
@@ -394,17 +394,23 @@
 
     // Rotation
 
+    var rotation = 0;
+
     function rotateElement(event) {
+      ctx.save();
+      rotation += (15 * Math.PI / 180);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
-      ctx.rotate(15 * Math.PI / 180); //by 15deg
+      ctx.rotate(rotation); //by 15deg
       ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
       ctx.drawImage(userPhoto, x, y);
       userPhoto.style.display = "none";
+      ctx.restore();
     }
 
     rotateControl.addEventListener("click", rotateElement, false);
     toolsLeftRotate.addEventListener("click", rotateElement, false);
+
 
     // Get into pixel edition
 
@@ -413,10 +419,10 @@
       var data = imageData.data;
 
       for (var i = 0; i < data.length; i += 4) {
-          var r = data[i]; //red
-          var g = data[i + 1]; //green
-          var b = data[i + 2]; //blue
-          var a = data[i + 3];  //alpha
+        var r = data[i]; //red
+        var g = data[i + 1]; //green
+        var b = data[i + 2]; //blue
+        var a = data[i + 3]; //alpha
       }
 
       ctx.putImageData(data, x, y, userPhoto.width, userPhoto.height);
@@ -436,16 +442,16 @@
         oldVal = 10;
       };
 
-        ctx.restore();
+      ctx.restore();
 
       val = (val - oldVal); //* 0.00003
       oldVal = val;
 
       for (var i = 0; i < data.length; i += 4) {
-          var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
-          data[i] = gray - (val * 0.1111); //red
-          data[i + 1] = gray + (val * 1.0000011); //green
-          data[i + 2] = gray - (val * 0.11141); //blue
+        var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
+        data[i] = gray - (val * 0.1111); //red
+        data[i + 1] = gray + (val * 1.0000011); //green
+        data[i + 2] = gray - (val * 0.11141); //blue
       }
 
       ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
@@ -454,6 +460,7 @@
     }
 
     grayscaleRangeSlider.addEventListener("input", grayScale, false);
+
 
     // Filters: Funscale
 
@@ -468,16 +475,16 @@
         oldVal = 1;
       };
 
-        ctx.restore();
+      ctx.restore();
 
       val = (val - oldVal);
       oldVal = val;
 
       for (var i = 0; i < data.length; i += 4) {
-          var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
-          data[i] += gray + (val * 0.01); //red
-          data[i + 1] = gray; //green
-          data[i + 2] = gray; //blue
+        var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
+        data[i] += gray + (val * 0.01); //red
+        data[i + 1] = gray; //green
+        data[i + 2] = gray; //blue
       }
 
       ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
@@ -494,7 +501,7 @@
       var data = imageData.data;
       var brightenVal;
 
-      
+
       if (brightenRangeSlider.oldValue === undefined) {
         brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
       }
@@ -558,10 +565,13 @@
 
     }, false);
 
-
     // Reset
 
     resetBtn.addEventListener("click", function(event) {
+      //     ctx.restore();
+      ctx.save();
+      ctx.rotate(rotation);
+      ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2); //added offsets to clear tidbits
       ctx.restore();
       ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
     }, false);
