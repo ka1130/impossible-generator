@@ -77,3 +77,21 @@ negativeRangeSlider.addEventListener("input", function(event) {
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
 }, false);
+
+
+// Get into pixel edition
+
+function manipulatePixels() {
+    var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+    var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+        var r = data[i]; //red
+        var g = data[i + 1]; //green
+        var b = data[i + 2]; //blue
+        var a = data[i + 3]; //alpha
+    }
+
+    ctx.putImageData(data, x, y, userPhoto.width, userPhoto.height);
+
+}

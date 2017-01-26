@@ -1,3 +1,5 @@
+// Library HTML5 Rocks
+
 Filters = {};
 
 Filters.getPixels = function(img) {
@@ -120,3 +122,68 @@ Filters.blur = function (pixels, iterations) {
 	
 	return pixels;
 }
+
+// My Library
+
+function grayScale(event) {
+    event.stopPropagation();
+    var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+    var data = imageData.data;
+
+    ctx.restore();
+
+    for (var i = 0; i < data.length; i += 4) {
+      var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
+      data[i] = gray; //red
+      data[i + 1] = gray; //green
+      data[i + 2] = gray; //blue
+    }
+
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+    ctx.save();
+  }
+
+function brightenImage(event) {
+  var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
+    var data = imageData.data;
+    var brightenVal;
+
+
+    if (brightenRangeSlider.oldValue === undefined) {
+      brightenRangeSlider.oldValue = brightenRangeSlider.defaultValue;
+    }
+
+    brightenVal = brightenRangeSlider.value - brightenRangeSlider.oldValue;
+    brightenRangeSlider.oldValue = brightenRangeSlider.value;
+
+    ctx.restore();
+
+    for (var i = 0; i < data.length; i += 4) {
+      data[i] += brightenVal; // red
+      data[i + 1] += brightenVal; // green
+      data[i + 2] += brightenVal; // blue   
+    }
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+    ctx.save();
+}
+
+function negativeFilter(event) {
+    event.stopImmediatePropagation();
+
+    var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
+    var data = imageData.data;
+
+    ctx.restore();
+
+    for (var i = 0; i < data.length; i += 4) {
+      data[i] = 255 - data[i];
+      data[i + 1] = 255 - data[i + 1];
+      data[i + 2] = 255 - data[i + 2];
+    }
+    console.log("ok");
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    ctx.save();
+  }
+
