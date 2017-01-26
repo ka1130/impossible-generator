@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var reader = new FileReader();
 
       reader.onload = function(event) {
+        event.preventDefault();
         userPhoto.setAttribute("src", event.target.result);
 
         var MAX_WIDTH = 300;
@@ -239,7 +240,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
-  $("#inputFile").change(function() {
+  $("#inputFile").change(function(event) {
+    event.preventDefault();
     readURL(this);
     drawNewImage();
     ctx.save();
