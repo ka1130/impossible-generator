@@ -14,6 +14,9 @@
     .arrow {
         font-size: 2rem;
         cursor: pointer;
+        i:hover {
+            color: #777;
+        }
     }
     .arrow-top {
         position: absolute;
@@ -51,6 +54,9 @@
             &:last-child {
                 left: 40px;
             }
+            i:hover {
+                color: #777;
+            }
         }
     }
     .rotate {
@@ -65,6 +71,9 @@
             cursor: pointer;
             &:last-child {
                 left: 40px;
+            }
+            i:hover {
+                color: #777;
             }
         }
     }

@@ -5,6 +5,9 @@ footer {
     a {
         color: #fff;
         text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
     p {
         -webkit-margin-before: 0;
