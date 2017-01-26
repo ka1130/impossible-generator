@@ -160,27 +160,31 @@ nav {
         margin: 17px auto;
     }
     #download {
-        @include create-button(#aaa, #fff, 1.9rem);
+        @include create-button(#333, #fff, 1.5rem);
         text-decoration: none;
         display: inline-block;
         margin-right: 1rem;
         position: absolute;
         bottom: 20px;
         left: 20px;
+        width: 80px;
         &:hover {
-            background-color: #ccc;
-            color: #555;
+            border: 3px solid #333;
+            background-color: #fff;
+            color: #333;
         }
     }
     #resetBtn {
-        @include create-button(#aaa, #fff, 1.9rem);
+        @include create-button(#bbb, #fff, 1.5rem);
         text-decoration: none;
         position: absolute;
         bottom: 20px;
         right: 20px;
+        width: 80px;
         &:hover {
-            background-color: #ccc;
-            color: #555;
+            border: 3px solid #bbb;
+            background-color: #fff;
+            color: #bbb;
         }
     }
 }

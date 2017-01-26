@@ -84,7 +84,7 @@
                 margin: 20px 7px 0 7px;
                 width: 50px;
                 &:first-child {
-                    @include create-button($color-accent, #fff, 1.5rem);
+                    @include create-button(#11033c, #fff, 1.5rem);
                 }
                 &:last-child {
                     @include create-button(#333, #fff, 1.5rem);

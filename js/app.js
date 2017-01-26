@@ -38,14 +38,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   //Responsive tools navigation
+  var opened;
 
   function openNav() {
-    if (window.matchMedia("(min-width: 480px)").matches) {
+    if(typeof opened === "undefined") {
+      opened = false;
+    }
+    if (window.matchMedia("(min-width: 480px)").matches && opened == false) {
       toolsNav.style.visibility = "visible";
       toolsNav.style.height = "100%";
-    } else {
+      opened = true;
+    } else if (window.matchMedia("(min-width: 480px)").matches && opened == true) {
+      toolsNav.style.visibility = "hidden";
       toolsNav.style.height = "0";
-      // $("#toolsNav").slideToggle();
+      opened = false;
     }
   }
 
@@ -210,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var reader = new FileReader();
 
       reader.onload = function(event) {
-        event.preventDefault();
         userPhoto.setAttribute("src", event.target.result);
 
         var MAX_WIDTH = 300;
@@ -241,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   $("#inputFile").change(function(event) {
-    event.preventDefault();
     readURL(this);
     drawNewImage();
     ctx.save();
