@@ -20,27 +20,36 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        align-content: space-between;
-        justify-content: space-between;
-        blockquote {
-            margin-top: 20px;
-            p {
-                text-align: center;
-                color: #fff;
-                font-size: 1.5rem;
-            }
-            footer {
-                color: #fff;
-                position: static;
-                bottom: 0;
-                right: 0;
-                font-size: 1rem;
-                text-align: center;
-            }
-        }
         .info {
             color: #fff;
-            margin-bottom: 20px;
+            margin: 0 10px 20px;
+            text-align: center;
+           // font-style: italic;
+        }
+        .info + div {
+            width: 80%;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            p {
+                color: #fff;
+                text-align: center;
+                margin: 0 auto;
+            }
+            a {
+                @include create-button($color-accent, #fff, 1.5rem);
+                text-decoration: none;
+                width: 100px;
+                align-self: center;
+                margin-top: 10px;
+                &:hover {
+                    border: 3px solid $color-accent;
+                    background-color: #fff;
+                    color: $color-accent;
+                }
+            }
         }
     }
 }

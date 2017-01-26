@@ -1,65 +1,81 @@
     #intro {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    max-width: 1200px;
-    background-color: #000;
-    position: relative;
-    .container {
-        background-image: url(../img/hand-dust-flour-chalk.jpg);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-        background-color: #000;
-        //background-attachment: fixed;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        height: 100vh;
         width: 100%;
-        height: 100%;
+        overflow: hidden;
+        max-width: 1200px;
+        background-color: #000;
         position: relative;
-        display: inline;
-        nav {
-            ul {
-                display: flex;
-                justify-content: flex-end;
-                li {
-                    margin: 10px;
+        .container {
+            background-image: url(../img/hand-dust-flour-chalk.jpg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-color: #000;
+            //background-attachment: fixed;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: inline;
+            nav {
+                ul {
+                    display: flex;
+                    justify-content: flex-end;
+                    li {
+                        margin: 10px;
+                        font-size: 1.5rem;
+                    }
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        color: #6857b8;
+                        &:hover {
+                            opacity: .8;
+                        }
+                    }
+                }
+            }
+            blockquote {
+                margin-top: 20px;
+                p {
+                    text-align: center;
+                    color: #fff;
                     font-size: 1.5rem;
                 }
-                a {
+                footer {
                     color: #fff;
+                    position: static;
+                    bottom: 0;
+                    right: 0;
+                    font-size: 1rem;
+                    text-align: center;
+                }
+            }
+            .button-wrapper {
+                position: absolute;
+                left: 40%;
+                right: 40%;
+                bottom: 10%;
+                width: 130px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                p {
+                    color: #fff;
+                    margin: 10px auto;
+                }
+                a {
+                    display: block;
+                    @include create-button($color-accent, #fff, 1.5rem);
                     text-decoration: none;
-                    color: #6857b8;
                     &:hover {
-                    	opacity: .8;
+                        border: 3px solid $color-accent;
+                        background-color: #fff;
+                        color: $color-accent;
                     }
                 }
             }
         }
-        .button-wrapper {
-			position: absolute;			
-			left: 40%;
-			right: 40%;
-			bottom: 10%;
-			width: 130px;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			p {
-				color: #fff;
-				margin: 10px auto;
-			}
-            a {
-            	display: block;
-                @include create-button($color-accent, #fff, 1.5rem);
-                text-decoration: none;
-                &:hover {
-                	border: 3px solid $color-accent;
-                	background-color: #fff;
-                	color: $color-accent;
-                }
-            }
-        }
     }
-}
