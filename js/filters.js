@@ -175,15 +175,39 @@ Filters.convolute = function(pixels, weights, opaque) {
 };
 
 Filters.blur = function (pixels, iterations) {
-	var convMatrix = [ 1/9, 1/9, 1/9,
-						1/9, 1/9, 1/9,
-						1/9, 1/9, 1/9 ];
-						
-	for(var i = 0; i < iterations; i++) {
-		pixels = Filters.convolute(pixels, convMatrix);
-	}
-	
-	return pixels;
+  var convMatrix = [ 1/9, 1/9, 1/9,
+            1/9, 1/9, 1/9,
+            1/9, 1/9, 1/9 ];
+            
+  for(var i = 0; i < iterations; i++) {
+    pixels = Filters.convolute(pixels, convMatrix);
+  }
+  
+  return pixels;
+}
+
+Filters.edgeDetect = function (pixels) {
+  var convMatrix = [ 0, 1, 0,
+            1, -4, 1,
+            0, 1, 0 ];
+    
+  return Filters.convolute(pixels, convMatrix);;
+}
+
+Filters.emboss = function (pixels) {
+  var convMatrix = [ -2, -1, 0,
+            -1, 1, 1,
+            0, 1, 2 ];
+    
+  return Filters.convolute(pixels, convMatrix);;
+}
+
+Filters.sharpen = function (pixels) {
+  var convMatrix = [ 0, -1, 0,
+            -1, 5, -1,
+            0, -1, 0 ];
+    
+  return Filters.convolute(pixels, convMatrix);;
 }
 
 
