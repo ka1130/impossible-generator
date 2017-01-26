@@ -90,11 +90,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function showPositionControls(event) {
     if (mq.matches) {
       event.target.removeEventListener("click", showPositionControls);
-    } else {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
-      }
+    } else {      
       controlsPosition.style.visibility = "visible";
+      brightenDiv.style.visibility = "hidden";
+      blurDiv.style.visibility = "hidden";
+      negativeBtns.style.visibility = "hidden";
+      grayScaleBtns.style.visibility = "hidden";
       controlsZoom.style.visibility = "hidden";
       controlsRotation.style.visibility = "hidden";
       toolsInfo.style.visibility = "hidden";
@@ -105,11 +106,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (mq.matches) {
       event.target.removeEventListener("click", showZoomControls);
     } else {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
-      }
-      controlsPosition.style.visibility = "hidden";
       controlsZoom.style.visibility = "visible";
+      brightenDiv.style.visibility = "hidden";
+      blurDiv.style.visibility = "hidden";
+      negativeBtns.style.visibility = "hidden";
+      grayScaleBtns.style.visibility = "hidden";
       controlsRotation.style.visibility = "hidden";
       toolsInfo.style.visibility = "hidden";
     }
@@ -119,12 +120,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (mq.matches) {
       event.target.removeEventListener("click", showRotationControls);
     } else {
-      for (var i = 0; i < sliderFilters.length; i++) {
-        sliderFilters[i].style.visibility = "hidden";
-      }
-      controlsPosition.style.visibility = "hidden";
-      controlsZoom.style.visibility = "hidden";
       controlsRotation.style.visibility = "visible";
+      controlsZoom.style.visibility = "hidden";
+      brightenDiv.style.visibility = "hidden";
+      blurDiv.style.visibility = "hidden";
+      negativeBtns.style.visibility = "hidden";
+      grayScaleBtns.style.visibility = "hidden";     
       toolsInfo.style.visibility = "hidden";
     }
   }
@@ -137,43 +138,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   toggleGrayscale.addEventListener("click", function(event) {
     closeNav();
-    brightenRangeSlider.style.visibility = "hidden";
-    blurRangeSlider.style.visibility = "hidden";
     closeControls();
     grayScaleBtns.style.visibility = "visible";
+    brightenDiv.style.visibility = "hidden";
+    blurDiv.style.visibility = "hidden";     
     negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleBrightness.addEventListener("click", function(event) {
     closeNav();
-    document.getElementById("blur-range").style.visibility = "hidden";
-    document.getElementById("brighten-range").style.visibility = "visible";
-    negativeBtns.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";
-
     closeControls();
+    brightenDiv.style.visibility = "visible";
+    grayScaleBtns.style.visibility = "hidden";    
+    blurDiv.style.visibility = "hidden";     
+    negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleBlur.addEventListener("click", function(event) {
     closeNav();
-
-    document.getElementById("blur-range").style.visibility = "visible";
-    document.getElementById("brighten-range").style.visibility = "hidden";
-    negativeBtns.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";
-
     closeControls();
+    blurDiv.style.visibility = "visible";
+    brightenDiv.style.visibility = "hidden";
+    grayScaleBtns.style.visibility = "hidden";         
+    negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleNegative.addEventListener("click", function(event) {
     closeNav();
-
-    sliderFilters[0].style.visibility = "hidden";
-    sliderFilters[1].style.visibility = "hidden";
-    negativeBtns.style.visibility = "visible";
-    grayScaleBtns.style.visibility = "hidden";
-
     closeControls();
+    negativeBtns.style.visibility = "visible";
+    blurDiv.style.visibility = "hidden";
+    brightenDiv.style.visibility = "hidden";
+    grayScaleBtns.style.visibility = "hidden";            
   }, false);
 
 

@@ -21,16 +21,22 @@
   var controlsZoom = controlsPosition.nextElementSibling;
   var controlsRotation = controlsZoom.nextElementSibling;
 
+  //przyciski grayscale
+  var grayScaleBtns = document.getElementsByClassName("scale-btns")[0];
+  var grayScaleBtnsWrapper = grayScaleBtns.children[1];
+  var grayScaleOn = grayScaleBtnsWrapper.children[0];
+  var grayScaleOff = grayScaleOn.nextElementSibling;
+
+  //divy brighten, blur
+  var brightenDiv = document.getElementById("brighten-range");
+  var blurDiv = document.getElementById("blur-range");
+
   //przyciski negative
   var negativeBtns = document.getElementsByClassName("scale-btns")[1]; //div z przyciskami on/off
   var negativeOn = negativeBtns.children[1].children[0];
   var negativeOff = negativeOn.nextElementSibling;
 
   var sliderFilters = document.getElementsByClassName("slider-filter");
-  var grayScaleBtns = document.getElementsByClassName("scale-btns")[0];
-  var grayScaleBtnsWrapper = grayScaleBtns.children[1];
-  var grayScaleOn = grayScaleBtnsWrapper.children[0];
-  var grayScaleOff = grayScaleOn.nextElementSibling;
 
   var toolsInfo = controlsRotation.parentElement.lastElementChild;
 
