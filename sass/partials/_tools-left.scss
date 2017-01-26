@@ -1,16 +1,12 @@
-#tools-left,
-#tools-right {
+#tools-left {
     color: #fff;
     font-size: 1.2rem;
     position: absolute;
     max-height: 100%;
+    margin-top: 50px;
     @media screen and (max-width: 570px) {
         display: none;
     }
-}
-
-#tools-left {
-    margin-top: 50px;
     .arrow {
         font-size: 2rem;
         cursor: pointer;

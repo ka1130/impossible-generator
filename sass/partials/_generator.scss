@@ -171,10 +171,15 @@ nav {
         width: 80px;
         height: 40px;
         padding-top: .5rem;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
         &:hover {
             border: 3px solid #333;
             background-color: #fff;
             color: #333;
+            padding-top: .3rem;
         }
     }
     #resetBtn {
