@@ -55,6 +55,9 @@ nav {
                 @media screen and (max-width: 479px) {
                     display: none;
                 }
+                &:hover {
+                    text-decoration: overline;
+                }
             }
         }
     }
