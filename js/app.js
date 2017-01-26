@@ -53,6 +53,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       toolsNav.style.height = "0";
       opened = false;
     }
+    if (window.matchMedia("(max-width: 479px)").matches) {
+      toolsNav.style.visibility = "visible";
+      toolsNav.style.height = "100%";
+    } else if (window.matchMedia("(max-width: 479px)").matches) {
+      toolsNav.style.visibility = "hidden";
+      toolsNav.style.height = "0";
+    }
   }
 
   function closeNav() {
