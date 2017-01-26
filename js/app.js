@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       event.target.removeEventListener("click", showZoomControls);
     } else {
       controlsZoom.style.visibility = "visible";
+      controlsPosition.style.visibility = "hidden";
       brightenDiv.style.visibility = "hidden";
       blurDiv.style.visibility = "hidden";
       negativeBtns.style.visibility = "hidden";
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       event.target.removeEventListener("click", showRotationControls);
     } else {
       controlsRotation.style.visibility = "visible";
+      controlsPosition.style.visibility = "hidden";
       controlsZoom.style.visibility = "hidden";
       brightenDiv.style.visibility = "hidden";
       blurDiv.style.visibility = "hidden";
