@@ -165,12 +165,12 @@ nav {
     #download {
         @include create-button(#333, #fff, 1.5rem);
         text-decoration: none;
-        display: inline-block;
-        margin-right: 1rem;
         position: absolute;
         bottom: 20px;
         left: 20px;
         width: 80px;
+        height: 40px;
+        padding-top: .5rem;
         &:hover {
             border: 3px solid #333;
             background-color: #fff;
@@ -184,6 +184,8 @@ nav {
         bottom: 20px;
         right: 20px;
         width: 80px;
+        height: 40px;
+        line-height: 1.5rem;
         &:hover {
             border: 3px solid #bbb;
             background-color: #fff;

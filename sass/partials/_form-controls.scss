@@ -83,11 +83,22 @@
             button {
                 margin: 20px 7px 0 7px;
                 width: 50px;
+                height: 40px;
                 &:first-child {
-                    @include create-button(#11033c, #fff, 1.5rem);
+                    @include create-button(#ddd, #333, 1.5rem);
+                    &:hover {
+                        color: #fff;
+                        background-color: #333;
+                        border: 2px solid #fff;
+                    }
                 }
                 &:last-child {
                     @include create-button(#333, #fff, 1.5rem);
+                    &:hover {
+                        color: #333;
+                        background-color: #fff;
+                        border: 2px solid #333;
+                    }
                 }
             }
         }
