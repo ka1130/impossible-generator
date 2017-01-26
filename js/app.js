@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var brightenRangeSlider = document.getElementById("brightenRange");
   var blurRangeSlider = document.getElementById("blurRange");
-  var negativeRangeSlider = document.getElementById("negativeRange");
 
   var imgContainer = document.getElementById("imgContainer");
   var userPhoto = document.getElementById("userPhoto");
@@ -210,9 +209,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   toggleGrayscale.addEventListener("click", function(event) {
     closeNav();
-    for (var i = 0; i < sliderFilters.length; i++) {
-      sliderFilters[i].style.visibility = "hidden";
-    }
+
+    brightenRangeSlider.style.visibility = "hidden";
+    blurRangeSlider.style.visibility = "hidden";
+
     closeControls();
     grayScaleBtns.style.visibility = "visible";
     negativeBtns.style.visibility = "hidden";
@@ -220,30 +220,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   toggleBrightness.addEventListener("click", function(event) {
     closeNav();
-    for (var i = 0; i < sliderFilters.length; i++) {
-      sliderFilters[i].style.visibility = "hidden";
-      sliderFilters[1].style.visibility = "visible";
-    }
+
+    document.getElementById("blur-range").style.visibility = "hidden";
+    document.getElementById("brighten-range").style.visibility = "visible";
+    negativeBtns.style.visibility = "hidden";
+    grayScaleBtns.style.visibility = "hidden";
+
     closeControls();
   }, false);
 
   toggleBlur.addEventListener("click", function(event) {
     closeNav();
-    for (var i = 0; i < sliderFilters.length; i++) {
-      sliderFilters[i].style.visibility = "hidden";
-      sliderFilters[2].style.visibility = "visible";
-    }
+
+    document.getElementById("blur-range").style.visibility = "visible";
+    document.getElementById("brighten-range").style.visibility = "hidden";
+    negativeBtns.style.visibility = "hidden";
+    grayScaleBtns.style.visibility = "hidden";
+
     closeControls();
   }, false);
 
   toggleNegative.addEventListener("click", function(event) {
     closeNav();
-    for (var i = 0; i < sliderFilters.length; i++) {
-      sliderFilters[i].style.visibility = "hidden";
-    }
-    closeControls();
+
+    sliderFilters[0].style.visibility = "hidden";
+    sliderFilters[1].style.visibility = "hidden";
     negativeBtns.style.visibility = "visible";
     grayScaleBtns.style.visibility = "hidden";
+
+    closeControls();
   }, false);
 
 
@@ -534,38 +539,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Blur
 
   blurRangeSlider.addEventListener("input", function(event) {
-    // var blurVal = blurRangeSlider.value / 3;
-
-    // var passes = 1 * blurVal;
-    // //ctx.restore();
-
-    // ctx.globalAlpha = 1 / (blurVal * 2);
-    // //overlay eight instances of the image over the original, each with 1/8th of full opacity
-    // for (var i = 1; i <= passes; i++) {
-    //   for (var y = -1; y < 2; y++) {
-    //     for (var x = -1; x < 2; x++) {
-    //       ctx.drawImage(userPhoto, x, y);
-    //     }
-    //   }
-    // }
-    // ctx.globalAlpha = 1.0 * blurVal;
-    //ctx.save();
-    var imageData = ctx.getImageData(x, y, userPhoto.width, userPhoto.height);
-    var data = imageData.data;
-
-
-    ctx.filter = 'invert(100%)';
-
+    var iterations = blurRangeSlider.value;
+    var imageData = Filters.filterImage(Filters.blur, userPhoto, iterations);
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
   }, false);
-  console.dir(negativeOn);
 
   // Filters: Negative
 
   function negativeFilter(event) {
     event.stopImmediatePropagation();
-    
+
     var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
     var data = imageData.data;
 
@@ -574,7 +558,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for (var i = 0; i < data.length; i += 4) {
       data[i] = 255 - data[i];
       data[i + 1] = 255 - data[i + 1];
-      data[i + 2] = 255 - data[i + 2]; 
+      data[i + 2] = 255 - data[i + 2];
     }
     console.log("ok");
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
