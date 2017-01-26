@@ -1,37 +1,37 @@
   //Define variables
 
-  //(na mniejszych ekranach) ikony menu
+  //(on smaller screens) menu icons
   var togglePosition = document.getElementById("togglePosition");
   var toggleZoom = togglePosition.nextElementSibling;
   var toggleRotation = toggleZoom.nextElementSibling;
 
-  //rozwijane menu z filtrami (na mniejszych ekranach)
+  //dropdown filters menu (on smaller screens)
   var toolsNav = document.getElementById("toolsNav");
-  var toggleGrayscale = toolsNav.firstElementChild.children[1]; //opcja menu grayscale
-  var toggleBrightness = toggleGrayscale.nextElementSibling; //opcja menu brightness
-  var toggleBlur = toggleBrightness.nextElementSibling; //opcja menu blur
-  var toggleNegative = toggleBlur.nextElementSibling; //opcja menu negative
-  // ostatnia ikona w menu na mniejszych ekranach (otwieranie rozwijanego menu z filtrami)
+  var toggleGrayscale = toolsNav.firstElementChild.children[1]; //menu option grayscale
+  var toggleBrightness = toggleGrayscale.nextElementSibling; //menu option brightness
+  var toggleBlur = toggleBrightness.nextElementSibling; //menu option blur
+  var toggleNegative = toggleBlur.nextElementSibling; //menu option negative
+  // last menu icon on smaller screens (open dropdown filters menu)
   var openFiltersNav = document.getElementById("openFiltersNav");
-  //przycisk zamknięcia rozwijanego menu
+  //close dropdown filters menu
   var closeFiltersNav = toolsNav.firstElementChild.firstElementChild;
 
-  //(na mniejszych ekranach) narzędzia w panelu pod obrazkiem
+  //(on smaller screens) tools in the panel below image
   var controlsPosition = document.getElementsByClassName("controls-position")[0];
   var controlsZoom = controlsPosition.nextElementSibling;
   var controlsRotation = controlsZoom.nextElementSibling;
 
-  //przyciski grayscale
+  //grayscale buttons
   var grayScaleBtns = document.getElementsByClassName("scale-btns")[0];
   var grayScaleBtnsWrapper = grayScaleBtns.children[1];
   var grayScaleOn = grayScaleBtnsWrapper.children[0];
   var grayScaleOff = grayScaleOn.nextElementSibling;
 
-  //divy brighten, blur
+  //brighten, blur divs 
   var brightenDiv = document.getElementById("brighten-range");
   var blurDiv = document.getElementById("blur-range");
 
-  //przyciski negative
+  //negative buttons
   var negativeBtns = document.getElementsByClassName("scale-btns")[1]; //div z przyciskami on/off
   var negativeOn = negativeBtns.children[1].children[0];
   var negativeOff = negativeOn.nextElementSibling;
@@ -40,21 +40,21 @@
 
   var toolsInfo = controlsRotation.parentElement.lastElementChild;
 
-  //suwaki do filtrów
+  //filter sliders
   var brightenRangeSlider = document.getElementById("brightenRange");
   var blurRangeSlider = document.getElementById("blurRange");
 
-  //zmienne dla obrazka i jego obsługi
+  //variables for image and canvas
   var imgContainer = document.getElementById("imgContainer");
-  var userPhoto = document.getElementById("userPhoto"); //zdjęcie użytkownika
+  var userPhoto = document.getElementById("userPhoto"); //user photo
   var inputFile = document.getElementById("inputFile");
-  var uploadPhoto = document.getElementById("uploadPhoto"); //przycisk upload
+  var uploadPhoto = document.getElementById("uploadPhoto"); //upload button
   var canvas = document.getElementById("imgCanvas");
   var ctx = canvas.getContext("2d");
-  var resetBtn = document.getElementById("resetBtn"); //przycisk reset
-  var download = document.getElementById("download"); //przycisk Get it
+  var resetBtn = document.getElementById("resetBtn"); //reset button
+  var download = document.getElementById("download"); //get it button
 
-  //przyciski w panelu dolnym (na mniejszych ekranach)
+  //controls/buttons in the lower menu (on smaller screens)
   var moveTop = document.getElementById("moveTop");
   var moveRight = document.getElementById("moveRight");
   var moveLeft = document.getElementById("moveLeft");
@@ -63,7 +63,7 @@
   var zoomOut = document.getElementById("zoom-out");
   var rotateControl = document.querySelector(".rotation-circle");
 
-  //przyciski w panelu po lewej stronie (na większych ekranach)
+  //button on the left-hand panel (on bigger screens)
   var toolsLeftMoveTop = document.getElementById("toolsLeftMoveTop");
   var toolsLeftMoveLeft = document.getElementById("toolsLeftMoveLeft");
   var toolsLeftMoveRight = document.getElementById("toolsLeftMoveRight");

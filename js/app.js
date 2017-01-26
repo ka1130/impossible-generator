@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //Responsive tools navigation
 
   function openNav() {
-    if (window.matchMedia("(max-width: 479px)").matches) {
+    if (window.matchMedia("(min-width: 480px)").matches) {
       toolsNav.style.visibility = "visible";
       toolsNav.style.height = "100%";
     } else {
-      toolsNav.style.height = "100%";
-      $("#toolsNav").slideToggle();
+      toolsNav.style.height = "0";
+      // $("#toolsNav").slideToggle();
     }
   }
 
@@ -345,6 +345,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("ok");
   }, false);
 
-
-
+//end
 });
