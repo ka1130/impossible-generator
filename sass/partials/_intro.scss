@@ -39,7 +39,7 @@
             }
         }
         blockquote {
-            margin-top: 20px;
+            background-color: rgba(0, 0, 0, .35);
             p {
                 text-align: center;
                 color: #fff;
@@ -52,6 +52,7 @@
                 right: 0;
                 font-size: 1rem;
                 text-align: center;
+                padding-bottom: 3px;
             }
         }
         .button-wrapper {
