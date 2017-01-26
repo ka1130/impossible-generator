@@ -1,4 +1,4 @@
-#intro {
+    #intro {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -24,13 +24,42 @@
                 display: flex;
                 justify-content: flex-end;
                 li {
-                	margin: 10px 5px;
+                    margin: 10px;
+                    font-size: 1.5rem;
+                }
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                    color: #6857b8;
+                    &:hover {
+                    	opacity: .8;
+                    }
                 }
             }
         }
-        a {
-            color: #fff;
-            text-decoration: none;
+        .button-wrapper {
+			position: absolute;			
+			left: 40%;
+			right: 40%;
+			bottom: 10%;
+			width: 130px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			p {
+				color: #fff;
+				margin: 10px auto;
+			}
+            a {
+            	display: block;
+                @include create-button($color-accent, #fff, 1.5rem);
+                text-decoration: none;
+                &:hover {
+                	border: 3px solid $color-accent;
+                	background-color: #fff;
+                	color: $color-accent;
+                }
+            }
         }
     }
 }
