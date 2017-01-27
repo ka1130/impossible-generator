@@ -209,9 +209,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $("#toTop").on("click", function(event) {
     $("body").animate({
       scrollTop: 0
-    }, fast);
+    }, "slow");
     return false;
-  })
+  });
+
+  $("#toTop").hide();
 
   $(document).on("scroll", function(event) {
     if ($("body").scrollTop() > 411) {
