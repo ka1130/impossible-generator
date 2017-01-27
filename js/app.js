@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   edgeDetectOn.addEventListener("click", function(event) {
 
-    var imageData = Filters.filterImage(Filters.edgeDetect, userPhoto);
+    var imageData = Filters.filterImage(Filters.laplace, userPhoto);
     console.log("ok");
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   }, false);
@@ -330,10 +330,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.drawImage(userPhoto, x, y);
   }, false);
 
-  // Filters: Edge Detect
+
+  //Filters: Funscale
+
+  playRangeSlider.addEventListener("click", funScale, false);
+
+
+  // Filters: Emboss
 
   embossOn.addEventListener("click", function(event) {
-
     var imageData = Filters.filterImage(Filters.emboss, userPhoto);
     console.log("ok");
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
