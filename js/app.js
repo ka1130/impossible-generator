@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var filtersLeft = $("#openFiltersNav");
       var offsetLeft = filtersLeft.position().left;
       $("#toolsNav").css({
-        "left": offsetLeft,
+        "left": offsetLeft - 16,
         "top": "50px",
         "position": "absolute",
         "display": "block",
