@@ -213,6 +213,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   })
 
+  $(document).on("scroll", function(event) {
+    if ($("body").scrollTop() > 411) {
+      $("#toTop").show();
+    } else {
+      $("#toTop").hide();
+    }
+  });
 
 
   // Put photo on canvas
