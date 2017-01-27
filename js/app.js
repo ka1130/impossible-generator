@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-  // Test
-
-  console.log($(document).scrollTop());
-
-
-  $("#scroll").on("click", function(event) {
-      event.preventDefault();
-     $("body").scrollTop(411);
-  });
-
 
   // Move tools-left container dynamically
 
@@ -51,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var opened;
 
   function openNav() {
-    if(typeof opened === "undefined") {
+    if (typeof opened === "undefined") {
       opened = false;
     }
     if (window.matchMedia("(min-width: 480px)").matches && opened == false) {
@@ -113,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function showPositionControls(event) {
     if (mq.matches) {
       event.target.removeEventListener("click", showPositionControls);
-    } else {      
+    } else {
       controlsPosition.style.visibility = "visible";
       brightenDiv.style.visibility = "hidden";
       blurDiv.style.visibility = "hidden";
@@ -150,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       brightenDiv.style.visibility = "hidden";
       blurDiv.style.visibility = "hidden";
       negativeBtns.style.visibility = "hidden";
-      grayScaleBtns.style.visibility = "hidden";     
+      grayScaleBtns.style.visibility = "hidden";
       toolsInfo.style.visibility = "hidden";
     }
   }
@@ -166,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeControls();
     grayScaleBtns.style.visibility = "visible";
     brightenDiv.style.visibility = "hidden";
-    blurDiv.style.visibility = "hidden";     
+    blurDiv.style.visibility = "hidden";
     negativeBtns.style.visibility = "hidden";
   }, false);
 
@@ -174,8 +164,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeNav();
     closeControls();
     brightenDiv.style.visibility = "visible";
-    grayScaleBtns.style.visibility = "hidden";    
-    blurDiv.style.visibility = "hidden";     
+    grayScaleBtns.style.visibility = "hidden";
+    blurDiv.style.visibility = "hidden";
     negativeBtns.style.visibility = "hidden";
   }, false);
 
@@ -184,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeControls();
     blurDiv.style.visibility = "visible";
     brightenDiv.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";         
+    grayScaleBtns.style.visibility = "hidden";
     negativeBtns.style.visibility = "hidden";
   }, false);
 
@@ -194,8 +184,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
     negativeBtns.style.visibility = "visible";
     blurDiv.style.visibility = "hidden";
     brightenDiv.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";            
+    grayScaleBtns.style.visibility = "hidden";
   }, false);
+
+
+  // Scrolling to sections
+
+  $("#scroll").on("click", function(event) {
+    event.preventDefault();
+    $("body").animate({
+      scrollTop: 411
+    }, 500);
+    return false;
+  });
+
+  $("#about a").on("click", function(event) {
+    event.preventDefault();
+    $("body").animate({
+      scrollTop: 1600
+    }, 800);
+    return false;
+  });
+
 
 
   // Put photo on canvas
@@ -339,7 +349,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.globalCompositeOperation = "destination-atop";
     ctx.fillStyle = "#fff";
     ctx.strokeStyle = "#fff";
-    
+
     ctx.rect(0, 0, canvas.width, 30);
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fill();
@@ -371,5 +381,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("ok");
   }, false);
 
-//end
+  //end
 });
