@@ -213,6 +213,32 @@ nav {
             color: #bbb;
         }
     }
+    div:first-of-type {
+        position: absolute;
+        top: 4.8%;
+        left: 7.8%;
+        width: 210px;
+        height: 250px;
+        z-index: 1;
+        color: #fff;
+        label {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            right: 10px;
+            font-size: .8rem;
+        }
+        input {
+            display: none;
+            top: 100px;
+        }
+        div {
+            position: absolute;
+            top: 80px;
+            left: 10px;
+            text-transform: uppercase;
+        }
+    }
 }
 
 #imgCanvas {
