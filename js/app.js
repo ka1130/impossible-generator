@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+  // Test
+
+  console.log($(document).scrollTop());
+
+
+  $("#scroll").on("click", function(event) {
+      event.preventDefault();
+     $("body").scrollTop(411);
+  });
+
 
   // Move tools-left container dynamically
 
@@ -326,9 +336,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.lineWidth = x; // This is your border thickness
     canvas.width += x * 2;
     canvas.height += x * 2;
+    ctx.globalCompositeOperation = "destination-atop";
     ctx.fillStyle = "#fff";
     ctx.strokeStyle = "#fff";
-    //      ctx.globalCompositeOperation = "source-over";
+    
     ctx.rect(0, 0, canvas.width, 30);
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fill();
