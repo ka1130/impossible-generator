@@ -78,12 +78,21 @@ function funScale(event) {
   val = (val - oldVal);
   oldVal = val;
 
-  for (var i = 0; i < data.length; i += 4) {
-    var gray = (data[i] * .3) + (data[i + 1] * .6) + (data[i + 2] * .1);
-    data[i] += gray + (val * 0.01); //red
-    data[i + 1] = gray; //green
-    data[i + 2] = gray; //blue
+  if (val >= oldVal) {
+    for (var i = 0; i < data.length; i += 4) {
+      data[i] += val; //red
+      data[i + 1] += val; //green
+      data[i + 2] += val; //blue
+    }
+  } else {
+    for (var i = 0; i < data.length; i += 4) {
+      data[i] -= val; //red
+      data[i + 1] -= val; //green
+      data[i + 2] -= val; //blue
+    }
   }
+
+
 
   ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
 
@@ -207,6 +216,73 @@ Filters.convolute = function(pixels, weights, opaque) {
   return output;
 };
 
+//for the sobel filter we need gradient values from -255 to 255 so we need float array
+Filters.convoluteFloat32 = function(pixels, weights, opaque) {
+  var side = Math.round(Math.sqrt(weights.length));
+  var halfSide = Math.floor(side/2);
+
+  var src = pixels.data;
+  var sw = pixels.width;
+  var sh = pixels.height;
+
+  var w = sw;
+  var h = sh;
+  var output = {
+    width: w, height: h, data: new Float32Array(w*h*4)
+  };
+  var dst = output.data;
+
+  var alphaFac = opaque ? 1 : 0;
+
+  for (var y=0; y<h; y++) {
+    for (var x=0; x<w; x++) {
+      var sy = y;
+      var sx = x;
+      var dstOff = (y*w+x)*4;
+      var r=0, g=0, b=0, a=0;
+      for (var cy=0; cy<side; cy++) {
+      for (var cx=0; cx<side; cx++) {
+        var scy = Math.min(sh-1, Math.max(0, sy + cy - halfSide));
+        var scx = Math.min(sw-1, Math.max(0, sx + cx - halfSide));
+        var srcOff = (scy*sw+scx)*4;
+        var wt = weights[cy*side+cx];
+        r += src[srcOff] * wt;
+        g += src[srcOff+1] * wt;
+        b += src[srcOff+2] * wt;
+        a += src[srcOff+3] * wt;
+      }
+      }
+      dst[dstOff] = r;
+      dst[dstOff+1] = g;
+      dst[dstOff+2] = b;
+      dst[dstOff+3] = a + alphaFac*(255-a);
+    }
+  }
+  return output;
+};
+
+Filters.sobel = function(pixels) {
+  pixels = Filters.grayscale(pixels);
+  var vertical = Filters.convoluteFloat32(pixels,
+  [-1,-2,-1,
+    0, 0, 0,
+    1, 2, 1]);
+  var horizontal = Filters.convoluteFloat32(pixels,
+  [-1,0,1,
+   -2,0,2,
+   -1,0,1]);
+  var id = Filters.createImageData(vertical.width, vertical.height);
+  for (var i=0; i<id.data.length; i+=4) {
+  var v = Math.abs(vertical.data[i]);
+  id.data[i] = v;
+  var h = Math.abs(horizontal.data[i]);
+  id.data[i+1] = h
+  id.data[i+2] = (v+h)/4;
+  id.data[i+3] = 255;
+  }
+  return id;
+};
+    
 Filters.blur = function(pixels, iterations) {
   var convMatrix = [1 / 9, 1 / 9, 1 / 9,
     1 / 9, 1 / 9, 1 / 9,
@@ -218,37 +294,24 @@ Filters.blur = function(pixels, iterations) {
   }
 
   return pixels;
-}
-
-Filters.edgeDetect = function(pixels) {
-  var convMatrix = [0, 1, 0,
-    1, -4, 1,
-    0, 1, 0
-  ];
-
-  return Filters.convolute(pixels, convMatrix);;
-}
-
-Filters.laplace = function(pixels) {
-  var convMatrix = [ 1, 1, 1,
-            1, -8, 1,
-            1, 1, 1 ];
-    
-  return Filters.convolute(pixels, convMatrix);;
-}
+};
 
 Filters.emboss = function(pixels) {
   var convMatrix = [-2, -1, 0, -1, 1, 1,
     0, 1, 2
   ];
 
-  return Filters.convolute(pixels, convMatrix);;
-}
+  return Filters.convolute(pixels, convMatrix);
+};
 
-Filters.sharpen = function(pixels) {
+Filters.sharpen = function(pixels, iterations) {
   var convMatrix = [0, -1, 0, -1, 5, -1,
     0, -1, 0
   ];
 
-  return Filters.convolute(pixels, convMatrix);;
-}
+  for (var i = 0; i < iterations; i++) {
+    pixels = Filters.convolute(pixels, convMatrix);
+  }
+  
+  return pixels;
+};
