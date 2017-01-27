@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     controlsZoom.style.visibility = "hidden";
     toolsInfo.style.visibility = "hidden";
     brightenDiv.style.visibility = "hidden";
-    playDiv.style.visibility = "hidden"
+    sharpenDiv.style.visibility = "hidden"
     grayScaleBtns.style.visibility = "hidden";
     blurDiv.style.visibility = "hidden";
     negativeBtns.style.visibility = "hidden";
@@ -155,10 +155,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     edgeDetectBtns.style.visibility = "visible";
   }, false);
 
-  togglePlay.addEventListener("click", function(event) {
+  toggleSharpen.addEventListener("click", function(event) {
     closeNav();
     closeControls();
-    playDiv.style.visibility = "visible";
+    sharpenDiv.style.visibility = "visible";
   }, false);
 
   toggleEmboss.addEventListener("click", function(event) {
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Edge Detect
 
   edgeDetectOn.addEventListener("click", function(event) {
-    var imageData = Filters.filterImage(Filters.sharpen, userPhoto);
+    var imageData = Filters.filterImage(Filters.sobel, userPhoto);
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   }, false);
 
@@ -331,7 +331,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   //Filters: Funscale
 
-  playRangeSlider.addEventListener("input", funScale, false);
+  sharpenRangeSlider.addEventListener("input", function(event) {
+    var iterations = sharpenRangeSlider.value;
+    var imageData = Filters.filterImage(Filters.sharpen, userPhoto, iterations);
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+
+  }, false);
 
 
   // Filters: Emboss

@@ -11,8 +11,8 @@
   var toggleBlur = toggleBrightness.nextElementSibling; //menu option blur
   var toggleNegative = toggleBlur.nextElementSibling; //menu option negative
   var toggleEdgeDetect = toggleNegative.nextElementSibling; //menu option edge-detect
-  var togglePlay = toggleEdgeDetect.nextElementSibling; //menu option negative
-  var toggleEmboss = togglePlay.nextElementSibling; //menu option negative
+  var toggleSharpen = toggleEdgeDetect.nextElementSibling; //menu option negative
+  var toggleEmboss = toggleSharpen.nextElementSibling; //menu option negative
   // last menu icon on smaller screens (open dropdown filters menu)
   var openFiltersNav = document.getElementById("openFiltersNav");
   //close dropdown filters menu
@@ -31,7 +31,7 @@
   //brighten, blur, play divs 
   var brightenDiv = document.getElementById("brighten-range");
   var blurDiv = document.getElementById("blur-range");
-  var playDiv =  document.getElementById("play-range");
+  var sharpenDiv =  document.getElementById("sharpen-range");
 
   //negative buttons
   var negativeBtns = document.getElementsByClassName("scale-btns")[1]; //div z przyciskami on/off
@@ -55,7 +55,7 @@
   //filter sliders
   var brightenRangeSlider = document.getElementById("brightenRange");
   var blurRangeSlider = document.getElementById("blurRange");
-  var playRangeSlider = document.getElementById("playRange");
+  var sharpenRangeSlider = document.getElementById("sharpenRange");
 
   //variables for image and canvas
   var imgContainer = document.getElementById("imgContainer");
