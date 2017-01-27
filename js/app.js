@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   toggleEmboss.addEventListener("click", function(event) {
     closeNav();
     closeControls();
-     embossBtns.style.visibility = "visible";
+    embossBtns.style.visibility = "visible";
   }, false);
 
 
@@ -311,6 +311,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
   negativeOn.addEventListener("click", negativeFilter, false);
 
   negativeOff.addEventListener("click", function(event) {
+    ctx.clearRect(x, y, canvas.width, canvas.height);
+    ctx.drawImage(userPhoto, x, y);
+  }, false);
+
+
+  // Filters: Edge Detect
+
+  edgeDetectOn.addEventListener("click", function(event) {
+
+    var imageData = Filters.filterImage(Filters.edgeDetect, userPhoto);
+    console.log("ok");
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+  }, false);
+
+  edgeDetectOff.addEventListener("click", function(event) {
+    ctx.clearRect(x, y, canvas.width, canvas.height);
+    ctx.drawImage(userPhoto, x, y);
+  }, false);
+
+  // Filters: Edge Detect
+
+  embossOn.addEventListener("click", function(event) {
+
+    var imageData = Filters.filterImage(Filters.emboss, userPhoto);
+    console.log("ok");
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+  }, false);
+
+  embossOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
     ctx.drawImage(userPhoto, x, y);
   }, false);
