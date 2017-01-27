@@ -10,6 +10,9 @@
   var toggleBrightness = toggleGrayscale.nextElementSibling; //menu option brightness
   var toggleBlur = toggleBrightness.nextElementSibling; //menu option blur
   var toggleNegative = toggleBlur.nextElementSibling; //menu option negative
+  var toggleEdgeDetect = toggleNegative.nextElementSibling; //menu option edge-detect
+  var togglePlay = toggleEdgeDetect.nextElementSibling; //menu option negative
+  var toggleEmboss = togglePlay.nextElementSibling; //menu option negative
   // last menu icon on smaller screens (open dropdown filters menu)
   var openFiltersNav = document.getElementById("openFiltersNav");
   //close dropdown filters menu

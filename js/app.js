@@ -149,6 +149,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     negativeBtns.style.visibility = "visible";
   }, false);
 
+  toggleEdgeDetect.addEventListener("click", function(event) {
+    closeNav();
+    closeControls();
+    edgeDetectBtns.style.visibility = "visible";
+  }, false);
+
+  togglePlay.addEventListener("click", function(event) {
+    closeNav();
+    closeControls();
+    playDiv.style.visibility = "visible";
+  }, false);
+
+  toggleEmboss.addEventListener("click", function(event) {
+    closeNav();
+    closeControls();
+     embossBtns.style.visibility = "visible";
+  }, false);
+
 
   // Scrolling to sections
 
