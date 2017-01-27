@@ -16,3 +16,16 @@ footer {
         font-weight: 1rem;
     }
 }
+
+#toTop {
+    position: fixed;
+    width: 100%;
+    bottom: 5%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    z-index: 200;
+    i {
+        margin: 0 auto;
+    }
+}
