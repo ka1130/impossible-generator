@@ -25,14 +25,25 @@
   var grayScaleOn = grayScaleBtnsWrapper.children[0];
   var grayScaleOff = grayScaleOn.nextElementSibling;
 
-  //brighten, blur divs 
+  //brighten, blur, play divs 
   var brightenDiv = document.getElementById("brighten-range");
   var blurDiv = document.getElementById("blur-range");
+  var playDiv =  document.getElementById("play-range");
 
   //negative buttons
   var negativeBtns = document.getElementsByClassName("scale-btns")[1]; //div z przyciskami on/off
   var negativeOn = negativeBtns.children[0].children[0];
   var negativeOff = negativeOn.nextElementSibling;
+
+  //edge-detect buttons
+  var edgeDetectBtns = document.getElementsByClassName("scale-btns")[2]; //div z przyciskami on/off
+  var edgeDetectOn = edgeDetectBtns.children[0].children[0];
+  var edgeDetectOff = edgeDetectOn.nextElementSibling;
+
+  //emboss buttons
+  var embossBtns = document.getElementsByClassName("scale-btns")[3]; //div z przyciskami on/off
+  var embossOn = embossBtns.children[0].children[0];
+  var embossOff = embossOn.nextElementSibling;
 
   var sliderFilters = document.getElementsByClassName("slider-filter");
 
@@ -41,6 +52,7 @@
   //filter sliders
   var brightenRangeSlider = document.getElementById("brightenRange");
   var blurRangeSlider = document.getElementById("blurRange");
+  var playRangeSlider = document.getElementById("playRange");
 
   //variables for image and canvas
   var imgContainer = document.getElementById("imgContainer");

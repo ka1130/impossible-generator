@@ -73,7 +73,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     controlsPosition.style.visibility = "hidden";
     controlsZoom.style.visibility = "hidden";
     toolsInfo.style.visibility = "hidden";
+    brightenDiv.style.visibility = "hidden";
+    playDiv.style.visibility = "hidden"
+    grayScaleBtns.style.visibility = "hidden";
+    blurDiv.style.visibility = "hidden";
+    negativeBtns.style.visibility = "hidden";
+    edgeDetectBtns.style.visibility = "hidden";
+    embossBtns.style.visibility = "hidden";
   }
+
 
   openFiltersNav.addEventListener("click", openNav, false);
   closeFiltersNav.addEventListener("click", closeNav, false);
@@ -101,12 +109,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       event.target.removeEventListener("click", showPositionControls);
     } else {
       controlsPosition.style.visibility = "visible";
-      brightenDiv.style.visibility = "hidden";
-      blurDiv.style.visibility = "hidden";
-      negativeBtns.style.visibility = "hidden";
-      grayScaleBtns.style.visibility = "hidden";
-      controlsZoom.style.visibility = "hidden";
-      toolsInfo.style.visibility = "hidden";
     }
   }
 
@@ -115,12 +117,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       event.target.removeEventListener("click", showZoomControls);
     } else {
       controlsZoom.style.visibility = "visible";
-      controlsPosition.style.visibility = "hidden";
-      brightenDiv.style.visibility = "hidden";
-      blurDiv.style.visibility = "hidden";
-      negativeBtns.style.visibility = "hidden";
-      grayScaleBtns.style.visibility = "hidden";
-      toolsInfo.style.visibility = "hidden";
+      closeControls();
     }
   }
 
@@ -132,36 +129,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeNav();
     closeControls();
     grayScaleBtns.style.visibility = "visible";
-    brightenDiv.style.visibility = "hidden";
-    blurDiv.style.visibility = "hidden";
-    negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleBrightness.addEventListener("click", function(event) {
     closeNav();
     closeControls();
     brightenDiv.style.visibility = "visible";
-    grayScaleBtns.style.visibility = "hidden";
-    blurDiv.style.visibility = "hidden";
-    negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleBlur.addEventListener("click", function(event) {
     closeNav();
     closeControls();
     blurDiv.style.visibility = "visible";
-    brightenDiv.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";
-    negativeBtns.style.visibility = "hidden";
   }, false);
 
   toggleNegative.addEventListener("click", function(event) {
     closeNav();
     closeControls();
     negativeBtns.style.visibility = "visible";
-    blurDiv.style.visibility = "hidden";
-    brightenDiv.style.visibility = "hidden";
-    grayScaleBtns.style.visibility = "hidden";
   }, false);
 
 
