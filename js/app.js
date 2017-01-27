@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "display": "block",
         "overflow-y": "auto"
       });
+    } else {
+      $("#toTop").hide();
     }
   }
 
