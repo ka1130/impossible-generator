@@ -20,8 +20,8 @@
   var controlsZoom = controlsPosition.nextElementSibling;
 
   //grayscale buttons
-  var grayScaleBtns = document.getElementsByClassName("scale-btns")[0];
-  var grayScaleBtnsWrapper = grayScaleBtns.children[1];
+  var grayScaleBtns = document.getElementById("grayScale");
+  var grayScaleBtnsWrapper = grayScaleBtns.children[0];
   var grayScaleOn = grayScaleBtnsWrapper.children[0];
   var grayScaleOff = grayScaleOn.nextElementSibling;
 
@@ -31,7 +31,7 @@
 
   //negative buttons
   var negativeBtns = document.getElementsByClassName("scale-btns")[1]; //div z przyciskami on/off
-  var negativeOn = negativeBtns.children[1].children[0];
+  var negativeOn = negativeBtns.children[0].children[0];
   var negativeOff = negativeOn.nextElementSibling;
 
   var sliderFilters = document.getElementsByClassName("slider-filter");
