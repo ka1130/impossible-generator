@@ -206,6 +206,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   });
 
+  $("#toTop").on("click", function(event) {
+    $("body").animate({
+      scrollTop: 0
+    }, fast);
+    return false;
+  })
+
 
 
   // Put photo on canvas
