@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $("#about a").on("click", function(event) {
     event.preventDefault();
     $("body").animate({
-      scrollTop: 1600
+      scrollTop: 1626
     }, 800);
     return false;
   });
@@ -219,6 +219,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       $("#toTop").hide();
     }
+    console.log($("body").scrollTop());
   });
 
 

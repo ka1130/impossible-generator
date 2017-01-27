@@ -20,13 +20,19 @@ footer {
 #toTop {
     position: fixed;
     width: 100%;
+    max-width: 800px;
     bottom: 5%;
     color: #fff;
     display: flex;
     justify-content: center;
+    align-items: center;
     z-index: 200;
     cursor: pointer;
+    overflow: hidden;
+    margin: 0 auto;
+    align-self: center;
     i {
         margin: 0 auto;
+        align-self: center;
     }
 }
