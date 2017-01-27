@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       toolsNav.style.visibility = "hidden";
       toolsNav.style.height = "0";
     }
+    $("#toTop").hide();
   }
 
   function closeNav() {
