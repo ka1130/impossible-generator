@@ -319,8 +319,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Edge Detect
 
   edgeDetectOn.addEventListener("click", function(event) {
-    var imageData = Filters.filterImage(Filters.laplace, userPhoto);
-    console.log(event.target);
+    var imageData = Filters.filterImage(Filters.sharpen, userPhoto);
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   }, false);
 
@@ -332,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   //Filters: Funscale
 
-  playRangeSlider.addEventListener("click", funScale, false);
+  playRangeSlider.addEventListener("input", funScale, false);
 
 
   // Filters: Emboss
