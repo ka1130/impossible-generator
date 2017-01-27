@@ -319,9 +319,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Edge Detect
 
   edgeDetectOn.addEventListener("click", function(event) {
-
     var imageData = Filters.filterImage(Filters.laplace, userPhoto);
-    console.log("ok");
+    console.log(event.target);
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   }, false);
 
@@ -340,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   embossOn.addEventListener("click", function(event) {
     var imageData = Filters.filterImage(Filters.emboss, userPhoto);
-    console.log("ok");
     ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   }, false);
 
@@ -375,7 +373,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.lineWidth = x; // This is your border thickness
     canvas.width += x * 2;
     canvas.height += x * 2;
-    ctx.globalCompositeOperation = "destination-atop";
     ctx.fillStyle = "#fff";
     ctx.strokeStyle = "#fff";
 

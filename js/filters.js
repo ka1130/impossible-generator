@@ -229,7 +229,7 @@ Filters.edgeDetect = function(pixels) {
   return Filters.convolute(pixels, convMatrix);;
 }
 
-Filters.laplace = function (pixels) {
+Filters.laplace = function(pixels) {
   var convMatrix = [ 1, 1, 1,
             1, -8, 1,
             1, 1, 1 ];
