@@ -3,13 +3,10 @@
   var inMemCanvas = document.createElement("canvas");
   var a = 0;
   var b = 0;
-  var rotation;
+
   inMemCanvas.width = 210;
   inMemCanvas.height = 250;
 
-  if (typeof rotation === "undefined") {
-    rotation = 0;
-  }
 
   function clearImage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -19,10 +16,7 @@
   function moveElementTop(event) {
     ctx.save();
     clearImage();
-
-    ctx.rotate(0);
     ctx.translate(a, b -= 2);
-    ctx.rotate(rotation);
     ctx.drawImage(userPhoto, a, b);
     ctx.restore();
   }
@@ -30,10 +24,8 @@
   function moveElementLeft(event) {
     ctx.save();
     clearImage();
-    ctx.rotate(0);
     ctx.translate(a -= 2, b);
     ctx.drawImage(userPhoto, a, b);
-    ctx.rotate(rotation);
     ctx.drawImage(userPhoto, a, b);
     ctx.restore();
   }
@@ -41,10 +33,8 @@
   function moveElementRight(event) {
     ctx.save();
     clearImage();
-    ctx.rotate(0);
     ctx.translate(a += 2, b);
     ctx.drawImage(userPhoto, a, b);
-    ctx.rotate(rotation);
     ctx.drawImage(userPhoto, a, b);
     ctx.restore();
   }
@@ -52,10 +42,8 @@
   function moveElementBottom(event) {
     ctx.save();
     clearImage();
-    ctx.rotate(0);
     ctx.translate(a, b += 2);
     ctx.drawImage(userPhoto, a, b);
-    ctx.rotate(rotation);
     ctx.drawImage(userPhoto, a, b);
     ctx.restore();
   }
@@ -98,33 +86,9 @@
   toolsLeftZoomOut.addEventListener("click", zoomOutElement, false);
 
 
-  // Rotation
 
-  function rotateElement(event) {
-    ctx.save();
-    rotation += (15 * Math.PI / 180);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
-    ctx.rotate(rotation); //by 15deg
-    ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
-    ctx.drawImage(userPhoto, x, y);
-    userPhoto.style.display = "none";
-    ctx.restore();
-  }
 
-  function rotateElementCCwise(event) {
-    ctx.save();
-    rotation -= (15 * Math.PI / 180);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.translate(93.5, 125.5); //rotating around the middle point of the photo
-    ctx.rotate(rotation); //by 15deg
-    ctx.translate(-93.5, -125.5); //rotating around the middle point of the photo
-    ctx.drawImage(userPhoto, x, y);
-    userPhoto.style.display = "none";
-    ctx.restore();
-  }
 
-  rotateControl.addEventListener("click", rotateElement, false);
-  rotateCwise.addEventListener("click", rotateElement, false);
-  rotateCCwise.addEventListener("click", rotateElementCCwise, false);
+
+
 

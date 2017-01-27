@@ -3,7 +3,6 @@
   //(on smaller screens) menu icons
   var togglePosition = document.getElementById("togglePosition");
   var toggleZoom = togglePosition.nextElementSibling;
-  var toggleRotation = toggleZoom.nextElementSibling;
 
   //dropdown filters menu (on smaller screens)
   var toolsNav = document.getElementById("toolsNav");
@@ -19,7 +18,6 @@
   //(on smaller screens) tools in the panel below image
   var controlsPosition = document.getElementsByClassName("controls-position")[0];
   var controlsZoom = controlsPosition.nextElementSibling;
-  var controlsRotation = controlsZoom.nextElementSibling;
 
   //grayscale buttons
   var grayScaleBtns = document.getElementsByClassName("scale-btns")[0];
@@ -38,7 +36,7 @@
 
   var sliderFilters = document.getElementsByClassName("slider-filter");
 
-  var toolsInfo = controlsRotation.parentElement.lastElementChild;
+  var toolsInfo = document.getElementsByClassName("tools-info")[0];
 
   //filter sliders
   var brightenRangeSlider = document.getElementById("brightenRange");
@@ -61,7 +59,6 @@
   var moveBottom = document.getElementById("moveBottom");
   var zoomIn = document.getElementById("zoom-in");
   var zoomOut = document.getElementById("zoom-out");
-  var rotateControl = document.querySelector(".rotation-circle");
 
   //button on the left-hand panel (on bigger screens)
   var toolsLeftMoveTop = document.getElementById("toolsLeftMoveTop");
@@ -70,8 +67,6 @@
   var toolsLeftMoveBottom = document.getElementById("toolsLeftMoveBottom");
   var toolsLeftZoomIn = document.getElementById("toolsLeftZoomIn");
   var toolsLeftZoomOut = document.getElementById("toolsLeftZoomOut");
-  var rotateCCwise = document.getElementById("toolsLeftRotate").children[0];
-  var rotateCwise = rotateCCwise.nextElementSibling;
 
   var x;
   var y;

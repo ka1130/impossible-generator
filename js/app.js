@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function closeControls() {
     controlsPosition.style.visibility = "hidden";
     controlsZoom.style.visibility = "hidden";
-    controlsRotation.style.visibility = "hidden";
     toolsInfo.style.visibility = "hidden";
   }
 
@@ -87,14 +86,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if (mq.matches) {
     $("#togglePosition").attr("disabled", true);
     $("#toggleZoom").attr("disabled", true);
-    $("#toggleRotation").attr("disabled", true);
     $("#togglePosition").css({
       "cursor": "auto"
     });
     $("#toggleZoom").css({
-      "cursor": "auto"
-    });
-    $("#toggleRotation").css({
       "cursor": "auto"
     });
     toolsInfo.innerHTML = "choose your tool in the left-hand panel";
@@ -110,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       negativeBtns.style.visibility = "hidden";
       grayScaleBtns.style.visibility = "hidden";
       controlsZoom.style.visibility = "hidden";
-      controlsRotation.style.visibility = "hidden";
       toolsInfo.style.visibility = "hidden";
     }
   }
@@ -125,22 +119,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       blurDiv.style.visibility = "hidden";
       negativeBtns.style.visibility = "hidden";
       grayScaleBtns.style.visibility = "hidden";
-      controlsRotation.style.visibility = "hidden";
-      toolsInfo.style.visibility = "hidden";
-    }
-  }
-
-  function showRotationControls(event) {
-    if (mq.matches) {
-      event.target.removeEventListener("click", showRotationControls);
-    } else {
-      controlsRotation.style.visibility = "visible";
-      controlsPosition.style.visibility = "hidden";
-      controlsZoom.style.visibility = "hidden";
-      brightenDiv.style.visibility = "hidden";
-      blurDiv.style.visibility = "hidden";
-      negativeBtns.style.visibility = "hidden";
-      grayScaleBtns.style.visibility = "hidden";
       toolsInfo.style.visibility = "hidden";
     }
   }
@@ -148,8 +126,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   togglePosition.addEventListener("click", showPositionControls, false);
 
   toggleZoom.addEventListener("click", showZoomControls, false);
-
-  toggleRotation.addEventListener("click", showRotationControls, false);
 
   toggleGrayscale.addEventListener("click", function(event) {
     closeNav();
@@ -221,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       $("#toTop").hide();
     }
-    console.log($("body").scrollTop());
   });
 
 
@@ -341,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   resetBtn.addEventListener("click", function(event) {
     ctx.save();
-    ctx.rotate(rotation);
     ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2); //added offsets to clear tidbits
     ctx.restore();
     ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
