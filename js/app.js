@@ -228,6 +228,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
       scrollTop: $("#interlude").offset().top
     }, "slow");
     return false;
+  });
+
+  $("#interlude").find("p").on("click", function(event) {
+    event.preventDefault();
+    $("html, body").animate({
+      scrollTop: $("#generator").offset().top
+    }, "slow");
+    return false;
   })
 
 
