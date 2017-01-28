@@ -108,11 +108,12 @@
             opacity: 1;
             color: #fff;
             text-align: center;
-            margin: 0 auto 20px;
+            margin: 10px auto 20px;
             font-size: 1.1rem;
             text-shadow: 0 0 5px 2px rgba(0, 0, 0, .8);
             line-height: 1.8rem;
             padding: 0;
+
         }
         a {
             opacity: 1;
@@ -120,6 +121,7 @@
             text-decoration: none;
             width: 100px;
             align-self: center;
+            margin-bottom: 10px;
             &:hover {
                 background-color: #11033c;
                 color: #fff;
