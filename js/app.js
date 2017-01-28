@@ -434,25 +434,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var dropzone = $("#imgContainer");
 
-  dropzone.on('dragover', function() {
+  dropzone.on("dragover", function() {
     //add hover class when drag over
-    dropzone.addClass('hover');
+    dropzone.addClass("hover");
     return false;
   });
 
-  dropzone.on('dragleave', function() {
+  dropzone.on("dragleave", function(event) {
     //remove hover class when drag out
-    dropzone.removeClass('hover');
+    dropzone.removeClass("hover");
     return false;
   });
 
-  dropzone.on('drop', function(e) {
+  dropzone.on("drop", function(event) {
     //prevent browser from open the file when drop off
-    e.stopPropagation();
-    e.preventDefault();
-    dropzone.removeClass('hover');
+    event.stopPropagation();
+    event.preventDefault();
+    dropzone.removeClass("hover");
+    $("#resetBtn").next().hide();
     //retrieve uploaded files data
-    var files = e.originalEvent.dataTransfer;
+    var files = event.originalEvent.dataTransfer;
   processFiles(files);
 
     return false;
@@ -465,7 +466,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       readURL(files);
       drawNewImage();
       ctx.save();
-      console.log("file");
     } else {
       //some message or fallback
       console.log("drag error");
