@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Drag & Drop
 
-  var dropzone = $("#resetBtn").next();
+  var dropzone = $("#imgContainer");
 
   dropzone.on('dragover', function() {
     //add hover class when drag over
@@ -451,13 +451,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     e.stopPropagation();
     e.preventDefault();
     dropzone.removeClass('hover');
-    $("#inputFile").trigger("click");
     //retrieve uploaded files data
-    var files = e.originalEvent.dataTransfer.files;
-
+    var files = e.originalEvent.dataTransfer;
+  processFiles(files);
 
     return false;
   });
+
+  function processFiles(files) {
+    //check for browser support 
+    if (files && typeof FileReader !== "undefined") {
+      //extract FileList as File object
+      readURL(files);
+      drawNewImage();
+      ctx.save();
+      console.log("file");
+    } else {
+      //some message or fallback
+      console.log("drag error");
+    }
+  }
 
 
 
