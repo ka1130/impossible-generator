@@ -222,6 +222,7 @@ nav {
         z-index: 1;
         color: #fff;
         label {
+            visibility: hidden;
             position: absolute;
             top: 10px;
             left: 10px;
@@ -234,6 +235,7 @@ nav {
             top: 100px;
         }
         div {
+            visibility: hidden;
             position: absolute;
             top: 100px;
             height: 50px;
