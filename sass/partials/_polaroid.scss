@@ -1,7 +1,7 @@
 #polaroid {
-	@extend #intro;
-	.container {
-		// background-image: url(../img/02.jpg);
+    @extend #intro;
+    .container {
+        // background-image: url(../img/02.jpg);
         background-repeat: no-repeat;
         background-position: center center;
         background-size: contain;
@@ -9,16 +9,20 @@
         background-attachment: fixed;
         width: 100%;
         height: 100%;
-	}
+    }
 }
 
 #interlude {
-    @extend #about; 
-    height: 400px;
+    @extend #about;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     iframe {
-       margin: 30px auto;
-    }   
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+    }
 }

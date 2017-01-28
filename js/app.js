@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       controlsPosition.style.visibility = "visible";
     }
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }
 
   function showZoomControls(event) {
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       controlsZoom.style.visibility = "visible";
       closeControls();
     }
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }
 
   togglePosition.addEventListener("click", showPositionControls, false);
@@ -134,49 +134,49 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeNav(event);
     closeControls();
     grayScaleBtns.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleBrightness.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     brightenDiv.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleBlur.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     blurDiv.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleNegative.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     negativeBtns.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleEdgeDetect.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     edgeDetectBtns.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleSharpen.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     sharpenDiv.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
   toggleEmboss.addEventListener("click", function(event) {
     closeNav(event);
     closeControls();
     embossBtns.style.visibility = "visible";
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
 
@@ -221,6 +221,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $("#toTop").hide();
     }
   });
+
+  $("#about").find("div").children().eq(1).on("click", function(event) {
+    event.preventDefault();
+    $("html, body").animate({
+      scrollTop: $("#interlude").offset().top
+    }, "slow");
+    return false;
+  })
 
 
   // Hide toTop
@@ -267,12 +275,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         canvas.width = width;
         canvas.height = height;
         ctx.drawImage(userPhoto, x, y, width, height);
-		
+
         var dataurl = canvas.toDataURL("image/png");
         userPhoto.setAttribute("src", dataurl);
-		
-		saveCurrentPhoto();
-		
+
+        saveCurrentPhoto();
+
       }
       reader.readAsDataURL(input.files[0]);
     }
@@ -367,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2); //added offsets to clear tidbits
     ctx.restore();
     ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
-	saveCurrentPhoto();
+    saveCurrentPhoto();
   }, false);
 
 
@@ -400,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   download.addEventListener("click", function(event) {
-	saveCurrentPhoto();
+    saveCurrentPhoto();
     borderImage(20);
     downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     canvas.style.display = "none";
@@ -462,10 +470,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
-	function saveCurrentPhoto() {
-		ctx.save();
-		currentPhoto.src = canvas.toDataURL("image/png");
-	}
+  function saveCurrentPhoto() {
+    ctx.save();
+    currentPhoto.src = canvas.toDataURL("image/png");
+  }
 
   //end
 });

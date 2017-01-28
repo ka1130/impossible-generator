@@ -127,4 +127,33 @@
             color: #fff;
         }
     }
+    div {
+        margin: 0 auto;
+        display: flex;
+        color: #fff;
+        justify-content: space-between;
+        width: 50%;
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+        }
+        span:nth-child(3) {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+
+#interlude {
+    display: flex;
+    flex-direction: column;
+    p {
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
