@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     event.preventDefault();
     $("html, body").animate({
       scrollTop: $(document).height()
-    }, "slow");
+    }, 1200);
     return false;
   });
 
