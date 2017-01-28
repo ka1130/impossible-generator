@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $("#toTop").hide();
   }
 
-  function closeNav() {
+  function closeNav(event) {
+    event.preventDefault();
     if (window.matchMedia("(max-width: 479px)").matches) {
       toolsNav.style.height = "0%";
     }
