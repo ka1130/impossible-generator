@@ -204,6 +204,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $("#toTop").hide();
     }
   });
+  
+
+  // Hide toTop
+
+  function hideToTop(event) {
+    var pos1 = $("body").scrollTop();
+    var pos2 = $("#imgContainer").offset().top;
+    var diff = pos2 - pos1;
+    if (diff < 50) {
+      $("#toTop").hide();
+    }
+  }
+  window.addEventListener("resize", hideToTop, false);
+  window.addEventListener("load", hideToTop, false);
 
 
   // Put photo on canvas
@@ -276,6 +290,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     readURL(this);
     drawNewImage();
     ctx.save();
+    $("#resetBtn").next().hide(); //hide "drag&drop" text
   });
 
   uploadPhoto.addEventListener("click", function(event) {
@@ -414,6 +429,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }, false);
 
 
+  // Drag & Drop
+
   var dropzone = $("#resetBtn").next();
 
   dropzone.on('dragover', function() {
@@ -433,7 +450,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     e.stopPropagation();
     e.preventDefault();
     dropzone.removeClass('hover');
-     $("#inputFile").trigger("click");
+    $("#inputFile").trigger("click");
     //retrieve uploaded files data
     var files = e.originalEvent.dataTransfer.files;
 
