@@ -14,8 +14,11 @@
 
 #interlude {
     @extend #about; 
-    height: 300px;
-    .info {
-        
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    iframe {
+       margin: 30px auto;
     }   
 }
