@@ -42,21 +42,26 @@ function brightenImage(event) {
   ctx.save();
 }
 
+var inverted;
+
 function negativeFilter(event) {
-  event.stopImmediatePropagation();
+  event.stopPropagation();
 
   var imageData = ctx.getImageData(x, y, canvas.width, canvas.height);
   var data = imageData.data;
 
   ctx.restore();
+  
+  if (typeof inverted === "undefined" || inverted == false) {
+    for (var i = 0; i < data.length; i += 4) {
+      data[i] = 255 - data[i];
+      data[i + 1] = 255 - data[i + 1];
+      data[i + 2] = 255 - data[i + 2];
+    }
+    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    inverted = true;
+  } 
 
-  for (var i = 0; i < data.length; i += 4) {
-    data[i] = 255 - data[i];
-    data[i + 1] = 255 - data[i + 1];
-    data[i + 2] = 255 - data[i + 2];
-  }
-  console.log("ok");
-  ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
   ctx.save();
 }
 

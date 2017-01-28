@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $("#toTop").hide();
     }
   });
-  
+
 
   // Hide toTop
 
@@ -330,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   negativeOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
     ctx.drawImage(userPhoto, x, y);
+    inverted = false;
   }, false);
 
 
