@@ -11,3 +11,11 @@
         height: 100%;
 	}
 }
+
+#interlude {
+    @extend #about; 
+    height: 300px;
+    .info {
+        
+    }   
+}

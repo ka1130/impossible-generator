@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       controlsPosition.style.visibility = "visible";
     }
+	saveCurrentPhoto();
   }
 
   function showZoomControls(event) {
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       controlsZoom.style.visibility = "visible";
       closeControls();
     }
+	saveCurrentPhoto();
   }
 
   togglePosition.addEventListener("click", showPositionControls, false);
@@ -129,45 +131,52 @@ document.addEventListener("DOMContentLoaded", function(event) {
   toggleZoom.addEventListener("click", showZoomControls, false);
 
   toggleGrayscale.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     grayScaleBtns.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleBrightness.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     brightenDiv.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleBlur.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     blurDiv.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleNegative.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     negativeBtns.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleEdgeDetect.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     edgeDetectBtns.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleSharpen.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     sharpenDiv.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
   toggleEmboss.addEventListener("click", function(event) {
-    closeNav();
+    closeNav(event);
     closeControls();
     embossBtns.style.visibility = "visible";
+	saveCurrentPhoto();
   }, false);
 
 
@@ -228,34 +237,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   window.addEventListener("load", hideToTop, false);
 
 
-  // Put photo on canvas
-
-  function drawNewImage() {
-    ctx.clearRect(x, y, canvas.width, canvas.height);
-
-    var MAX_WIDTH = 600;
-    var MAX_HEIGHT = 1000;
-    var width = userPhoto.width;
-    var height = userPhoto.height;
-
-    if (width > height) {
-      if (width > MAX_WIDTH) {
-        height *= MAX_WIDTH / width;
-        width = MAX_WIDTH;
-      }
-    } else {
-      if (height > MAX_HEIGHT) {
-        width *= MAX_HEIGHT / height;
-        height = MAX_HEIGHT;
-      }
-    }
-    // canvas.width = width;
-    // canvas.height = height;
-
-    ctx.drawImage(userPhoto, x, y, userPhoto.width, userPhoto.height, x, y, canvas.width, canvas.height);
-    ctx.clearRect(x, y, canvas.width, canvas.height);
-  }
-
 
   // Upload a photo
 
@@ -286,9 +267,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         canvas.width = width;
         canvas.height = height;
         ctx.drawImage(userPhoto, x, y, width, height);
-
+		
         var dataurl = canvas.toDataURL("image/png");
         userPhoto.setAttribute("src", dataurl);
+		
+		saveCurrentPhoto();
+		
       }
       reader.readAsDataURL(input.files[0]);
     }
@@ -296,8 +280,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $("#inputFile").change(function(event) {
     readURL(this);
-    drawNewImage();
-    ctx.save();
     $("#resetBtn").next().hide(); //hide "drag&drop" text
   });
 
@@ -311,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   grayScaleOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, x, y);
 
   }, false);
 
@@ -325,8 +307,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   blurRangeSlider.addEventListener("input", function(event) {
     var iterations = blurRangeSlider.value;
-    var imageData = Filters.filterImage(Filters.blur, userPhoto, iterations);
-    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    var imageData = Filters.filterImage(Filters.blur, currentPhoto, iterations);
+    ctx.putImageData(imageData, x, y, x, y, currentPhoto.width, currentPhoto.height);
 
   }, false);
 
@@ -337,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   negativeOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, x, y);
     inverted = false;
   }, false);
 
@@ -345,13 +327,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Edge Detect
 
   edgeDetectOn.addEventListener("click", function(event) {
-    var imageData = Filters.filterImage(Filters.sobel, userPhoto);
-    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    var imageData = Filters.filterImage(Filters.sobel, currentPhoto);
+    ctx.putImageData(imageData, x, y, x, y, currentPhoto.width, currentPhoto.height);
   }, false);
 
   edgeDetectOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, x, y);
   }, false);
 
 
@@ -359,8 +341,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   sharpenRangeSlider.addEventListener("input", function(event) {
     var iterations = sharpenRangeSlider.value;
-    var imageData = Filters.filterImage(Filters.sharpen, userPhoto, iterations);
-    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    var imageData = Filters.filterImage(Filters.sharpen, currentPhoto, iterations);
+    ctx.putImageData(imageData, x, y, x, y, currentPhoto.width, currentPhoto.height);
 
   }, false);
 
@@ -368,13 +350,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Filters: Emboss
 
   embossOn.addEventListener("click", function(event) {
-    var imageData = Filters.filterImage(Filters.emboss, userPhoto);
-    ctx.putImageData(imageData, x, y, x, y, userPhoto.width, userPhoto.height);
+    var imageData = Filters.filterImage(Filters.emboss, currentPhoto);
+    ctx.putImageData(imageData, x, y, x, y, currentPhoto.width, currentPhoto.height);
   }, false);
 
   embossOff.addEventListener("click", function(event) {
     ctx.clearRect(x, y, canvas.width, canvas.height);
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, x, y);
   }, false);
 
 
@@ -385,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ctx.clearRect(x - 1, y - 1, canvas.width + 2, canvas.height + 2); //added offsets to clear tidbits
     ctx.restore();
     ctx.drawImage(userPhoto, 0, 0, canvas.width, canvas.height);
+	saveCurrentPhoto();
   }, false);
 
 
@@ -413,10 +396,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // ctx.shadowBlur = 20;
     // ctx.shadowOffsetX = 15;
     // ctx.shadowOffsetY = 15;
-    ctx.drawImage(userPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
+    ctx.drawImage(currentPhoto, x, x, canvas.width - 2 * x, canvas.height - 2 * x - 50);
   }
 
   download.addEventListener("click", function(event) {
+	saveCurrentPhoto();
     borderImage(20);
     downloadCanvas(this, "imgCanvas", "impossible-photo.png");
     canvas.style.display = "none";
@@ -472,15 +456,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (files && typeof FileReader !== "undefined") {
       //extract FileList as File object
       readURL(files);
-      drawNewImage();
-      ctx.save();
     } else {
       //some message or fallback
       console.log("drag error");
     }
   }
 
-
+	function saveCurrentPhoto() {
+		ctx.save();
+		currentPhoto.src = canvas.toDataURL("image/png");
+	}
 
   //end
 });

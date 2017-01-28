@@ -60,6 +60,7 @@
   //variables for image and canvas
   var imgContainer = document.getElementById("imgContainer");
   var userPhoto = document.getElementById("userPhoto"); //user photo
+  var currentPhoto = new Image; //working copy of the photo with all changes included
   var inputFile = document.getElementById("inputFile");
   var uploadPhoto = document.getElementById("uploadPhoto"); //upload button
   var canvas = document.getElementById("imgCanvas");
