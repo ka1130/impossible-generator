@@ -174,17 +174,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $("#scroll").on("click", function(event) {
     event.preventDefault();
-    $("body").animate({
-      scrollTop: 411
-    }, 500);
+
+    if (window.matchMedia("(min-width: 480px)").matches) {
+      $("body").animate({
+        scrollTop: $("#about").offset().top
+      }, "slow");
+    } else {
+      $("body").animate({
+        scrollTop: 411
+      }, "slow");
+    }
     return false;
   });
 
   $("#about a").on("click", function(event) {
     event.preventDefault();
-    $("body").animate({
-      scrollTop: 1626
-    }, 800);
+    $("html, body").animate({
+      scrollTop: $(document).height()
+    }, "slow");
     return false;
   });
 
@@ -454,7 +461,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $("#resetBtn").next().hide();
     //retrieve uploaded files data
     var files = event.originalEvent.dataTransfer;
-  processFiles(files);
+    processFiles(files);
 
     return false;
   });

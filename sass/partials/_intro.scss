@@ -84,17 +84,11 @@
     }
 }
 
-// .section-wrapper {
-//     height: 1200px;
-//     max-height: 100vh;
-//     background: transparent !important;
-// }
 
 #about {
     width: 100%;
     height: 100%;
-    
-    // background-color: rgba(0, 0, 0, .5);
+
     .info {
         background: transparent;
         width: 75%;
@@ -105,6 +99,9 @@
         flex-direction: column;
         justify-content: center;
         align-content: center;
+        @media screen and (max-width: 700px) {
+            height: 100vh;
+        }
         
         p {
             opacity: 1;
