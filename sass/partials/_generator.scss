@@ -234,9 +234,12 @@ nav {
         }
         div {
             position: absolute;
-            top: 80px;
-            left: 10px;
+            top: 50%;
+            left: 0;
+            right: 0;
+            text-align: center;
             text-transform: uppercase;
+            font-size: 1.5rem;
         }
     }
 }

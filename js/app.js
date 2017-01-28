@@ -413,5 +413,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("ok");
   }, false);
 
+
+  var dropzone = $("#resetBtn").next();
+
+  dropzone.on('dragover', function() {
+    //add hover class when drag over
+    dropzone.addClass('hover');
+    return false;
+  });
+
+  dropzone.on('dragleave', function() {
+    //remove hover class when drag out
+    dropzone.removeClass('hover');
+    return false;
+  });
+
+  dropzone.on('drop', function(e) {
+    //prevent browser from open the file when drop off
+    e.stopPropagation();
+    e.preventDefault();
+    dropzone.removeClass('hover');
+     $("#inputFile").trigger("click");
+    //retrieve uploaded files data
+    var files = e.originalEvent.dataTransfer.files;
+
+
+    return false;
+  });
+
+
+
   //end
 });
