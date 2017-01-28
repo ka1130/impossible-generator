@@ -174,13 +174,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $("#scroll").on("click", function(event) {
     event.preventDefault();
+    // $("body").animate({
+    //   scrollTop: $("#about").offset().top
+    // }, "slow");
 
     if (window.matchMedia("(max-width: 480px)").matches) {
-      $("body").animate({
+      $("html, body").animate({
         scrollTop: $("#about").offset().top
       }, "slow");
     } else {
-      $("body").animate({
+      $("html, body").animate({
         scrollTop: 411
       }, "slow");
     }
