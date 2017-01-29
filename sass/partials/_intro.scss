@@ -147,20 +147,4 @@
 }
 
 
-#interlude {
-    display: flex;
-    flex-direction: column;
-    .desc {
-        text-transform: none;
-        a {
-            color: fff;
-            text-decoration: none;
-        }
-    }
-    p {
-        color: #fff;
-        text-transform: uppercase;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-}
+
