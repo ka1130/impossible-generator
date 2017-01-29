@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "display": "block",
         "overflow-y": "auto"
       });
-    } else {
-      $("#toTop").hide();
-    }
+    } 
   }
 
   window.addEventListener("resize", setMarginRight, false);
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       toolsNav.style.visibility = "hidden";
       toolsNav.style.height = "0";
     }
-    $("#toTop").hide();
   }
 
   function closeNav(event) {
@@ -212,14 +209,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   });
 
-  $("#toTop").hide();
-
   $(document).on("scroll", function(event) {
     if ($("body").scrollTop() > 411) {
-      $("#toTop").show();
-    } else {
-      $("#toTop").hide();
-    }
+    } 
   });
 
   $("#about").find("div").children().eq(1).on("click", function(event) {
@@ -239,21 +231,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }, "slow");
     return false;
   })
-
-
-  // Hide toTop
-
-  function hideToTop(event) {
-    var pos1 = $("body").scrollTop();
-    var pos2 = $("#imgContainer").offset().top;
-    var diff = pos2 - pos1;
-    if (diff < 50) {
-      $("#toTop").hide();
-    }
-  }
-  window.addEventListener("resize", hideToTop, false);
-  window.addEventListener("load", hideToTop, false);
-
 
 
   // Upload a photo
