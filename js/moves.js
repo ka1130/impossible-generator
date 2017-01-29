@@ -4,48 +4,55 @@
   var a = 0;
   var b = 0;
 
+  var currentScale = 1;
+  
   inMemCanvas.width = 210;
   inMemCanvas.height = 250;
 
-
+  
   function clearImage() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, inMemCanvas.width, inMemCanvas.height);
     userPhoto.style.display = "none";
   }
 
-  function moveElementTop(event) {
-    ctx.save();
+  function moveElement(direction) {
     clearImage();
-    ctx.translate(a, b -= 2);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.restore();
+  
+  switch (direction) {
+    case "top":
+      b -= 2;
+      break;
+    
+    case "bottom":
+      b += 2;
+      break;
+    
+    case "left":
+      a -= 2;
+      break;
+    
+    case "right":
+      a += 2;
+      break;
+  }
+  
+  ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
+  }
+  
+  function moveElementTop(event) {
+    moveElement("top");
   }
 
   function moveElementLeft(event) {
-    ctx.save();
-    clearImage();
-    ctx.translate(a -= 2, b);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.restore();
+    moveElement("left");
   }
 
   function moveElementRight(event) {
-    ctx.save();
-    clearImage();
-    ctx.translate(a += 2, b);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.restore();
+    moveElement("right");
   }
 
   function moveElementBottom(event) {
-    ctx.save();
-    clearImage();
-    ctx.translate(a, b += 2);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.drawImage(userPhoto, a, b);
-    ctx.restore();
+    moveElement("bottom");
   }
 
   moveTop.addEventListener("click", moveElementTop, false);
@@ -65,18 +72,16 @@
 
   function zoomInElement(event) {
     clearImage();
-    ctx.scale(0.99, 0.99);
-    ctx.clearRect(x, y, canvas.width, canvas.height);
+  currentScale -= 0.01;
     userPhoto.style.display = "none";
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
 
   function zoomOutElement(event) {
     clearImage();
-    ctx.scale(1.01, 1.01);
-    ctx.clearRect(x, y, canvas.width, canvas.height);
+  currentScale += 0.01;
     userPhoto.style.display = "none";
-    ctx.drawImage(userPhoto, x, y);
+    ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
 
   zoomIn.addEventListener("click", zoomInElement, false);
