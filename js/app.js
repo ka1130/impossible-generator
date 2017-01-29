@@ -242,29 +242,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-
+    
       reader.onload = function(event) {
-        userPhoto.setAttribute("src", event.target.result);
+    
+    clearImage();
+    
+    var tempPhoto = new Image;
+    tempPhoto.src = event.target.result;
 
-        var MAX_WIDTH = 300;
-        var MAX_HEIGHT = 500;
-        var width = userPhoto.width;
-        var height = userPhoto.height;
-
-        if (width > height) {
+        var MAX_WIDTH = 250;
+        var MAX_HEIGHT = 210;
+        var width = tempPhoto.width;
+        var height = tempPhoto.height;
+    
+    var offsetX = 0;
+    var offsetY = 0;
+    
+    if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width;
+      offsetY = (MAX_HEIGHT - height)/2;
+      console.log(height + (offsetX * 2));
             width = MAX_WIDTH;
           }
         } else {
           if (height > MAX_HEIGHT) {
             width *= MAX_HEIGHT / height;
+      offsetX = (MAX_WIDTH - width)/2;
+      console.log(width + (offsetY * 2));
             height = MAX_HEIGHT;
           }
         }
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(userPhoto, x, y, width, height);
+    
+        canvas.width = MAX_WIDTH;
+        canvas.height = MAX_HEIGHT;
+        ctx.drawImage(tempPhoto, offsetX, offsetY, width, height);
 
         var dataurl = canvas.toDataURL("image/png");
         userPhoto.setAttribute("src", dataurl);
