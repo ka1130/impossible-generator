@@ -402,14 +402,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function zoomInElement(event) {
     clearImage();
-  currentScale -= 0.01;
+  currentScale -= 0.1;
     userPhoto.style.display = "none";
     ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
 
   function zoomOutElement(event) {
     clearImage();
-  currentScale += 0.01;
+  currentScale += 0.1;
     userPhoto.style.display = "none";
     ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
