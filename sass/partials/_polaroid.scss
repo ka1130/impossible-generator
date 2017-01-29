@@ -12,15 +12,20 @@
     }
 }
 
-#interlude {
-    @extend #about;
-    height: 100vh;
-    // width: 100%;
-    // display: flex;
-    // justify-content: center;
-    // align-content: center;
-    // align-items: center;
-    // flex-direction: column;
+
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5%;
+    p {
+        color: #fff;
+        margin-top: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
 
 .embed-container {

@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   window.addEventListener("resize", setMarginRight, false);
   window.addEventListener("load", setMarginRight, true);
 
-  $(".like-button rounded-box").hide();
-
 
   //Responsive tools navigation
   var opened;
@@ -231,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }, "slow");
     return false;
   });
+
+  console.log($("body").scrollTop());
 
   $("#interlude").find("p").on("click", function(event) {
     event.preventDefault();
