@@ -12,12 +12,18 @@
     }
 }
 
-
+#interlude {
+    height: 100vh;
+    display: table; 
+    width:100%;
+}
 
 .video-wrapper {
     max-width: 800px;
     margin: 0 auto;
     padding: 5%;
+    display: table-cell;
+    vertical-align: middle;
     p {
         color: #fff;
         margin-top: 40px;
