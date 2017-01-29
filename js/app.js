@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   //Responsive tools navigation
-
   var opened;
 
   function openNav() {
@@ -223,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   });
 
+  console.log($("body").scrollTop());
 
   $("#interlude").find("p").on("click", function(event) {
     event.preventDefault();
@@ -234,8 +234,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   // Upload a photo
-  canvas.width = 250;
-  canvas.height = 210;
+
+  canvas.width = 210;
+  canvas.height = 250;
 
   function readURL(input) {
 
@@ -283,7 +284,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   uploadPhoto.addEventListener("click", function(event) {
     $("#inputFile").trigger("click");
   }, false);
-
 
   // Filters: GrayScale
 
@@ -424,10 +424,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var dropzone = $("#imgContainer");
 
+  dropzone.on("dragover", function() {
+    //add hover class when drag over
+    dropzone.addClass("hover");
+    return false;
+  });
+
+  dropzone.on("dragleave", function(event) {
+    //remove hover class when drag out
+    dropzone.removeClass("hover");
+    return false;
+  });
+
   dropzone.on("drop", function(event) {
     //prevent browser from open the file when drop off
     event.stopPropagation();
     event.preventDefault();
+    dropzone.removeClass("hover");
     $("#resetBtn").next().hide();
     //retrieve uploaded files data
     var files = event.originalEvent.dataTransfer;
