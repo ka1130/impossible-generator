@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   window.addEventListener("resize", setMarginRight, false);
   window.addEventListener("load", setMarginRight, true);
 
+  $(".like-button rounded-box").hide();
+
 
   //Responsive tools navigation
   var opened;
