@@ -1,7 +1,13 @@
 footer {
     position: absolute;
     bottom: 2%;
-    right: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 5%;
+    align-self: center;
     a {
         color: #fff;
         text-decoration: none;
@@ -15,30 +21,31 @@ footer {
         font-family: 'Phenomena', sans-serif;
         font-weight: 1rem;
     }
+    span {
+        color: #fff;
+    }
 }
 
-#toTop {
-    //position: fixed;
-    width: 100%;
-    max-width: 800px;
-    bottom: 2%;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-    cursor: pointer;
-    overflow: hidden;
-    margin: 0 auto;
-    align-self: center;
-    @media screen and (max-width: 479px) {
-        display: none;
-    }
-    i {
-        margin: 0 auto;
-        align-self: center;
-        @media screen and (max-width: 479px) {
-            display: none;
-        }
-    }
-}
+// #toTop {
+//     //position: fixed;
+//     width: 100%;
+//     max-width: 800px;
+//     bottom: 2%;
+//     color: #fff;
+//     display: flex;
+//     z-index: 200;
+//     cursor: pointer;
+//     overflow: hidden;
+//     margin: 0 auto;
+//     align-self: center;
+//     @media screen and (max-width: 479px) {
+//         display: none;
+//     }
+//     i {
+//         margin: 0 auto;
+//         align-self: center;
+//         @media screen and (max-width: 479px) {
+//             display: none;
+//         }
+//     }
+// }
