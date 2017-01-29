@@ -250,32 +250,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var tempPhoto = new Image;
     tempPhoto.src = event.target.result;
 
-        var MAX_WIDTH = 250;
-        var MAX_HEIGHT = 210;
+        var MAX_WIDTH = 210;
+        var MAX_HEIGHT = 250;
         var width = tempPhoto.width;
         var height = tempPhoto.height;
     
     var offsetX = 0;
     var offsetY = 0;
+    var aspectRatio = 0;
     
     if (width > height) {
+      aspectRatio = (height / width) * 100;
+    } else {
+      aspectRatio = (width / height) * 100;
+    }
+    
+    aspectRatio = Math.round(aspectRatio) / 100;
+    
+    if (width >= height) {
           if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-      offsetY = (MAX_HEIGHT - height)/2;
-      console.log(height + (offsetX * 2));
             width = MAX_WIDTH;
+            height = width * aspectRatio;
+      offsetY = (MAX_HEIGHT - height) / 2;
+      console.log(height + (offsetX * 2));
           }
         } else {
           if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-      offsetX = (MAX_WIDTH - width)/2;
-      console.log(width + (offsetY * 2));
             height = MAX_HEIGHT;
+            width = height * aspectRatio;
+      offsetX = (MAX_WIDTH - width) / 2;
+      console.log(width + (offsetY * 2));
           }
         }
     
         canvas.width = MAX_WIDTH;
         canvas.height = MAX_HEIGHT;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(tempPhoto, offsetX, offsetY, width, height);
 
         var dataurl = canvas.toDataURL("image/png");
