@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   //Responsive tools navigation
+
   var opened;
 
   function openNav() {
@@ -222,7 +223,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   });
 
-  console.log($("body").scrollTop());
 
   $("#interlude").find("p").on("click", function(event) {
     event.preventDefault();
@@ -234,6 +234,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   // Upload a photo
+  canvas.width = 250;
+  canvas.height = 210;
 
   function readURL(input) {
 
@@ -281,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   uploadPhoto.addEventListener("click", function(event) {
     $("#inputFile").trigger("click");
   }, false);
+
 
   // Filters: GrayScale
 
