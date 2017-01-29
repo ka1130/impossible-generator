@@ -36,7 +36,6 @@
             cursor: pointer;
         }
     }
-
     .tools-info {
         color: #fff;
         position: absolute;
@@ -48,6 +47,14 @@
         width: 150%;
         @media screen and (min-width: 900px) {
             top: 30px;
+        }
+        @media screen and (max-width: 479px) and (orientation: portrait) {
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        @media screen and (max-width: 700px) and (orientation: landscape) {
+            display: none;
         }
     }
 }
