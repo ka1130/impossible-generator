@@ -38,9 +38,8 @@ nav {
             list-style-type: none;
             display: inline-block;
             cursor: pointer;
-            a {
+            span {
                 color: #fff;
-                text-decoration: none;
             }
             i {
                 @media screen and (min-width: 480px) {

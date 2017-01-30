@@ -24,6 +24,9 @@
     padding: 5%;
     display: table-cell;
     vertical-align: middle;
+    iframe {
+        border-width: 0px;
+    }
     p {
         color: #fff;
         margin-top: 40px;
