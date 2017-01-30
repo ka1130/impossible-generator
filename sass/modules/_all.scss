@@ -14,7 +14,8 @@
 
 @mixin create-button($bg-color, $font-color, $font-size) {
     line-height: 100%;
-    font-family: 'phenomenabold';
+    font-family: 'Phenomena';
+    font-weight: bold;
     background-color: $bg-color;
     color: $font-color;
     text-transform: uppercase;
