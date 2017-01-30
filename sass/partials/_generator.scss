@@ -22,6 +22,11 @@
     }
 }
 
+#uploadPhoto {
+    color: #fff;
+    display: block;
+}
+
 nav {
     display: flex;
     flex-direction: column;
@@ -38,9 +43,6 @@ nav {
             list-style-type: none;
             display: inline-block;
             cursor: pointer;
-            i {
-                color: #fff;
-            }
             i {
                 @media screen and (min-width: 480px) {
                     display: none;
@@ -145,6 +147,7 @@ nav {
             font-size: 3rem;
             color: #fff;
             text-decoration: none;
+            cursor: pointer;
         }
     }
 }

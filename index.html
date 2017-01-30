@@ -67,11 +67,11 @@
                     <nav>
                         <ul class="tools-panel">
                             <li>
-                                <i id="uploadPhoto">
+                                <span id="uploadPhoto">
                                     <input type="file" accept="image/*" id="inputFile">
                                     <i class="material-icons md-36">library_add</i>
                                     <span id="leftBorder">Upload a Pic ...</span>
-                                </i>
+                                </span>
                             </li>
                             <li id="togglePosition">
                                 <i class="material-icons md-36">settings_overscan</i>
@@ -88,7 +88,7 @@
                         </ul>
                         <div id="toolsNav" class="overlay">
                             <ul class="overlay-content">
-                                <a href="#" id="closeFiltersNav">&times;</a>
+                                <span id="closeFiltersNav">&times;</span>
                                 <li id="toggleGrayscale">grayscale</li>
                                 <li id="toggleBrightness">brighten</li>
                                 <li id="toggleBlur">blur</li>
@@ -127,11 +127,11 @@
                 <div id="tools-right">
                 </div>
                 <div id="imgContainer">
-                    <img id="userPhoto" src="img/img-bg.jpg" width="" height="" class="resize-image" />
-                    <canvas id="imgCanvas" width="210px" height="250px" class="no-select">
+                    <img id="userPhoto" src="img/img-bg.jpg" class="resize-image" alt="user-photo" />
+                    <canvas id="imgCanvas" width="210" height="250" class="no-select">
                         Your browser does not support the HTML 5 Canvas.
                     </canvas>
-                    <a href="#" value="Get it" id="download" class="no-select">Get it</a>
+                    <a href="#" id="download" class="no-select">Get it</a>
                     <input type="reset" value="reset" id="resetBtn" class="no-select">
                     <div>
                         <label for="fileselect">(choose upload from the top nav bar)</label>
@@ -152,7 +152,7 @@
                         <span id="zoom-in"><i class="fa fa-minus fa-fw fa-3x"></i></span>
                         <span id="zoom-out"><i class="fa fa-plus fa-fw fa-3x"></i></span>
                     </div>
-                    <form id="form1" action=" " method="get" onsubmit="return false;">
+                    <form id="form1" method="get" onsubmit="return false;">
                         <div class="scale-btns" id="grayScale">
                             <div class="buttons-wrapper">
                                 <button>on</button>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="slider-filter" id="brighten-range">
                             <i class="material-icons">brightness_5</i>
-                            <input type="range" name="brighten-range" value="0" min="-25" max="2 " step="1" id="brightenRange">
+                            <input type="range" name="brighten-range" value="0" min="-25" max="2" step="1" id="brightenRange">
                         </div>
                         <div class="slider-filter" id="blur-range">
                             <i class="material-icons">blur_on</i>
