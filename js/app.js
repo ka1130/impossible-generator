@@ -497,6 +497,7 @@
         event.target.removeEventListener("click", showPositionControls);
       } else {
         closeControls();
+        controlsPosition.style.visibility = "visible";
       }
       saveCurrentPhoto();
     }
