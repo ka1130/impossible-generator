@@ -20,19 +20,19 @@
   
   switch (direction) {
     case "top":
-      b -= 2;
+      b -= 5;
       break;
     
     case "bottom":
-      b += 2;
+      b += 5;
       break;
     
     case "left":
-      a -= 2;
+      a -= 5;
       break;
     
     case "right":
-      a += 2;
+      a += 5;
       break;
   }
   
@@ -72,14 +72,14 @@
 
   function zoomInElement(event) {
     clearImage();
-  currentScale -= 0.01;
+  currentScale -= 0.1;
     userPhoto.style.display = "none";
     ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
 
   function zoomOutElement(event) {
     clearImage();
-  currentScale += 0.01;
+  currentScale += 0.1;
     userPhoto.style.display = "none";
     ctx.drawImage(currentPhoto, a, b, inMemCanvas.width * currentScale, inMemCanvas.height * currentScale);
   }
