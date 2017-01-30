@@ -38,7 +38,7 @@ nav {
             list-style-type: none;
             display: inline-block;
             cursor: pointer;
-            span {
+            i {
                 color: #fff;
             }
             i {
@@ -168,7 +168,7 @@ nav {
     z-index: 1;
     position: relative;
     margin: 20px auto;
-     @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
+    @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
         margin: -20px auto 0;
         max-width: 30%;
         height: 70%;
@@ -178,7 +178,7 @@ nav {
         width: 210px;
         height: 250px;
         margin: 17px auto;
-         @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
+        @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
             max-width: 80%;
             height: 70%;
         }
@@ -202,7 +202,7 @@ nav {
             color: #333;
             padding-top: .3rem;
         }
-         @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
+        @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
             top: 82%;
             width: 60px;
             height: 30px;
@@ -225,7 +225,7 @@ nav {
             background-color: #fff;
             color: #bbb;
         }
-         @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
+        @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
             top: 82%;
             width: 60px;
             height: 30px;
@@ -277,7 +277,7 @@ nav {
             text-align: center;
             text-transform: uppercase;
             font-size: 1.5rem;
-             @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
+            @media screen and (max-width: 750px) and (max-height: 500px) and (orientation: landscape) {
                 width: 96%;
                 left: 2%;
                 right: 2%;
