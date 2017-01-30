@@ -65,7 +65,9 @@ function negativeFilter(event) {
   ctx.save();
 }
 
-// Library
+// Filters class code samples written by Ilmari Heikkinen (https://www.html5rocks.com/en/profiles/#ilmari),
+// licensed under the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0) with addition of blur,
+// emboss and sharpen methods.
 
 Filters = {};
 
