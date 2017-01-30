@@ -25,6 +25,7 @@
     var controlsPosition = document.getElementsByClassName("controls-position")[0];
     var controlsZoom = controlsPosition.nextElementSibling;
 
+
     //grayscale buttons
     var grayScaleBtns = document.getElementById("grayScale");
     var grayScaleBtnsWrapper = grayScaleBtns.children[0];
@@ -352,6 +353,9 @@
       return id;
     };
 
+    //end of licensed filters 
+
+
     Filters.blur = function(pixels, iterations) {
       var convMatrix = [1 / 9, 1 / 9, 1 / 9,
         1 / 9, 1 / 9, 1 / 9,
@@ -492,17 +496,18 @@
       if (mq.matches) {
         event.target.removeEventListener("click", showPositionControls);
       } else {
-        controlsPosition.style.visibility = "visible";
+        closeControls();
       }
       saveCurrentPhoto();
     }
+
 
     function showZoomControls(event) {
       if (mq.matches) {
         event.target.removeEventListener("click", showZoomControls);
       } else {
-        controlsZoom.style.visibility = "visible";
         closeControls();
+        controlsZoom.style.visibility = "visible";
       }
       saveCurrentPhoto();
     }
@@ -828,7 +833,7 @@
     }, false);
 
 
-    //Filters: Funscale
+    //Filters: Sharpen
 
     sharpenRangeSlider.addEventListener("input", function(event) {
       var iterations = sharpenRangeSlider.value;
