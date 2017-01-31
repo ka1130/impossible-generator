@@ -5,6 +5,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var del = require('del');
 var useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
+var gulpif = require('gulp-if');
  
 gulp.task('jshint', function () {
     return gulp.src('js/*.js')
@@ -21,10 +23,10 @@ gulp.task('server', function() {
 });
  
 gulp.task('sass', function () {
-    return gulp.src('sass/main.scss')
+    return gulp.src('src/sass/main.scss')
     	.pipe(sourcemaps.init())
         .pipe(sass({
-        	outputStyle: 'expanded',
+        	outputStyle: 'compressed',
         	errLogToConsole: true
         }))
         .pipe(sourcemaps.write())
@@ -45,6 +47,7 @@ gulp.task('clean', function() {
 gulp.task('html', function() {
     gulp.src('src/*.html')
         .pipe(useref())
+        .pipe( gulpif ("*.js", uglify() ))
         .pipe(gulp.dest("dist/"));
 });
 
