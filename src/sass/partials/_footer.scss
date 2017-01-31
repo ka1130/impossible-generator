@@ -1,0 +1,34 @@
+.ending {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 7%;
+    align-self: center;
+    @media screen and (max-width: 479px) and (orientation: portrait) {
+        padding: 0 9%;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        justify-content: flex-end;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    p {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        font-family: 'Phenomena', sans-serif;
+        font-weight: 1rem;
+    }
+    span {
+        color: #fff;
+        cursor: pointer;
+    }
+}
+

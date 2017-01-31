@@ -1,0 +1,33 @@
+@mixin range-style() {
+    background: transparent;
+    left: 0;
+    top: 50px;
+    background-image: url(../img/indicator.svg);
+    background-repeat: no-repeat;
+    width: 13px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+@mixin create-button($bg-color, $font-color, $font-size) {
+    line-height: 100%;
+    font-family: 'Phenomena';
+    font-weight: bold;
+    background-color: $bg-color;
+    color: $font-color;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: $font-size;
+    padding: 0.2rem;
+    cursor: pointer;
+    border: 0px;
+}
+
+@mixin rotate-element($deg) {
+    -ms-transform: rotate($deg); /* IE 9 */
+    -webkit-transform: rotate($deg); /* Chrome, Safari, Opera */
+    transform: rotate($deg);
+}

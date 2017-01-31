@@ -1,6 +1,5 @@
-Assets/
-PSD/
 node_modules/
+package.json
 .sass-cache/
 *.css.map
 img/*.psd
